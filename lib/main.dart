@@ -1,3 +1,4 @@
+import 'package:edu_track/screens/signup_screen/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,19 +17,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        fontFamily: "Inter",
       ),
-      home: const Initial(widget: Center(child: Text("Testtttttttt"))),
+      home: SignupScreen(),
     );
   }
 }
 
 // this widgets serves as a first loader to the app
-class Initial extends StatelessWidget {
-  final Widget widget;
-  const Initial({super.key, required this.widget});
-
-  @override
-  Widget build(BuildContext context) {
-    return widget;
-  }
-}
+// class Initial extends StatelessWidget {
+//   final Widget widget;
+//   const Initial({super.key, required this.widget});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return widget;
+//   }
+// }
