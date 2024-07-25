@@ -75,6 +75,7 @@ enum AppIcons {
       : path = '$_base/$fileName.$suffix';
 }
 
+//* this widget is like the Icon widget but for the applications own icons
 class AppIcon extends StatelessWidget {
   final AppIcons icon;
   final BoxFit fit;
