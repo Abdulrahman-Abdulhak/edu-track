@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//* new divider class capable of creating a divider with a label in
+//* the center of it. such as:
+//* --------------- OR ---------------
 class AppDivider extends Divider {
   final Widget? label;
   const AppDivider({

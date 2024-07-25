@@ -62,7 +62,7 @@ class AppText extends AppStatelessWidget {
   }
 
   @override
-  bool needsConstraint(BuildContext context) {
+  bool needsConstraints(BuildContext context) {
     final fontSize =
         style?.fontSize ?? AppDefaultTextStyle.of(context).style.fontSize!;
     return fontSize.needsConstraints;

@@ -108,7 +108,7 @@ class AppIcon extends AppStatelessWidget {
   }
 
   @override
-  bool needsConstraint(BuildContext context) {
+  bool needsConstraints(BuildContext context) {
     return size != null && size!.needsConstraints;
   }
 }
