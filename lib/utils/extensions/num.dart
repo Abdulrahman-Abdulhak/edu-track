@@ -1,8 +1,7 @@
 import '../sizes/sizes.dart';
 
-//* provides the capabilities to create Units directly from any number
-extension Units on num {
-  //? Size Units
+//* provides the size capabilities to create Units directly from any number
+extension SizeUnits on num {
   // it is the value of 1 logical screen pixel.
   Pixel get px => Pixel(toDouble());
   // it is the value of the app's initial fontSize (Root Em).

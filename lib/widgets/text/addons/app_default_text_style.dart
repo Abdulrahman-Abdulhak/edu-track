@@ -31,7 +31,10 @@ class AppDefaultTextStyle extends InheritedTheme {
             : style;
 
   AppDefaultTextStyle.fallback(BuildContext context, {super.key})
-      : style = AppTextStyle(fontSize: 1.rem).toPixelBased(context, null),
+      : style = AppTextStyle(
+          fontSize: 1.rem,
+          fontWeight: FontWeight.w400,
+        ).toPixelBased(context, null),
         overflow = TextOverflow.clip,
         maxLineCount = null,
         super(child: const _NullWidget());

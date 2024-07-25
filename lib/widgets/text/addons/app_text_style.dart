@@ -8,6 +8,7 @@ class AppTextStyle {
   final UnitSize? fontSize;
   final Color? color, decorationColor;
   final double? wordSpacing, letterSpacing, lineHeight;
+  final String? fontFamily;
   final TextDecoration? decoration;
   final TextDecorationStyle? decorationStyle;
   final TextOverflow? overflow;
@@ -26,6 +27,7 @@ class AppTextStyle {
     this.overflow,
     this.fontWeight,
     this.textShadow,
+    this.fontFamily,
   });
 
   AppTextStyle.style(AppTextStyle? style)
@@ -39,7 +41,8 @@ class AppTextStyle {
         overflow = style?.overflow,
         lineHeight = style?.lineHeight,
         fontWeight = style?.fontWeight,
-        textShadow = style?.textShadow;
+        textShadow = style?.textShadow,
+        fontFamily = style?.fontFamily;
 
   AppTextStyle.textStyle(TextStyle style)
       : fontSize = style.fontSize?.px,
@@ -52,7 +55,8 @@ class AppTextStyle {
         overflow = style.overflow,
         lineHeight = style.height,
         fontWeight = style.fontWeight,
-        textShadow = style.shadows;
+        textShadow = style.shadows,
+        fontFamily = style.fontFamily;
 
   //* this function returns a new appTextStyle from the {this} style and
   //* replaces all the null properties with the {style} properties.
@@ -69,6 +73,7 @@ class AppTextStyle {
       textShadow: textShadow ?? style?.textShadow,
       wordSpacing: wordSpacing ?? style?.wordSpacing,
       fontWeight: fontWeight ?? style?.fontWeight,
+      fontFamily: fontFamily ?? style?.fontFamily,
     );
   }
 
@@ -99,6 +104,7 @@ class AppTextStyle {
       textShadow: textShadow,
       fontWeight: fontWeight,
       wordSpacing: wordSpacing,
+      fontFamily: fontFamily,
     ).merge(this);
   }
 
@@ -116,23 +122,7 @@ class AppTextStyle {
       height: lineHeight,
       fontWeight: fontWeight,
       shadows: textShadow,
-    );
-  }
-
-  //* this function converts from {TextStyle} into {AppTextStyle}
-  TextStyle fromTextStyle(BuildContext? context, BoxConstraints? constraints) {
-    return TextStyle(
-      color: color,
-      fontSize: fontSize?.compute(context, constraints),
-      wordSpacing: wordSpacing,
-      letterSpacing: letterSpacing,
-      decoration: decoration,
-      decorationStyle: decorationStyle,
-      decorationColor: decorationColor,
-      overflow: overflow,
-      height: lineHeight,
-      fontWeight: fontWeight,
-      shadows: textShadow,
+      fontFamily: fontFamily,
     );
   }
 

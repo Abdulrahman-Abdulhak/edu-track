@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Inter",
       ),
-      home: const TestWidget(),
+      home: const SignupScreen(),
     );
   }
 }
