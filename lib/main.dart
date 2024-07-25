@@ -1,4 +1,6 @@
 import 'package:edu_track/screens/signup_screen/signup.dart';
+import 'package:edu_track/utils/extensions/extensions.dart';
+import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +21,27 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Inter",
       ),
-      home: SignupScreen(),
+      home: const TestWidget(),
+    );
+  }
+}
+
+class TestWidget extends StatelessWidget {
+  const TestWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AppDefaultTextStyle(
+        style: const AppTextStyle(),
+        context: context,
+        child: Center(
+          child: AppText(
+            "Testing Me",
+            style: AppTextStyle(fontSize: 5.cqw),
+          ),
+        ),
+      ),
     );
   }
 }

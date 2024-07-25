@@ -2,6 +2,7 @@ import 'package:edu_track/constants/ui/images.dart';
 import 'package:edu_track/screens/signup_screen/divider.dart';
 import 'package:edu_track/screens/signup_screen/login_button.dart';
 import 'package:edu_track/screens/signup_screen/logo.dart';
+import 'package:edu_track/utils/extensions/num.dart';
 import 'package:edu_track/widgets/button/button.dart';
 import 'package:edu_track/widgets/button/button_with_logo.dart';
 import 'package:edu_track/widgets/icons/app_icon.dart';
@@ -36,7 +37,7 @@ class SignupScreen extends StatelessWidget {
             icon: AppIcons.menuSolid,
             color: AppColors.gray700,
             fit: BoxFit.contain,
-            size: 24,
+            size: 24.px,
           ),
         ],
       ),

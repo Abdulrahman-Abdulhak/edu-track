@@ -1,6 +1,9 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
+import 'package:edu_track/_main/main.dart';
+import 'package:edu_track/utils/sizes/unit_size.dart';
+
 const _base = 'assets/icons/svg';
 
 enum AppIcons {
@@ -76,11 +79,11 @@ enum AppIcons {
 }
 
 //* this widget is like the Icon widget but for the applications own icons
-class AppIcon extends StatelessWidget {
+class AppIcon extends AppStatelessWidget {
   final AppIcons icon;
   final BoxFit fit;
   final Color color;
-  final double? size;
+  final UnitSize? size;
 
   const AppIcon({
     super.key,
@@ -91,14 +94,21 @@ class AppIcon extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+    final sizeToUse = size?.compute(context, constraints);
+
     return SvgPicture.asset(
       icon.path,
       fit: fit,
-      width: size,
-      height: size,
+      width: sizeToUse,
+      height: sizeToUse,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
       placeholderBuilder: (context) => Placeholder(color: color),
     );
+  }
+
+  @override
+  bool needsConstraint(BuildContext context) {
+    return size != null && size!.needsConstraints;
   }
 }
