@@ -1,3 +1,4 @@
+import 'package:edu_track/screens/sibebar_navigation_screen/sidebar_navigation.dart';
 import 'package:edu_track/screens/signup_screen/signup.dart';
 import 'package:edu_track/utils/extensions/extensions.dart';
 import 'package:edu_track/widgets/widgets.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Inter",
       ),
-      home: const SignupScreen(),
+      home: SidebarNavigationScreen(),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:edu_track/constants/ui/images.dart';
-import 'package:edu_track/widgets/layout/divider.dart';
 import 'package:edu_track/screens/signup_screen/login_button.dart';
-import 'package:edu_track/screens/signup_screen/logo.dart';
+import 'package:edu_track/widgets/icons/logo.dart';
 import 'package:edu_track/utils/extensions/num.dart';
 import 'package:edu_track/widgets/button/button.dart';
 import 'package:edu_track/widgets/button/button_with_logo.dart';
