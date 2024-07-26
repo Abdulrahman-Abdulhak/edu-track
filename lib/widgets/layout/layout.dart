@@ -1,2 +1,3 @@
 export './divider.dart';
-export './flexs/flexs.dart';
+export './flexes/flexes.dart';
+export './wrappers/wrappers.dart';

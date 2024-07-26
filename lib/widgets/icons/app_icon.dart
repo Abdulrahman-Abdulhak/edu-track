@@ -97,13 +97,17 @@ class AppIcon extends AppStatelessWidget {
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
     final sizeToUse = size?.compute(context, constraints);
 
-    return SvgPicture.asset(
-      icon.path,
-      fit: fit,
+    return SizedBox(
       width: sizeToUse,
       height: sizeToUse,
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-      placeholderBuilder: (context) => Placeholder(color: color),
+      child: SvgPicture.asset(
+        icon.path,
+        fit: fit,
+        width: sizeToUse,
+        height: sizeToUse,
+        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+        placeholderBuilder: (context) => Placeholder(color: color),
+      ),
     );
   }
 

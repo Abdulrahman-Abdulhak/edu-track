@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './gap.dart';
+import 'gap.dart';
 
 class GapVertical extends Gap {
   const GapVertical({

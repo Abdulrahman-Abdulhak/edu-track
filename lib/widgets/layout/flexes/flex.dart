@@ -1,10 +1,11 @@
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/utils/extensions/list.dart';
 import 'package:edu_track/utils/sizes/sizes.dart';
 
-//* new Flex widget with additionl property of {gap}.
+import './flexes.dart';
+
+//* new Flex widget with additional property of {gap}.
 //* specifying this property will create gaps in the direction of the Flex.
 class AppFlex extends StatelessWidget {
   final UnitSize? gap;
@@ -27,7 +28,7 @@ class AppFlex extends StatelessWidget {
     this.textDirection,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.mainAxisSize = MainAxisSize.max,
+    this.mainAxisSize = MainAxisSize.min,
     this.verticalDirection = VerticalDirection.down,
     this.clipBehavior = Clip.none,
     required this.direction,

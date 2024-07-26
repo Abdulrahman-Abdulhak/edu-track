@@ -1,3 +1,5 @@
+import 'package:edu_track/utils/extensions/extensions.dart';
+import 'package:edu_track/widgets/text/addons/text_transform.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:edu_track/_main/main.dart';
@@ -12,6 +14,7 @@ class AppText extends AppStatelessWidget {
 
   final AppTextStyle? style;
   final TextOverflow? overflow;
+  final TextTransform? textTransform;
   final int? maxLineCount;
 
   const AppText(
@@ -19,6 +22,7 @@ class AppText extends AppStatelessWidget {
     super.key,
     this.style,
     this.overflow,
+    this.textTransform,
     this.maxLineCount,
   });
 
@@ -26,6 +30,7 @@ class AppText extends AppStatelessWidget {
     this.data, {
     super.key,
     this.overflow,
+    this.textTransform,
     this.maxLineCount,
     AppTextStyle? style,
   }) : style = AppTextStyle.style(style).merge(Typographies.regular);
@@ -34,6 +39,7 @@ class AppText extends AppStatelessWidget {
     this.data, {
     super.key,
     this.overflow,
+    this.textTransform,
     this.maxLineCount,
     AppTextStyle? style,
   }) : style = AppTextStyle.style(style).merge(Typographies.medium);
@@ -42,29 +48,39 @@ class AppText extends AppStatelessWidget {
     this.data, {
     super.key,
     this.overflow,
+    this.textTransform,
     this.maxLineCount,
     AppTextStyle? style,
   }) : style = AppTextStyle.style(style).merge(Typographies.semiBold);
 
   //TODO: implement the rich text.
-  const AppText.rich(this.data, this.style, this.overflow, this.maxLineCount);
+  const AppText.rich(this.data, this.style, this.overflow, this.maxLineCount,
+      this.textTransform);
 
   @override
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
     final defaultStyle = AppDefaultTextStyle.of(context);
 
+    final dataToUse = switch (textTransform ?? defaultStyle.textTransform) {
+      TextTransform.capitalize => data.capitalize(),
+      TextTransform.uppercase => data.toUpperCase(),
+      TextTransform.lowercase => data.toLowerCase(),
+      TextTransform.none => data,
+      _ => data,
+    };
+
     return Text(
-      data,
+      dataToUse,
       overflow: overflow ?? defaultStyle.overflow,
       maxLines: maxLineCount ?? defaultStyle.maxLineCount,
-      style: (style ?? defaultStyle.style).toTextStyle(context, constraints),
+      style: (style ?? defaultStyle.style).compute(context, constraints),
     );
   }
 
   @override
   bool needsConstraints(BuildContext context) {
     final fontSize =
-        style?.fontSize ?? AppDefaultTextStyle.of(context).style.fontSize!;
-    return fontSize.needsConstraints;
+        style?.fontSize ?? AppDefaultTextStyle.of(context).style.fontSize;
+    return fontSize?.needsConstraints ?? false;
   }
 }

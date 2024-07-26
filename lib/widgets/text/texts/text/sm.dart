@@ -9,6 +9,7 @@ class TextSm extends AppText {
     super.data, {
     super.key,
     super.overflow,
+    super.textTransform,
     super.maxLineCount,
     AppTextStyle? style,
   }) : super(style: AppTextStyle.style(style).merge(Typographies.textSm));
@@ -16,6 +17,8 @@ class TextSm extends AppText {
   TextSm.regular(
     super.data, {
     super.key,
+    super.overflow,
+    super.textTransform,
     super.maxLineCount,
     AppTextStyle? style,
   }) : super.regular(
@@ -25,6 +28,8 @@ class TextSm extends AppText {
   TextSm.medium(
     super.data, {
     super.key,
+    super.overflow,
+    super.textTransform,
     super.maxLineCount,
     AppTextStyle? style,
   }) : super.medium(
@@ -34,6 +39,8 @@ class TextSm extends AppText {
   TextSm.semiBold(
     super.data, {
     super.key,
+    super.overflow,
+    super.textTransform,
     super.maxLineCount,
     AppTextStyle? style,
   }) : super.semiBold(

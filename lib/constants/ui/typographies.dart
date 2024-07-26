@@ -6,28 +6,28 @@ import 'package:edu_track/widgets/text/addons/addons.dart';
 //* this class holds all the values needed for all text used in the application
 class Typographies {
   static const textXs = AppTextStyle(
-    fontSize: Rem(0.75),
+    fontSize: Em(0.75),
     lineHeight: 1.125 / 0.75,
   );
   static const textSm = AppTextStyle(
-    fontSize: Rem(0.875),
+    fontSize: Em(0.875),
     lineHeight: 1.25 / 0.875,
   );
   static const textMd = AppTextStyle(
-    fontSize: Rem(1),
+    fontSize: Em(1),
     lineHeight: 1.5 / 1,
   );
   static const textLg = AppTextStyle(
-    fontSize: Rem(1.125),
+    fontSize: Em(1.125),
     lineHeight: 1.75 / 1.125,
   );
 
   static const displayXs = AppTextStyle(
-    fontSize: Rem(1.5),
+    fontSize: Em(1.5),
     lineHeight: 2 / 1.5,
   );
   static const displaySm = AppTextStyle(
-    fontSize: Rem(1.875),
+    fontSize: Em(1.875),
     lineHeight: 2.375 / 1.875,
   );
 

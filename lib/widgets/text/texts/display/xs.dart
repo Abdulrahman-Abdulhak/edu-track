@@ -16,6 +16,8 @@ class TextDisplayXs extends AppText {
   TextDisplayXs.regular(
     super.data, {
     super.key,
+    super.overflow,
+    super.textTransform,
     super.maxLineCount,
     AppTextStyle? style,
   }) : super.regular(
@@ -25,6 +27,8 @@ class TextDisplayXs extends AppText {
   TextDisplayXs.medium(
     super.data, {
     super.key,
+    super.overflow,
+    super.textTransform,
     super.maxLineCount,
     AppTextStyle? style,
   }) : super.medium(
@@ -34,6 +38,8 @@ class TextDisplayXs extends AppText {
   TextDisplayXs.semiBold(
     super.data, {
     super.key,
+    super.overflow,
+    super.textTransform,
     super.maxLineCount,
     AppTextStyle? style,
   }) : super.semiBold(
