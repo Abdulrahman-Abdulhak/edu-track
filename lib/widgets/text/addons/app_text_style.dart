@@ -109,7 +109,7 @@ class AppTextStyle {
   }
 
   //* this function transforms the class into {TextStyle}
-  TextStyle toTextStyle(BuildContext? context, BoxConstraints? constraints) {
+  TextStyle compute(BuildContext? context, BoxConstraints? constraints) {
     return TextStyle(
       color: color,
       fontSize: fontSize?.compute(context, constraints),
@@ -139,4 +139,6 @@ class AppTextStyle {
   bool isPixelBased() {
     return fontSize == null || fontSize is Pixel;
   }
+
+  bool get needsConstraints => fontSize != null && fontSize!.needsConstraints;
 }

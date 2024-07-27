@@ -7,7 +7,7 @@ abstract class AppStatelessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (needsConstraint(context)) {
+    if (needsConstraints(context)) {
       return LayoutBuilder(
         builder: (context, constraints) => awareBuild(context, constraints),
       );
@@ -17,5 +17,5 @@ abstract class AppStatelessWidget extends StatelessWidget {
   }
 
   Widget awareBuild(BuildContext context, BoxConstraints? constraints);
-  bool needsConstraint(BuildContext context);
+  bool needsConstraints(BuildContext context);
 }

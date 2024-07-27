@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'package:edu_track/utils/extensions/num.dart';
 
-import 'app_text_style.dart';
+import './text_transform.dart';
+import './app_text_style.dart';
 
 //* this class is what defines a new scope for the fontSize to be used for
 //* {Em} unit.
 class AppDefaultTextStyle extends InheritedTheme {
   final AppTextStyle style;
   final TextOverflow? overflow;
+  final TextTransform? textTransform;
   final int? maxLineCount;
 
   AppDefaultTextStyle({
     super.key,
     this.overflow,
+    this.textTransform,
     this.maxLineCount,
     BuildContext? context,
     required AppTextStyle style,
@@ -36,6 +39,7 @@ class AppDefaultTextStyle extends InheritedTheme {
           fontWeight: FontWeight.w400,
         ).toPixelBased(context, null),
         overflow = TextOverflow.clip,
+        textTransform = TextTransform.none,
         maxLineCount = null,
         super(child: const _NullWidget());
 
@@ -48,7 +52,10 @@ class AppDefaultTextStyle extends InheritedTheme {
 
   @override
   bool updateShouldNotify(AppDefaultTextStyle oldWidget) {
-    return style != oldWidget.style || overflow != oldWidget.overflow;
+    return style != oldWidget.style ||
+        overflow != oldWidget.overflow ||
+        textTransform != oldWidget.textTransform ||
+        maxLineCount != oldWidget.maxLineCount;
   }
 
   @override
