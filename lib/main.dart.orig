@@ -1,12 +1,17 @@
 <<<<<<< HEAD
-import 'package:edu_track/screens/sibebar_navigation_screen/sidebar_navigation.dart';
-import 'package:edu_track/screens/signup_screen/signup.dart';
 =======
+import 'package:edu_track/screens/sibebar_navigation_screen/sidebar_navigation.dart';
 import 'package:edu_track/screens/signup_screen/sign_up.dart';
->>>>>>> 61bfa18be790f7782e2b27a6451d2846aed4f66e
 import 'package:edu_track/utils/extensions/extensions.dart';
 import 'package:edu_track/widgets/widgets.dart';
+>>>>>>> 16467d7 (Sidebar navigation screen)
 import 'package:flutter/material.dart';
+
+import 'package:edu_track/utils/utils.dart';
+import 'package:edu_track/constants/constants.dart';
+import 'package:edu_track/widgets/widgets.dart';
+
+import 'package:edu_track/screens/signup_screen/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,10 +32,13 @@ class MyApp extends StatelessWidget {
         fontFamily: "Inter",
       ),
 <<<<<<< HEAD
-      home: SidebarNavigationScreen(),
-=======
+      locale: L10n.defaultLocal,
+      supportedLocales: L10n.all,
+      localizationsDelegates: L10n.delegates,
       home: const SignUpScreen(),
->>>>>>> 61bfa18be790f7782e2b27a6451d2846aed4f66e
+=======
+      home: SidebarNavigationScreen(),
+>>>>>>> 16467d7 (Sidebar navigation screen)
     );
   }
 }

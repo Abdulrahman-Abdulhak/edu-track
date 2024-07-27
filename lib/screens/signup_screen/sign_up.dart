@@ -5,7 +5,6 @@ import 'package:edu_track/utils/utils.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
-import './logo.dart';
 import './sections/intro_section.dart';
 import './sections/email_section.dart';
 import './sections/third_party_login_section.dart';

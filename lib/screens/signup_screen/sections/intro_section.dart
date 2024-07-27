@@ -4,8 +4,6 @@ import 'package:edu_track/utils/utils.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
-import '../logo.dart';
-
 class IntroSection extends StatelessWidget {
   const IntroSection({super.key});
 
