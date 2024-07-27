@@ -1,0 +1,67 @@
+<<<<<<< HEAD
+import 'package:edu_track/screens/sibebar_navigation_screen/sidebar_navigation.dart';
+import 'package:edu_track/screens/signup_screen/signup.dart';
+=======
+import 'package:edu_track/screens/signup_screen/sign_up.dart';
+>>>>>>> 61bfa18be790f7782e2b27a6451d2846aed4f66e
+import 'package:edu_track/utils/extensions/extensions.dart';
+import 'package:edu_track/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        fontFamily: "Inter",
+      ),
+<<<<<<< HEAD
+      home: SidebarNavigationScreen(),
+=======
+      home: const SignUpScreen(),
+>>>>>>> 61bfa18be790f7782e2b27a6451d2846aed4f66e
+    );
+  }
+}
+
+class TestWidget extends StatelessWidget {
+  const TestWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AppDefaultTextStyle(
+        style: const AppTextStyle(),
+        context: context,
+        child: Center(
+          child: AppText(
+            "Testing Me",
+            style: AppTextStyle(fontSize: 5.cqw),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// this widgets serves as a first loader to the app
+// class Initial extends StatelessWidget {
+//   final Widget widget;
+//   const Initial({super.key, required this.widget});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return widget;
+//   }
+// }
