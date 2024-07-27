@@ -9,8 +9,8 @@ class TextMd extends AppText {
     super.data, {
     super.key,
     super.overflow,
-    super.textTransform,
     super.maxLineCount,
+    super.textTransform,
     AppTextStyle? style,
   }) : super(style: AppTextStyle.style(style).merge(Typographies.textMd));
 
@@ -18,8 +18,8 @@ class TextMd extends AppText {
     super.data, {
     super.key,
     super.overflow,
-    super.textTransform,
     super.maxLineCount,
+    super.textTransform,
     AppTextStyle? style,
   }) : super.regular(
           style: AppTextStyle.style(style).merge(Typographies.textMd),
@@ -29,8 +29,8 @@ class TextMd extends AppText {
     super.data, {
     super.key,
     super.overflow,
-    super.textTransform,
     super.maxLineCount,
+    super.textTransform,
     AppTextStyle? style,
   }) : super.medium(
           style: AppTextStyle.style(style).merge(Typographies.textMd),
@@ -40,8 +40,8 @@ class TextMd extends AppText {
     super.data, {
     super.key,
     super.overflow,
-    super.textTransform,
     super.maxLineCount,
+    super.textTransform,
     AppTextStyle? style,
   }) : super.semiBold(
           style: AppTextStyle.style(style).merge(Typographies.textMd),

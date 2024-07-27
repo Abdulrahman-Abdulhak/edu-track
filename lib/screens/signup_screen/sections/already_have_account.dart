@@ -14,7 +14,7 @@ class AlreadyHaveAccount extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextSm(
-          "Already have an account?",
+          translation(context).alreadyHaveAccount,
           style: const AppTextStyle(
             color: AppColors.gray600,
           ),
@@ -24,7 +24,7 @@ class AlreadyHaveAccount extends StatelessWidget {
             //TODO: implement.
           },
           text: TextSm.semiBold(
-            "Log in",
+            translation(context).login,
             style: const AppTextStyle(
               color: AppColors.brand700,
             ),

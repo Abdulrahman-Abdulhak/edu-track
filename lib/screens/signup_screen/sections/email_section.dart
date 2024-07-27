@@ -9,7 +9,7 @@ class EmailSection extends AppStatelessWidget {
   const EmailSection({super.key});
 
   @override
-  Widget awareBuild(BuildContext? context, BoxConstraints? constraints) {
+  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
     final borderRadius = AppBorderRadius.all(.5.rem);
 
     return AppColumn(
@@ -18,7 +18,8 @@ class EmailSection extends AppStatelessWidget {
         AppTextField(
           keyboardType: TextInputType.emailAddress,
           decoration: AppInputDecoration(
-            hintText: "Enter your email",
+            //TODO: add text transformation
+            hintText: translation(context).enterYourEmail,
             hintStyle: Typographies.textMd.withStyles(
               color: AppColors.gray500,
             ),
@@ -44,7 +45,7 @@ class EmailSection extends AppStatelessWidget {
             //TODO: implement.
           },
           child: TextMd.semiBold(
-            "Continue with email",
+            translation(context).continueWithEmail,
             style: const AppTextStyle(color: AppColors.white),
           ),
         ),
@@ -53,7 +54,5 @@ class EmailSection extends AppStatelessWidget {
   }
 
   @override
-  bool needsConstraints(BuildContext context) {
-    return true;
-  }
+  bool needsConstraints(BuildContext context) => true;
 }
