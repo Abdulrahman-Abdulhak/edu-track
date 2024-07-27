@@ -15,7 +15,8 @@ class IntroSection extends StatelessWidget {
       children: [
         Logo(size: 2.25.em),
         TextDisplayXs.semiBold(
-          "Join Our Community!",
+          translation(context).joinOurCommunity,
+          textTransform: TextTransform.capitalize,
           style: const AppTextStyle(color: AppColors.gray900),
         ),
       ],

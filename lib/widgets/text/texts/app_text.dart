@@ -14,59 +14,65 @@ class AppText extends AppStatelessWidget {
 
   final AppTextStyle? style;
   final TextOverflow? overflow;
-  final TextTransform? textTransform;
   final int? maxLineCount;
+
+  final TextTransform textTransform;
 
   const AppText(
     this.data, {
     super.key,
     this.style,
     this.overflow,
-    this.textTransform,
     this.maxLineCount,
+    this.textTransform = TextTransform.sentenceCapitalize,
   });
 
   AppText.regular(
     this.data, {
     super.key,
     this.overflow,
-    this.textTransform,
     this.maxLineCount,
     AppTextStyle? style,
+    this.textTransform = TextTransform.sentenceCapitalize,
   }) : style = AppTextStyle.style(style).merge(Typographies.regular);
 
   AppText.medium(
     this.data, {
     super.key,
     this.overflow,
-    this.textTransform,
     this.maxLineCount,
     AppTextStyle? style,
+    this.textTransform = TextTransform.sentenceCapitalize,
   }) : style = AppTextStyle.style(style).merge(Typographies.medium);
 
   AppText.semiBold(
     this.data, {
     super.key,
     this.overflow,
-    this.textTransform,
     this.maxLineCount,
     AppTextStyle? style,
+    this.textTransform = TextTransform.sentenceCapitalize,
   }) : style = AppTextStyle.style(style).merge(Typographies.semiBold);
 
   //TODO: implement the rich text.
-  const AppText.rich(this.data, this.style, this.overflow, this.maxLineCount,
-      this.textTransform);
+  const AppText.rich(
+    this.data,
+    this.style,
+    this.overflow,
+    this.maxLineCount, [
+    this.textTransform = TextTransform.sentenceCapitalize,
+  ]);
 
   @override
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
     final defaultStyle = AppDefaultTextStyle.of(context);
 
-    final dataToUse = switch (textTransform ?? defaultStyle.textTransform) {
-      TextTransform.capitalize => data.capitalize(),
+    final dataToUse = switch (textTransform) {
+      TextTransform.sentenceCapitalize => data.capitalizeSentence(),
+      TextTransform.capitalize => data.capitalizeWord(),
       TextTransform.uppercase => data.toUpperCase(),
       TextTransform.lowercase => data.toLowerCase(),
       TextTransform.none => data,
-      _ => data,
     };
 
     return Text(

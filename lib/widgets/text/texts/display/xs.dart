@@ -8,8 +8,8 @@ class TextDisplayXs extends AppText {
   TextDisplayXs(
     super.data, {
     super.key,
-    super.overflow,
     super.maxLineCount,
+    super.overflow,
     AppTextStyle? style,
   }) : super(style: AppTextStyle.style(style).merge(Typographies.displayXs));
 
@@ -17,8 +17,8 @@ class TextDisplayXs extends AppText {
     super.data, {
     super.key,
     super.overflow,
-    super.textTransform,
     super.maxLineCount,
+    super.textTransform,
     AppTextStyle? style,
   }) : super.regular(
           style: AppTextStyle.style(style).merge(Typographies.displayXs),
@@ -28,8 +28,8 @@ class TextDisplayXs extends AppText {
     super.data, {
     super.key,
     super.overflow,
-    super.textTransform,
     super.maxLineCount,
+    super.textTransform,
     AppTextStyle? style,
   }) : super.medium(
           style: AppTextStyle.style(style).merge(Typographies.displayXs),
@@ -39,8 +39,8 @@ class TextDisplayXs extends AppText {
     super.data, {
     super.key,
     super.overflow,
-    super.textTransform,
     super.maxLineCount,
+    super.textTransform,
     AppTextStyle? style,
   }) : super.semiBold(
           style: AppTextStyle.style(style).merge(Typographies.displayXs),

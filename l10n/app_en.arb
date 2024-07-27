@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "teamName": "code wizards",
+  "appName": "EduTrack",
+  "joinOurCommunity": "join Our Community!",
+  "enterYourEmail": "enter your email",
+  "continueWithEmail": "continue with email",
+  "or": "or",
+  "signUpWith": "sign up with",
+  "google": "google",
+  "facebook": "facebook",
+  "alreadyHaveAccount": "already have an account?",
+  "login": "log in"
+}

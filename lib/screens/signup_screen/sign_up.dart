@@ -1,9 +1,9 @@
-import 'package:edu_track/_main/main.dart';
 import 'package:flutter/material.dart';
 
+import 'package:edu_track/_main/main.dart';
 import 'package:edu_track/utils/utils.dart';
-import 'package:edu_track/constants/constants.dart';
 import 'package:edu_track/widgets/widgets.dart';
+import 'package:edu_track/constants/constants.dart';
 
 import './logo.dart';
 import './sections/intro_section.dart';
@@ -24,7 +24,7 @@ class SignUpScreen extends StatelessWidget {
           gap: .5.rem,
           children: [
             Logo(size: 1.5.em),
-            TextMd.semiBold("Code Wizards"),
+            TextMd.semiBold(translation(context).teamName),
           ],
         ),
         actions: [
@@ -45,7 +45,7 @@ class SignUpScreen extends StatelessWidget {
             const EmailSection(),
             AppDivider(
               label: TextSm(
-                "OR",
+                translation(context).or,
                 style: const AppTextStyle(color: AppColors.gray500),
               ),
               color: AppColors.gray200,

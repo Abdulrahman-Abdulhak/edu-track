@@ -1,7 +1,10 @@
-import 'package:edu_track/screens/signup_screen/sign_up.dart';
-import 'package:edu_track/utils/extensions/extensions.dart';
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'package:edu_track/utils/utils.dart';
+import 'package:edu_track/constants/constants.dart';
+import 'package:edu_track/widgets/widgets.dart';
+
+import 'package:edu_track/screens/signup_screen/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +24,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Inter",
       ),
+      locale: L10n.defaultLocal,
+      supportedLocales: L10n.all,
+      localizationsDelegates: L10n.delegates,
       home: const SignUpScreen(),
     );
   }

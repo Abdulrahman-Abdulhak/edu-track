@@ -19,14 +19,14 @@ class ThirdPartyLoginSection extends StatelessWidget {
             //TODO: implement.
           },
           logo: AppImages.google,
-          label: "Sign up with Google",
+          company: translation(context).google.capitalize(),
         ),
         _LoginButton(
           onPressed: () {
             //TODO: implement.
           },
           logo: AppImages.facebook,
-          label: "Sign up with Facebook",
+          company: translation(context).facebook.capitalize(),
         ),
       ],
     );
@@ -34,11 +34,14 @@ class ThirdPartyLoginSection extends StatelessWidget {
 }
 
 class _LoginButton extends StatelessWidget {
-  final String label, logo;
+  final String company, logo;
   final VoidFunction onPressed;
 
-  const _LoginButton(
-      {required this.label, required this.logo, required this.onPressed});
+  const _LoginButton({
+    required this.company,
+    required this.logo,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class _LoginButton extends StatelessWidget {
         height: 1.5.rem,
       ),
       child: TextMd.semiBold(
-        label,
+        "${translation(context).signUpWith} $company",
         style: const AppTextStyle(color: AppColors.gray700),
       ),
     );
