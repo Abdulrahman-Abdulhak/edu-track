@@ -1,4 +1,4 @@
-import 'package:edu_track/screens/signup_screen/signup.dart';
+import 'package:edu_track/screens/signup_screen/sign_up.dart';
 import 'package:edu_track/utils/extensions/extensions.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Inter",
       ),
-      home: const SignupScreen(),
+      home: const SignUpScreen(),
     );
   }
 }
