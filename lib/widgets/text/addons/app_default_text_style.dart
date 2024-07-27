@@ -12,12 +12,24 @@ class AppDefaultTextStyle extends InheritedTheme {
   final TextOverflow? overflow;
   final TextTransform? textTransform;
   final int? maxLineCount;
+  final bool? textWrap;
+  final Locale? locale;
+  final Color? selectionColor;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final TextScaler? textScaler;
 
   AppDefaultTextStyle({
     super.key,
     this.overflow,
     this.textTransform,
     this.maxLineCount,
+    this.textWrap,
+    this.locale,
+    this.selectionColor,
+    this.textAlign,
+    this.textDirection,
+    this.textScaler,
     BuildContext? context,
     required AppTextStyle style,
     required super.child,
@@ -41,6 +53,12 @@ class AppDefaultTextStyle extends InheritedTheme {
         overflow = TextOverflow.clip,
         textTransform = TextTransform.none,
         maxLineCount = null,
+        textWrap = true,
+        locale = null,
+        selectionColor = null,
+        textAlign = TextAlign.start,
+        textDirection = null,
+        textScaler = null,
         super(child: const _NullWidget());
 
   static AppDefaultTextStyle of(BuildContext context) {

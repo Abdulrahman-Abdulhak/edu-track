@@ -15,6 +15,13 @@ class AppText extends AppStatelessWidget {
   final AppTextStyle? style;
   final TextOverflow? overflow;
   final int? maxLineCount;
+  final String? semanticsLabel;
+  final bool? textWrap;
+  final Locale? locale;
+  final Color? selectionColor;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final TextScaler? textScaler;
 
   final TextTransform textTransform;
 
@@ -24,6 +31,13 @@ class AppText extends AppStatelessWidget {
     this.style,
     this.overflow,
     this.maxLineCount,
+    this.semanticsLabel,
+    this.textWrap,
+    this.locale,
+    this.selectionColor,
+    this.textAlign,
+    this.textDirection,
+    this.textScaler,
     this.textTransform = TextTransform.sentenceCapitalize,
   });
 
@@ -32,6 +46,13 @@ class AppText extends AppStatelessWidget {
     super.key,
     this.overflow,
     this.maxLineCount,
+    this.semanticsLabel,
+    this.textWrap,
+    this.locale,
+    this.selectionColor,
+    this.textAlign,
+    this.textDirection,
+    this.textScaler,
     AppTextStyle? style,
     this.textTransform = TextTransform.sentenceCapitalize,
   }) : style = AppTextStyle.style(style).merge(Typographies.regular);
@@ -41,6 +62,13 @@ class AppText extends AppStatelessWidget {
     super.key,
     this.overflow,
     this.maxLineCount,
+    this.semanticsLabel,
+    this.textWrap,
+    this.locale,
+    this.selectionColor,
+    this.textAlign,
+    this.textDirection,
+    this.textScaler,
     AppTextStyle? style,
     this.textTransform = TextTransform.sentenceCapitalize,
   }) : style = AppTextStyle.style(style).merge(Typographies.medium);
@@ -50,6 +78,13 @@ class AppText extends AppStatelessWidget {
     super.key,
     this.overflow,
     this.maxLineCount,
+    this.semanticsLabel,
+    this.textWrap,
+    this.locale,
+    this.selectionColor,
+    this.textAlign,
+    this.textDirection,
+    this.textScaler,
     AppTextStyle? style,
     this.textTransform = TextTransform.sentenceCapitalize,
   }) : style = AppTextStyle.style(style).merge(Typographies.semiBold);
@@ -59,7 +94,14 @@ class AppText extends AppStatelessWidget {
     this.data,
     this.style,
     this.overflow,
-    this.maxLineCount, [
+    this.maxLineCount,
+    this.semanticsLabel,
+    this.textWrap,
+    this.locale,
+    this.selectionColor,
+    this.textAlign,
+    this.textDirection,
+    this.textScaler, [
     this.textTransform = TextTransform.sentenceCapitalize,
   ]);
 
@@ -77,6 +119,13 @@ class AppText extends AppStatelessWidget {
 
     return Text(
       dataToUse,
+      locale: locale ?? defaultStyle.locale,
+      selectionColor: selectionColor ?? defaultStyle.selectionColor,
+      semanticsLabel: semanticsLabel,
+      softWrap: textWrap ?? defaultStyle.textWrap,
+      textAlign: textAlign ?? defaultStyle.textAlign,
+      textDirection: textDirection ?? defaultStyle.textDirection,
+      textScaler: textScaler ?? defaultStyle.textScaler,
       overflow: overflow ?? defaultStyle.overflow,
       maxLines: maxLineCount ?? defaultStyle.maxLineCount,
       style: (style ?? defaultStyle.style).compute(context, constraints),
