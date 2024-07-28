@@ -27,14 +27,17 @@ class EmailSection extends StatelessWidget {
               horizontal: 0.875.rem,
               vertical: 0.625.rem,
             ),
-            // border: OutlineInputBorder(
-            //   borderSide: const BorderSide(color: AppColors.gray300),
-            //   borderRadius: borderRadius.compute(context, constraints),
-            // ),
+<<<<<<< HEAD
             border: AppOutlineInputBorder(
               borderSide: const AppBorderSide(color: AppColors.gray300),
               borderRadius: borderRadius,
             ),
+=======
+            // border: OutlineInputBorder(
+            //   borderSide: const BorderSide(color: AppColors.gray300),
+            //   borderRadius: borderRadius.compute(context, constraints),
+            // ),
+>>>>>>> 1b8f801 (list tile widget)
           ),
         ),
         AppButton(

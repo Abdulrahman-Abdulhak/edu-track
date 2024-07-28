@@ -49,7 +49,7 @@ class SidebarNavigationScreen extends AppStatelessWidget {
             NavItem(icon: AppIcons.lifeBuoy, text: "Support"),
             NavItem(icon: AppIcons.settings, text: "Settings"),
             Divider(),
-            ListTitlSection(),
+            ListTileSection(),
           ],
         ),
       ),

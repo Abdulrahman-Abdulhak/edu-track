@@ -7,10 +7,11 @@ import "package:edu_track/widgets/layout/layout.dart";
 import "package:edu_track/widgets/text/texts/text/sm.dart";
 import "package:flutter/material.dart";
 
-class ListTitlSection extends AppStatelessWidget {
-  ListTitlSection({super.key});
+class ListTileSection extends AppStatelessWidget {
+  ListTileSection({super.key});
   final String firstName = "Sara";
   final String lastName = "N";
+  final String email = "aaaa@ggg.com";
 
   @override
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
@@ -23,11 +24,14 @@ class ListTitlSection extends AppStatelessWidget {
         child: Text(""),
       ),
       title: TextSm.semiBold("$firstName $lastName"),
-      subtitle: TextSm.regular("aaaa@ggg.com"),
-      trailing: AppIcon(
-        icon: AppIcons.logOut,
-        size: 1.25.rem,
-        color: AppColors.gray500,
+      subtitle: TextSm.regular(email),
+      trailing: GestureDetector(
+        onTap: () {},
+        child: AppIcon(
+          icon: AppIcons.logOut,
+          size: 1.25.rem,
+          color: AppColors.gray500,
+        ),
       ),
     );
   }
