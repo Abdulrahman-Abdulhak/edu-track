@@ -7,7 +7,7 @@ class ContainerWidth extends UnitSize {
   const ContainerWidth(super.value);
 
   @override
-  double compute([BuildContext? context, BoxConstraints? constraints]) {
+  double compute(BuildContext? context, BoxConstraints? constraints) {
     assertCompute(context, constraints);
 
     //TODO: make it able to find size of the first parent that have a finite size

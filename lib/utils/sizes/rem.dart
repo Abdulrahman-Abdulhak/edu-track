@@ -8,7 +8,7 @@ class Rem extends UnitSize {
   const Rem(super.value);
 
   @override
-  double compute([BuildContext? context, BoxConstraints? constraints]) {
+  double compute(BuildContext? context, BoxConstraints? constraints) {
     //TODO: try to get the real value of the app's set root font size.
     final rootFontSize = 16;
     return value * rootFontSize;

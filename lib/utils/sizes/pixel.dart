@@ -40,7 +40,7 @@ class Pixel extends UnitSize {
         super(0);
 
   @override
-  double compute([BuildContext? context, BoxConstraints? constraints]) {
+  double compute(BuildContext? context, BoxConstraints? constraints) {
     double result = 0;
 
     if (_sizes.isNotEmpty) {

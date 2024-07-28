@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 
 import 'package:edu_track/utils/utils.dart';
 
-import './addons/app_border_side.dart';
-import '../../_app_class.dart';
+import './addons/addons.dart';
+import './app_shape_border.dart';
 
-abstract class AppBoxBorder implements AppClass<BoxBorder> {
+abstract class AppBoxBorder extends AppShapeBorder {
   static AppBoxBorder? fromOrigin(Object? border) {
     if (border == null) return null;
 

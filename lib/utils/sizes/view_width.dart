@@ -7,7 +7,7 @@ class ViewWidth extends UnitSize {
   const ViewWidth(super.value);
 
   @override
-  double compute([BuildContext? context, BoxConstraints? constraints]) {
+  double compute(BuildContext? context, BoxConstraints? constraints) {
     assertCompute(context, constraints);
 
     final screenWidth = MediaQuery.of(context!).size.width;

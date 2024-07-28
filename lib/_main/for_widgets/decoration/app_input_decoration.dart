@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:edu_track/utils/utils.dart';
 
 import '../paint/paint.dart';
+import '../borders/borders.dart';
 import '../app_edge_insets_geometry.dart';
 import '../../_app_class.dart';
 
@@ -10,14 +11,13 @@ class AppInputDecoration implements AppClass<InputDecoration> {
   final AppEdgeInsetsGeometry? contentPadding;
   final AppTextStyle? counterStyle, errorStyle, helperStyle, hintStyle;
   final AppTextStyle? labelStyle, prefixStyle, suffixStyle;
-  //TODO: create AppInputBorder
-  final InputBorder? border, disabledBorder, enabledBorder, errorBorder;
-  final InputBorder? focusedBorder, focusedErrorBorder;
+  final AppInputBorder? border, disabledBorder, enabledBorder, errorBorder;
+  final AppInputBorder? focusedBorder, focusedErrorBorder;
   final Widget? counter, error, label, prefix, prefixIcon, suffix, suffixIcon;
   final String? counterText, errorText, helperText, hintText, labelText;
   final String? prefixText, suffixText;
   final int? errorMaxLines, helperMaxLines, hintMaxLines;
-  final Color? fillColor, focusColor;
+  final Color? fillColor, focusColor, hoverColor;
   final bool? filled;
   final Duration? hintFadeDuration;
   final TextDirection? hintTextDirection;
@@ -47,6 +47,7 @@ class AppInputDecoration implements AppClass<InputDecoration> {
     this.fillColor,
     this.filled,
     this.focusColor,
+    this.hoverColor,
     this.helperMaxLines,
     this.helperText,
     this.hintFadeDuration,
@@ -75,12 +76,12 @@ class AppInputDecoration implements AppClass<InputDecoration> {
       labelStyle: labelStyle?.compute(context, constraints),
       prefixStyle: prefixStyle?.compute(context, constraints),
       suffixStyle: suffixStyle?.compute(context, constraints),
-      border: border,
-      disabledBorder: disabledBorder,
-      enabledBorder: enabledBorder,
-      errorBorder: errorBorder,
-      focusedBorder: focusedBorder,
-      focusedErrorBorder: focusedErrorBorder,
+      border: border?.compute(context, constraints),
+      disabledBorder: disabledBorder?.compute(context, constraints),
+      enabledBorder: enabledBorder?.compute(context, constraints),
+      errorBorder: errorBorder?.compute(context, constraints),
+      focusedBorder: focusedBorder?.compute(context, constraints),
+      focusedErrorBorder: focusedErrorBorder?.compute(context, constraints),
       counter: counter,
       counterText: counterText,
       error: error,
@@ -89,6 +90,7 @@ class AppInputDecoration implements AppClass<InputDecoration> {
       fillColor: fillColor,
       filled: filled,
       focusColor: focusColor,
+      hoverColor: hoverColor,
       helperMaxLines: helperMaxLines,
       helperText: helperText,
       hintFadeDuration: hintFadeDuration,

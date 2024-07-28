@@ -12,6 +12,7 @@ class AppBorderSide implements AppClass<BorderSide> {
   static const none = AppBorderSide(
     color: Colors.transparent,
     width: Pixel(0),
+    style: BorderStyle.none,
   );
 
   final Color color;

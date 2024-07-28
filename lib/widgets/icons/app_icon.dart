@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:edu_track/_main/main.dart';
-import 'package:edu_track/utils/sizes/unit_size.dart';
+import 'package:edu_track/utils/utils.dart';
 
 const _base = 'assets/icons/svg';
 
@@ -115,6 +115,6 @@ class AppIcon extends AppStatelessWidget {
 
   @override
   bool needsConstraints(BuildContext context) {
-    return size != null && size!.needsConstraints;
+    return [size].needsConstraints;
   }
 }

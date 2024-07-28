@@ -10,7 +10,7 @@ class ViewMin extends UnitSize {
   const ViewMin(super.value);
 
   @override
-  double compute([BuildContext? context, BoxConstraints? constraints]) {
+  double compute(BuildContext? context, BoxConstraints? constraints) {
     assertCompute(context, constraints);
 
     final screenSize = MediaQuery.of(context!).size;

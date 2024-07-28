@@ -6,17 +6,17 @@ import 'unit_size.dart';
 
 //* this class represents the last font size set for the current context.
 class Em extends UnitSize {
-  static var count = 0;
   const Em(super.value);
 
   @override
-  double compute([BuildContext? context, BoxConstraints? constraints]) {
+  double compute(BuildContext? context, BoxConstraints? constraints) {
     assertCompute(context, constraints);
 
     final previousFontSize =
-        AppDefaultTextStyle.of(context!).style.fontSize!.compute();
-
-    count++;
+        AppDefaultTextStyle.of(context!).style.fontSize!.compute(
+              context,
+              constraints,
+            );
 
     return value * previousFontSize;
   }

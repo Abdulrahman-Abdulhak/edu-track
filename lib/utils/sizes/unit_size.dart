@@ -48,7 +48,7 @@ abstract class UnitSize {
 
   //* this function is computing the value passed as parameter to original
   //* size unit used in flutter.
-  double compute([BuildContext? context, BoxConstraints? constraints]);
+  double compute(BuildContext? context, BoxConstraints? constraints);
   bool get needsConstraints;
   bool get needsContext;
 
