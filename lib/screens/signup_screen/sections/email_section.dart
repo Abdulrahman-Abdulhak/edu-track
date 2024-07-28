@@ -5,11 +5,11 @@ import 'package:edu_track/utils/utils.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
-class EmailSection extends AppStatelessWidget {
+class EmailSection extends StatelessWidget {
   const EmailSection({super.key});
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget build(BuildContext context) {
     final borderRadius = AppBorderRadius.circular(.5.rem);
 
     return AppColumn(
@@ -27,9 +27,9 @@ class EmailSection extends AppStatelessWidget {
               horizontal: 0.875.rem,
               vertical: 0.625.rem,
             ),
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.gray300),
-              borderRadius: borderRadius.compute(context, constraints),
+            border: AppOutlineInputBorder(
+              borderSide: const AppBorderSide(color: AppColors.gray300),
+              borderRadius: borderRadius,
             ),
           ),
         ),
@@ -52,7 +52,4 @@ class EmailSection extends AppStatelessWidget {
       ],
     );
   }
-
-  @override
-  bool needsConstraints(BuildContext context) => true;
 }

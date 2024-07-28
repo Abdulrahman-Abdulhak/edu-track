@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:edu_track/types/types.dart';
+
+import './string.dart';
+
 extension AppList<T> on List<T> {
   //* a casting function to return a list from this list with a new type.
   //* can be used as a map function.
-  List<K> to<K>(K Function(T item, int i) callback) {
-    return [for (var i = 0; i < length; i++) callback(this[i], i)];
+  List<K> to<K>(K Function(T item) callback) {
+    return [for (var i = 0; i < length; i++) callback(this[i])];
   }
 
   //* this creates a new list from this list with {item} being filled between its
@@ -76,4 +80,14 @@ extension NullList<T> on List<T?> {
   }
 
   T? get firstNotNull => firstWhere((item) => item != null);
+}
+
+extension StringList on List<String?> {
+  String combine(StringFunction callback, [String separator = '']) {
+    return removeNulls().to(callback).join(separator);
+  }
+
+  String combineFirstLetters() {
+    return combine((str) => str.firstChar);
+  }
 }

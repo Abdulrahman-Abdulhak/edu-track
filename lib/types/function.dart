@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 typedef VoidFunction = void Function();
 typedef VoidFunctionBool = void Function(bool);
 typedef VoidFunctionString = void Function(String str);
+typedef StringFunction = String Function(String str);
 
 typedef PointerDownEventCallBack = void Function(PointerDownEvent event);
 

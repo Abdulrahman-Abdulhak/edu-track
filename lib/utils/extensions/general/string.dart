@@ -21,6 +21,8 @@ extension AppString on String {
     return sentences;
   }
 
+  String get firstChar => isEmpty ? '' : substring(0, 1);
+
   String capitalizeSentence() {
     var result = "";
     for (var sentence in sentences) {
@@ -58,6 +60,6 @@ extension AppString on String {
   }
 
   String capitalize() {
-    return "${substring(0, 1).toUpperCase()}${substring(1)}";
+    return "${firstChar.toUpperCase()}${substring(1)}";
   }
 }
