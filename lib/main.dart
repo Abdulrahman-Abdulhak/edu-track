@@ -29,7 +29,11 @@ class MyApp extends StatelessWidget {
       locale: L10n.defaultLocal,
       supportedLocales: L10n.all,
       localizationsDelegates: L10n.delegates,
-      home: SidebarNavigationScreen(),
+      home: SidebarNavigationScreen(
+        fisrtName: "aaaa",
+        lastName: "ssss",
+        email: "aaaa@kdks",
+      ),
     );
   }
 }

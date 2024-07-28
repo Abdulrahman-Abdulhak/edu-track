@@ -11,7 +11,16 @@ import './sections/search.dart';
 import './sections/list_tile.dart';
 
 class SidebarNavigationScreen extends AppStatelessWidget {
-  SidebarNavigationScreen({super.key});
+  SidebarNavigationScreen({
+    super.key,
+    required this.fisrtName,
+    required this.lastName,
+    required this.email,
+  });
+
+  final String fisrtName;
+  final String lastName;
+  final String email;
 
   TextEditingController searchcontroller = TextEditingController();
 
@@ -35,9 +44,12 @@ class SidebarNavigationScreen extends AppStatelessWidget {
           gap: .25.rem,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Search(),
+            const Search(),
             GapVertical(size: 1.5.rem),
-            NavItem(icon: AppIcons.barChartVertical, text: "Dashboard"),
+            NavItem(
+              icon: AppIcons.barChartVertical,
+              text: "Dashboard",
+            ),
             NavItem(icon: AppIcons.documentLinear, text: "Homework"),
             NavItem(
                 icon: AppIcons.successCheckOutline, text: "Exams & Results"),
@@ -48,8 +60,12 @@ class SidebarNavigationScreen extends AppStatelessWidget {
             Spacer(),
             NavItem(icon: AppIcons.lifeBuoy, text: "Support"),
             NavItem(icon: AppIcons.settings, text: "Settings"),
-            Divider(),
-            ListTileSection(),
+            const Divider(),
+            ListTileSection(
+              firstName: fisrtName,
+              lastName: lastName,
+              email: email,
+            ),
           ],
         ),
       ),
