@@ -28,4 +28,36 @@ class ContainerMin extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  ContainerMin add(Object val) {
+    assertMath(val, ContainerMin);
+
+    if (val is ContainerMin) return ContainerMin(value + val.value);
+    return ContainerMin(value + (val as num));
+  }
+
+  @override
+  ContainerMin divide(Object val) {
+    assertMath(val, ContainerMin);
+
+    if (val is ContainerMin) return ContainerMin(value / val.value);
+    return ContainerMin(value / (val as num));
+  }
+
+  @override
+  ContainerMin multiply(Object val) {
+    assertMath(val, ContainerMin);
+
+    if (val is ContainerMin) return ContainerMin(value * val.value);
+    return ContainerMin(value * (val as num));
+  }
+
+  @override
+  ContainerMin subtract(Object val) {
+    assertMath(val, ContainerMin);
+
+    if (val is ContainerMin) return ContainerMin(value - val.value);
+    return ContainerMin(value - (val as num));
+  }
 }

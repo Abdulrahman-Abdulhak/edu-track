@@ -1,30 +1,31 @@
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/_main/main.dart';
 import 'package:edu_track/types/types.dart';
 import 'package:edu_track/utils/utils.dart';
 
+import '../layout/layout.dart';
+
 // use this widget instead of ElevatedButton widget.
 class AppButton extends AppStatelessWidget {
   static const _defaultStyle = ButtonStyle(
-    elevation: MaterialStatePropertyAll(0),
+    elevation: WidgetStatePropertyAll(0),
   );
 
   //? style properties
   final UnitSize? width, height;
-  final Color? backgroundColor;
   final AppEdgeInsetsGeometry? padding;
   final AppBorderRadiusGeometry? borderRadius;
   final AppBorderSide? border;
+  final Color? backgroundColor;
 
   //? button properties
+  final UnitSize? gap;
   final FocusNode? focusNode;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
   final VoidFunction? onLongPress;
   final VoidFunctionBool? onHover, onFocusChange;
   final Widget? icon;
-  final UnitSize? gap;
 
   final bool autoFocus;
   final Clip clipBehavior;
@@ -37,18 +38,18 @@ class AppButton extends AppStatelessWidget {
     // style arguments
     this.width,
     this.height,
-    this.backgroundColor,
     this.padding,
     this.borderRadius,
     this.border,
+    this.backgroundColor,
     // button arguments
+    this.gap,
     this.focusNode,
     this.onFocusChange,
     this.statesController,
     this.onHover,
     this.onLongPress,
     this.icon,
-    this.gap,
     this.autoFocus = false,
     this.clipBehavior = Clip.none,
     required this.onPressed,
@@ -62,16 +63,16 @@ class AppButton extends AppStatelessWidget {
         .compute(context, constraints);
 
     final buttonStyle = ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll(backgroundColor),
-      padding: MaterialStatePropertyAll(
+      backgroundColor: WidgetStatePropertyAll(backgroundColor),
+      padding: WidgetStatePropertyAll(
         padding?.compute(context, constraints),
       ),
-      shape: MaterialStatePropertyAll(
+      shape: WidgetStatePropertyAll(
         ContinuousRectangleBorder(
           borderRadius: borderRadius,
         ),
       ),
-      side: MaterialStatePropertyAll(border?.compute(context, constraints)),
+      side: WidgetStatePropertyAll(border?.compute(context, constraints)),
     ).merge(_defaultStyle);
 
     return SizedBox(
@@ -99,9 +100,7 @@ class AppButton extends AppStatelessWidget {
 
   @override
   bool needsConstraints(BuildContext context) {
-    return UnitSize.anyNeedsConstraints([width, height]) ||
-        padding != null && padding!.needsConstraints ||
-        borderRadius != null && borderRadius!.needsConstraints ||
-        border != null && border!.needsConstraints;
+    return [width, height].needsConstraints ||
+        AppClass.anyNeedsConstraints([padding, borderRadius, border]);
   }
 }

@@ -1,12 +1,15 @@
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
+import 'package:edu_track/_main/main.dart';
 import 'package:edu_track/types/types.dart';
 
+import '../text/text.dart';
+
 class AppTextButton extends StatelessWidget {
+  final AppTextStyle? textStyle;
+
   final VoidFunction onPressed;
   final Widget text;
-  final AppTextStyle? textStyle;
 
   const AppTextButton({
     super.key,

@@ -24,4 +24,36 @@ class ViewMin extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  ViewMin add(Object val) {
+    assertMath(val, ViewMin);
+
+    if (val is ViewMin) return ViewMin(value + val.value);
+    return ViewMin(value + (val as num));
+  }
+
+  @override
+  ViewMin divide(Object val) {
+    assertMath(val, ViewMin);
+
+    if (val is ViewMin) return ViewMin(value / val.value);
+    return ViewMin(value / (val as num));
+  }
+
+  @override
+  ViewMin multiply(Object val) {
+    assertMath(val, ViewMin);
+
+    if (val is ViewMin) return ViewMin(value * val.value);
+    return ViewMin(value * (val as num));
+  }
+
+  @override
+  ViewMin subtract(Object val) {
+    assertMath(val, ViewMin);
+
+    if (val is ViewMin) return ViewMin(value - val.value);
+    return ViewMin(value - (val as num));
+  }
 }

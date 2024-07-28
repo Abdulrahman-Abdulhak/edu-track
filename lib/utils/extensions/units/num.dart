@@ -1,4 +1,4 @@
-import '../sizes/sizes.dart';
+import '../../sizes/sizes.dart';
 
 //* provides the size capabilities to create Units directly from any number
 extension SizeUnits on num {

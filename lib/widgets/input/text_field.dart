@@ -8,10 +8,6 @@ import 'package:edu_track/_main/main.dart';
 import 'package:edu_track/utils/utils.dart';
 import 'package:edu_track/types/types.dart' as types;
 
-import '../text/text.dart';
-
-import './addons/addons.dart';
-
 class AppTextField extends AppStatelessWidget {
   final List<String>? autofillHints;
   final types.InputCounterWidgetBuilder? buildCounter;
@@ -49,7 +45,7 @@ class AppTextField extends AppStatelessWidget {
   final SmartDashesType? smartDashesType;
   final SmartQuotesType? smartQuotesType;
   final SpellCheckConfiguration? spellCheckConfiguration;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
   final StrutStyle? strutStyle;
   final AppTextStyle? style;
   final TextAlignVertical? textAlignVertical;

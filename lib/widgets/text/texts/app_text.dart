@@ -1,17 +1,13 @@
-import 'package:edu_track/utils/extensions/extensions.dart';
-import 'package:edu_track/widgets/text/addons/text_transform.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:edu_track/_main/main.dart';
-import 'package:edu_track/constants/ui/typographies.dart';
+import 'package:edu_track/utils/utils.dart';
+import 'package:edu_track/constants/constants.dart';
 
-import '../addons/app_default_text_style.dart';
-import '../addons/app_text_style.dart';
+import '../addons/addons.dart';
 
 //* this widget is a replacement for the {Text} widget
 class AppText extends AppStatelessWidget {
-  final String data;
-
   final AppTextStyle? style;
   final TextOverflow? overflow;
   final int? maxLineCount;
@@ -24,6 +20,8 @@ class AppText extends AppStatelessWidget {
   final TextScaler? textScaler;
 
   final TextTransform textTransform;
+
+  final String data;
 
   const AppText(
     this.data, {
@@ -55,7 +53,7 @@ class AppText extends AppStatelessWidget {
     this.textScaler,
     AppTextStyle? style,
     this.textTransform = TextTransform.sentenceCapitalize,
-  }) : style = AppTextStyle.style(style).merge(Typographies.regular);
+  }) : style = AppTextStyle.copy(style).merge(Typographies.regular);
 
   AppText.medium(
     this.data, {
@@ -71,7 +69,7 @@ class AppText extends AppStatelessWidget {
     this.textScaler,
     AppTextStyle? style,
     this.textTransform = TextTransform.sentenceCapitalize,
-  }) : style = AppTextStyle.style(style).merge(Typographies.medium);
+  }) : style = AppTextStyle.copy(style).merge(Typographies.medium);
 
   AppText.semiBold(
     this.data, {
@@ -87,7 +85,7 @@ class AppText extends AppStatelessWidget {
     this.textScaler,
     AppTextStyle? style,
     this.textTransform = TextTransform.sentenceCapitalize,
-  }) : style = AppTextStyle.style(style).merge(Typographies.semiBold);
+  }) : style = AppTextStyle.copy(style).merge(Typographies.semiBold);
 
   //TODO: implement the rich text.
   const AppText.rich(
@@ -119,6 +117,7 @@ class AppText extends AppStatelessWidget {
 
     return Text(
       dataToUse,
+      style: (style ?? defaultStyle.style).compute(context, constraints),
       locale: locale ?? defaultStyle.locale,
       selectionColor: selectionColor ?? defaultStyle.selectionColor,
       semanticsLabel: semanticsLabel,
@@ -128,14 +127,12 @@ class AppText extends AppStatelessWidget {
       textScaler: textScaler ?? defaultStyle.textScaler,
       overflow: overflow ?? defaultStyle.overflow,
       maxLines: maxLineCount ?? defaultStyle.maxLineCount,
-      style: (style ?? defaultStyle.style).compute(context, constraints),
     );
   }
 
   @override
   bool needsConstraints(BuildContext context) {
-    final fontSize =
-        style?.fontSize ?? AppDefaultTextStyle.of(context).style.fontSize;
-    return fontSize?.needsConstraints ?? false;
+    final style = this.style ?? AppDefaultTextStyle.of(context).style;
+    return [style].needsConstraints;
   }
 }

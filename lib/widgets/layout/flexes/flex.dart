@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:edu_track/utils/extensions/list.dart';
-import 'package:edu_track/utils/sizes/sizes.dart';
+import 'package:edu_track/utils/utils.dart';
 
-import './flexes.dart';
+import './gap.dart';
+import './gap_horizontal.dart';
+import './gap_vertical.dart';
 
 //* new Flex widget with additional property of {gap}.
 //* specifying this property will create gaps in the direction of the Flex.

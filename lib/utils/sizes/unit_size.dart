@@ -4,6 +4,7 @@ import './pixel.dart';
 
 abstract class UnitSize {
   static const zero = Pixel(0);
+  static const infinite = Pixel(double.infinity);
 
   static bool anyNeedsConstraints(List<UnitSize?> sizes) {
     return sizes.any((size) => size != null && size.needsConstraints);
@@ -30,6 +31,17 @@ abstract class UnitSize {
     }
   }
 
+  void assertMath(
+    Object value,
+    Type type, [
+    String? msg,
+  ]) {
+    assert(
+      value.runtimeType == type || value is num,
+      "The value passed to use isn't of type $type nor $num",
+    );
+  }
+
   Pixel toPixel(BuildContext? context, BoxConstraints? constraints) {
     return Pixel(compute(context, constraints));
   }
@@ -40,8 +52,36 @@ abstract class UnitSize {
   bool get needsConstraints;
   bool get needsContext;
 
-  Pixel operator +(covariant UnitSize other) => Pixel.add(this, other);
-  Pixel operator *(covariant UnitSize other) => Pixel.mult(this, other);
-  Pixel operator -(covariant UnitSize other) => Pixel.sub(this, other);
-  Pixel operator /(covariant UnitSize other) => Pixel.div(this, other);
+  UnitSize operator +(Object other) {
+    assertMath(other, UnitSize);
+
+    if (other is UnitSize) return Pixel.add(this, other);
+    return add(other);
+  }
+
+  UnitSize operator -(Object other) {
+    assertMath(other, UnitSize);
+
+    if (other is UnitSize) return Pixel.subtract(this, other);
+    return subtract(other);
+  }
+
+  UnitSize operator *(Object other) {
+    assertMath(other, UnitSize);
+
+    if (other is UnitSize) return Pixel.multiply(this, other);
+    return multiply(other);
+  }
+
+  UnitSize operator /(Object other) {
+    assertMath(other, UnitSize);
+
+    if (other is UnitSize) return Pixel.divide(this, other);
+    return divide(other);
+  }
+
+  UnitSize add(Object val);
+  UnitSize subtract(Object val);
+  UnitSize multiply(Object val);
+  UnitSize divide(Object val);
 }

@@ -4,9 +4,9 @@ import 'unit_size.dart';
 
 enum _operation {
   add,
-  mult,
-  sub,
-  div,
+  multiply,
+  subtract,
+  divide,
   none;
 }
 
@@ -24,18 +24,18 @@ class Pixel extends UnitSize {
         _sizes = [size1, size2],
         super(0);
 
-  Pixel.mult(UnitSize size1, UnitSize size2)
-      : _op = _operation.mult,
+  Pixel.multiply(UnitSize size1, UnitSize size2)
+      : _op = _operation.multiply,
         _sizes = [size1, size2],
         super(0);
 
-  Pixel.sub(UnitSize size1, UnitSize size2)
-      : _op = _operation.sub,
+  Pixel.subtract(UnitSize size1, UnitSize size2)
+      : _op = _operation.subtract,
         _sizes = [size1, size2],
         super(0);
 
-  Pixel.div(UnitSize size1, UnitSize size2)
-      : _op = _operation.div,
+  Pixel.divide(UnitSize size1, UnitSize size2)
+      : _op = _operation.divide,
         _sizes = [size1, size2],
         super(0);
 
@@ -47,9 +47,11 @@ class Pixel extends UnitSize {
       result = _sizes.first.compute(context, constraints);
       result = switch (_op) {
         _operation.add => result + _sizes.last.compute(context, constraints),
-        _operation.mult => result * _sizes.last.compute(context, constraints),
-        _operation.div => result / _sizes.last.compute(context, constraints),
-        _operation.sub => result - _sizes.last.compute(context, constraints),
+        _operation.multiply =>
+          result * _sizes.last.compute(context, constraints),
+        _operation.divide => result / _sizes.last.compute(context, constraints),
+        _operation.subtract =>
+          result - _sizes.last.compute(context, constraints),
         _ => result,
       };
     }
@@ -62,4 +64,36 @@ class Pixel extends UnitSize {
 
   @override
   bool get needsContext => UnitSize.anyNeedsContext(_sizes);
+
+  @override
+  Pixel add(Object val) {
+    assertMath(val, Pixel);
+
+    if (val is Pixel) return Pixel(value + val.value);
+    return Pixel(value + (val as num));
+  }
+
+  @override
+  Pixel divide(Object val) {
+    assertMath(val, Pixel);
+
+    if (val is Pixel) return Pixel(value / val.value);
+    return Pixel(value / (val as num));
+  }
+
+  @override
+  Pixel multiply(Object val) {
+    assertMath(val, Pixel);
+
+    if (val is Pixel) return Pixel(value * val.value);
+    return Pixel(value * (val as num));
+  }
+
+  @override
+  Pixel subtract(Object val) {
+    assertMath(val, Pixel);
+
+    if (val is Pixel) return Pixel(value - val.value);
+    return Pixel(value - (val as num));
+  }
 }

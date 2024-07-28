@@ -24,4 +24,36 @@ class ViewMax extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  ViewMax add(Object val) {
+    assertMath(val, ViewMax);
+
+    if (val is ViewMax) return ViewMax(value + val.value);
+    return ViewMax(value + (val as num));
+  }
+
+  @override
+  ViewMax divide(Object val) {
+    assertMath(val, ViewMax);
+
+    if (val is ViewMax) return ViewMax(value / val.value);
+    return ViewMax(value / (val as num));
+  }
+
+  @override
+  ViewMax multiply(Object val) {
+    assertMath(val, ViewMax);
+
+    if (val is ViewMax) return ViewMax(value * val.value);
+    return ViewMax(value * (val as num));
+  }
+
+  @override
+  ViewMax subtract(Object val) {
+    assertMath(val, ViewMax);
+
+    if (val is ViewMax) return ViewMax(value - val.value);
+    return ViewMax(value - (val as num));
+  }
 }

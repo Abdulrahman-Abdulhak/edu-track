@@ -1,5 +1,6 @@
-import 'package:edu_track/widgets/text/addons/app_default_text_style.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:edu_track/widgets/widgets.dart';
 
 import 'unit_size.dart';
 
@@ -25,4 +26,36 @@ class Em extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  Em add(Object val) {
+    assertMath(val, Em);
+
+    if (val is Em) return Em(value + val.value);
+    return Em(value + (val as num));
+  }
+
+  @override
+  Em divide(Object val) {
+    assertMath(val, Em);
+
+    if (val is Em) return Em(value / val.value);
+    return Em(value / (val as num));
+  }
+
+  @override
+  Em multiply(Object val) {
+    assertMath(val, Em);
+
+    if (val is Em) return Em(value * val.value);
+    return Em(value * (val as num));
+  }
+
+  @override
+  Em subtract(Object val) {
+    assertMath(val, Em);
+
+    if (val is Em) return Em(value - val.value);
+    return Em(value - (val as num));
+  }
 }
