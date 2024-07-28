@@ -16,7 +16,7 @@ class NavItem extends AppStatelessWidget {
 
   @override
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
-    final borderRadius = AppBorderRadius.all(.5.rem);
+    final borderRadius = AppBorderRadius.circular(.5.rem);
 
     return AppRow(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

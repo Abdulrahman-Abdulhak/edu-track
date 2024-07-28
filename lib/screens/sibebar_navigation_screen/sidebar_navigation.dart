@@ -1,12 +1,14 @@
-import 'package:edu_track/_main/app_edge_insets_geometry.dart';
-import 'package:edu_track/_main/widget/app_stateless_widget.dart';
-import 'package:edu_track/constants/ui/colors.dart';
-import 'package:edu_track/screens/sibebar_navigation_screen/sections/list_tile.dart';
-import 'package:edu_track/screens/sibebar_navigation_screen/sections/search.dart';
-import 'package:edu_track/utils/extensions/extensions.dart';
-import 'package:edu_track/widgets/navigation/nav_item.dart';
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'package:edu_track/_main/main.dart';
+import 'package:edu_track/utils/utils.dart';
+import 'package:edu_track/widgets/widgets.dart';
+import 'package:edu_track/constants/constants.dart';
+
+import 'package:edu_track/widgets/navigation/nav_item.dart';
+
+import './sections/search.dart';
+import './sections/list_tile.dart';
 
 class SidebarNavigationScreen extends AppStatelessWidget {
   SidebarNavigationScreen({super.key});
