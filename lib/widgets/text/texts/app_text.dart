@@ -14,7 +14,7 @@ class AppText extends AppStatelessWidget {
   final String? semanticsLabel;
   final bool? textWrap;
   final Locale? locale;
-  final Color? selectionColor;
+  final Color? color, selectionColor;
   final TextAlign? textAlign;
   final TextDirection? textDirection;
   final TextScaler? textScaler;
@@ -27,6 +27,7 @@ class AppText extends AppStatelessWidget {
     this.data, {
     super.key,
     this.style,
+    this.color,
     this.overflow,
     this.maxLineCount,
     this.semanticsLabel,
@@ -42,6 +43,7 @@ class AppText extends AppStatelessWidget {
   AppText.regular(
     this.data, {
     super.key,
+    this.color,
     this.overflow,
     this.maxLineCount,
     this.semanticsLabel,
@@ -58,6 +60,7 @@ class AppText extends AppStatelessWidget {
   AppText.medium(
     this.data, {
     super.key,
+    this.color,
     this.overflow,
     this.maxLineCount,
     this.semanticsLabel,
@@ -74,6 +77,7 @@ class AppText extends AppStatelessWidget {
   AppText.semiBold(
     this.data, {
     super.key,
+    this.color,
     this.overflow,
     this.maxLineCount,
     this.semanticsLabel,
@@ -91,6 +95,7 @@ class AppText extends AppStatelessWidget {
   const AppText.rich(
     this.data,
     this.style,
+    this.color,
     this.overflow,
     this.maxLineCount,
     this.semanticsLabel,
@@ -106,6 +111,7 @@ class AppText extends AppStatelessWidget {
   @override
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
     final defaultStyle = AppDefaultTextStyle.of(context);
+    final styleToUse = (style ?? defaultStyle.style).withStyles(color: color);
 
     final dataToUse = switch (textTransform) {
       TextTransform.sentenceCapitalize => data.capitalizeSentence(),
@@ -117,7 +123,7 @@ class AppText extends AppStatelessWidget {
 
     return Text(
       dataToUse,
-      style: (style ?? defaultStyle.style).compute(context, constraints),
+      style: styleToUse.compute(context, constraints),
       locale: locale ?? defaultStyle.locale,
       selectionColor: selectionColor ?? defaultStyle.selectionColor,
       semanticsLabel: semanticsLabel,

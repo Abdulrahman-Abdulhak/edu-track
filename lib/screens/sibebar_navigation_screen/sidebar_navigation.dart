@@ -5,22 +5,20 @@ import 'package:edu_track/utils/utils.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
-import 'package:edu_track/widgets/navigation/nav_item.dart';
+import 'package:edu_track/screens/sibebar_navigation_screen/widgets/nav_item.dart';
 
 import './sections/search.dart';
 import './sections/list_tile.dart';
 
 class SidebarNavigationScreen extends AppStatelessWidget {
+  final String firstName, lastName, email;
+
   SidebarNavigationScreen({
     super.key,
-    required this.fisrtName,
+    required this.firstName,
     required this.lastName,
     required this.email,
   });
-
-  final String fisrtName;
-  final String lastName;
-  final String email;
 
   TextEditingController searchcontroller = TextEditingController();
 
@@ -38,8 +36,10 @@ class SidebarNavigationScreen extends AppStatelessWidget {
         ),
       ),
       body: AppPadding(
-        padding:
-            AppEdgeInsets.symmetric(horizontal: 1.5.rem, vertical: 1.5.rem),
+        padding: AppEdgeInsets.symmetric(
+          horizontal: 1.5.rem,
+          vertical: 1.5.rem,
+        ),
         child: AppColumn(
           gap: .25.rem,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class SidebarNavigationScreen extends AppStatelessWidget {
             NavItem(icon: AppIcons.settings, text: "Settings"),
             const Divider(),
             ListTileSection(
-              firstName: fisrtName,
+              firstName: firstName,
               lastName: lastName,
               email: email,
             ),

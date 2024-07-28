@@ -39,9 +39,7 @@ extension AppList<T> on List<T> {
 
   //* creates a copy of this list and returns it.
   List<T> clone() {
-    final list = <T>[];
-    List.copyRange<T>(list, 0, this, 0, length - 1);
-    return list;
+    return List.of(this);
   }
 
   //* adds a [separator] between each element that is not null.
@@ -64,6 +62,10 @@ extension AppList<T> on List<T> {
 
     assert(-index <= length);
     return this[length + index];
+  }
+
+  List<T> operator +(List<T> other) {
+    return [...this, ...other];
   }
 }
 

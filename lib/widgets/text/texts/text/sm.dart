@@ -7,6 +7,7 @@ class TextSm extends AppText {
   TextSm(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,
@@ -23,6 +24,7 @@ class TextSm extends AppText {
   TextSm.regular(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,
@@ -41,6 +43,7 @@ class TextSm extends AppText {
   TextSm.medium(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,
@@ -59,6 +62,7 @@ class TextSm extends AppText {
   TextSm.semiBold(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,

@@ -7,6 +7,7 @@ class TextDisplaySm extends AppText {
   TextDisplaySm(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,
@@ -23,6 +24,7 @@ class TextDisplaySm extends AppText {
   TextDisplaySm.regular(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,
@@ -41,6 +43,7 @@ class TextDisplaySm extends AppText {
   TextDisplaySm.medium(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,
@@ -59,6 +62,7 @@ class TextDisplaySm extends AppText {
   TextDisplaySm.semiBold(
     super.data, {
     super.key,
+    super.color,
     super.overflow,
     super.maxLineCount,
     super.textTransform,

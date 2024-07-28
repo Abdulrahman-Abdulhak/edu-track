@@ -52,6 +52,13 @@ abstract class UnitSize {
   bool get needsConstraints;
   bool get needsContext;
 
+  UnitSize add(Object val);
+  UnitSize subtract(Object val);
+  UnitSize multiply(Object val);
+  UnitSize divide(Object val);
+
+  bool get isZero => value == 0;
+
   UnitSize operator +(Object other) {
     assertMath(other, UnitSize);
 
@@ -80,8 +87,14 @@ abstract class UnitSize {
     return divide(other);
   }
 
-  UnitSize add(Object val);
-  UnitSize subtract(Object val);
-  UnitSize multiply(Object val);
-  UnitSize divide(Object val);
+  @override
+  bool operator ==(Object other) {
+    if (other is! UnitSize) return false;
+
+    if (isZero && other.isZero) return true;
+    return runtimeType == other.runtimeType && value == other.value;
+  }
+
+  @override
+  int get hashCode => Object.hash(value, runtimeType);
 }
