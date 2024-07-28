@@ -1,27 +1,28 @@
+import "package:edu_track/_main/for_widgets/decoration/box_decoration.dart";
 import "package:edu_track/_main/widget/app_stateless_widget.dart";
 import "package:edu_track/constants/ui/colors.dart";
 import "package:edu_track/utils/extensions/extensions.dart";
 import "package:edu_track/widgets/icons/app_icon.dart";
+import "package:edu_track/widgets/layout/layout.dart";
 import "package:edu_track/widgets/text/texts/text/sm.dart";
 import "package:flutter/material.dart";
 
 class ListTitlSection extends AppStatelessWidget {
-  const ListTitlSection({super.key});
+  ListTitlSection({super.key});
+  final String firstName = "Sara";
+  final String lastName = "N";
 
   @override
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
     return ListTile(
-      leading: Container(
+      leading: AppContainer(
         clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.blue700,
-        ),
-        width: 40,
-        height: 40,
-        child: Text("RK"),
+        decoration: const AppBoxDecoration(shape: BoxShape.circle),
+        width: 2.5.rem,
+        height: 2.5.rem,
+        child: Text(""),
       ),
-      title: TextSm.semiBold("Sara N"),
+      title: TextSm.semiBold("$firstName $lastName"),
       subtitle: TextSm.regular("aaaa@ggg.com"),
       trailing: AppIcon(
         icon: AppIcons.logOut,

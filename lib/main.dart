@@ -1,3 +1,4 @@
+import 'package:edu_track/screens/sibebar_navigation_screen/sidebar_navigation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/_main/main.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       locale: L10n.defaultLocal,
       supportedLocales: L10n.all,
       localizationsDelegates: L10n.delegates,
-      home: const SignUpScreen(),
+      home: SidebarNavigationScreen(),
     );
   }
 }
