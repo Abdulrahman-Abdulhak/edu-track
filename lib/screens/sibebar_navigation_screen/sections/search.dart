@@ -22,9 +22,10 @@ class Search extends AppStatelessWidget {
           color: AppColors.gray500,
           size: 1.25.rem,
         ),
-        border: OutlineInputBorder(
-            borderRadius: borderRadius.compute(context, constraints),
-            borderSide: const BorderSide(color: AppColors.gray300)),
+        border: AppOutlineInputBorder(
+          borderRadius: borderRadius,
+          borderSide: const AppBorderSide(color: AppColors.gray300),
+        ),
       ),
     );
   }

@@ -18,7 +18,7 @@ abstract class AppClass<T> {
     BuildContext? context,
     BoxConstraints? constraints,
   ) {
-    return list?.to((item, i) => item.compute(context, constraints));
+    return list?.to((item) => item.compute(context, constraints));
   }
 
   static AppClass<Object> fromObject(Object obj) {
@@ -40,7 +40,7 @@ abstract class AppClass<T> {
 
   static List<AppClass<Object>>? fromList(List<Object>? list) {
     if (list == null) return null;
-    return list.to((item, i) => fromObject(item));
+    return list.to((item) => fromObject(item));
   }
 
   const AppClass();
