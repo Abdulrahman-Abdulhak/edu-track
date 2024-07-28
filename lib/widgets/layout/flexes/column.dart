@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'flex.dart';
+import './flex.dart';
 
 class AppColumn extends AppFlex {
   const AppColumn({

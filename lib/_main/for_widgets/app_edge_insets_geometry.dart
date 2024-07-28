@@ -2,19 +2,24 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'package:edu_track/utils/sizes/sizes.dart';
+import 'package:edu_track/utils/utils.dart';
+
+import '../_app_class.dart';
 
 // a substitute for EdgeInsetsGeometry that can use the {UnitSize} class
-abstract class AppEdgeInsetsGeometry {
+abstract class AppEdgeInsetsGeometry implements AppClass<EdgeInsetsGeometry> {
   const AppEdgeInsetsGeometry();
 
+  @override
   EdgeInsetsGeometry compute(
     BuildContext? context,
     BoxConstraints? constraints,
   );
 
-  bool get needsContext => UnitSize.anyNeedsConstraints(_properties);
-  bool get needsConstraints => UnitSize.anyNeedsContext(_properties);
+  @override
+  bool get needsContext => _properties.needsContext;
+  @override
+  bool get needsConstraints => _properties.needsConstraints;
 
   List<UnitSize> get _properties;
 }
@@ -53,6 +58,12 @@ class AppEdgeInsets extends AppEdgeInsetsGeometry {
         top = Pixel(padding.top / devicePixelRatio),
         right = Pixel(padding.right / devicePixelRatio),
         bottom = Pixel(padding.bottom / devicePixelRatio);
+
+  AppEdgeInsets.fromOrigin(EdgeInsets insets)
+      : left = insets.left.px,
+        top = insets.top.px,
+        right = insets.right.px,
+        bottom = insets.bottom.px;
 
   @override
   EdgeInsets compute(BuildContext? context, BoxConstraints? constraints) {
@@ -103,6 +114,12 @@ class AppEdgeInsetsDirectional extends AppEdgeInsetsGeometry {
         end = horizontal,
         top = vertical,
         bottom = vertical;
+
+  AppEdgeInsetsDirectional.fromOrigin(EdgeInsetsDirectional insets)
+      : start = insets.start.px,
+        top = insets.top.px,
+        end = insets.end.px,
+        bottom = insets.bottom.px;
 
   @override
   EdgeInsetsDirectional compute(

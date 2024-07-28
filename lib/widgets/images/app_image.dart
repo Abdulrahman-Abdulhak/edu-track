@@ -71,6 +71,6 @@ class AppImage extends AppStatelessWidget {
 
   @override
   bool needsConstraints(BuildContext context) {
-    return UnitSize.anyNeedsConstraints([width, height]);
+    return [width, height].needsConstraints;
   }
 }

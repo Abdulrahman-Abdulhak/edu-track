@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'flex.dart';
+import './flex.dart';
 
 class AppRow extends AppFlex {
   const AppRow({

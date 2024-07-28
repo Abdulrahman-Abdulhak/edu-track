@@ -25,4 +25,36 @@ class ContainerWidth extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  ContainerWidth add(Object val) {
+    assertMath(val, ContainerWidth);
+
+    if (val is ContainerWidth) return ContainerWidth(value + val.value);
+    return ContainerWidth(value + (val as num));
+  }
+
+  @override
+  ContainerWidth divide(Object val) {
+    assertMath(val, ContainerWidth);
+
+    if (val is ContainerWidth) return ContainerWidth(value / val.value);
+    return ContainerWidth(value / (val as num));
+  }
+
+  @override
+  ContainerWidth multiply(Object val) {
+    assertMath(val, ContainerWidth);
+
+    if (val is ContainerWidth) return ContainerWidth(value * val.value);
+    return ContainerWidth(value * (val as num));
+  }
+
+  @override
+  ContainerWidth subtract(Object val) {
+    assertMath(val, ContainerWidth);
+
+    if (val is ContainerWidth) return ContainerWidth(value - val.value);
+    return ContainerWidth(value - (val as num));
+  }
 }

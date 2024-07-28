@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:edu_track/utils/extensions/num.dart';
+import 'package:edu_track/_main/main.dart';
+import 'package:edu_track/utils/utils.dart';
 
 import './text_transform.dart';
-import './app_text_style.dart';
 
 //* this class is what defines a new scope for the fontSize to be used for
 //* {Em} unit.

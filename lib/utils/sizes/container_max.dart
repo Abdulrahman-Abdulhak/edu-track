@@ -28,4 +28,36 @@ class ContainerMax extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  ContainerMax add(Object val) {
+    assertMath(val, ContainerMax);
+
+    if (val is ContainerMax) return ContainerMax(value + val.value);
+    return ContainerMax(value + (val as num));
+  }
+
+  @override
+  ContainerMax divide(Object val) {
+    assertMath(val, ContainerMax);
+
+    if (val is ContainerMax) return ContainerMax(value / val.value);
+    return ContainerMax(value / (val as num));
+  }
+
+  @override
+  ContainerMax multiply(Object val) {
+    assertMath(val, ContainerMax);
+
+    if (val is ContainerMax) return ContainerMax(value * val.value);
+    return ContainerMax(value * (val as num));
+  }
+
+  @override
+  ContainerMax subtract(Object val) {
+    assertMath(val, ContainerMax);
+
+    if (val is ContainerMax) return ContainerMax(value - val.value);
+    return ContainerMax(value - (val as num));
+  }
 }

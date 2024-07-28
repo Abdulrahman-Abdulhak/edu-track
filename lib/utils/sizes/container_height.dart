@@ -25,4 +25,36 @@ class ContainerHeight extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  ContainerHeight add(Object val) {
+    assertMath(val, ContainerHeight);
+
+    if (val is ContainerHeight) return ContainerHeight(value + val.value);
+    return ContainerHeight(value + (val as num));
+  }
+
+  @override
+  ContainerHeight divide(Object val) {
+    assertMath(val, ContainerHeight);
+
+    if (val is ContainerHeight) return ContainerHeight(value / val.value);
+    return ContainerHeight(value / (val as num));
+  }
+
+  @override
+  ContainerHeight multiply(Object val) {
+    assertMath(val, ContainerHeight);
+
+    if (val is ContainerHeight) return ContainerHeight(value * val.value);
+    return ContainerHeight(value * (val as num));
+  }
+
+  @override
+  ContainerHeight subtract(Object val) {
+    assertMath(val, ContainerHeight);
+
+    if (val is ContainerHeight) return ContainerHeight(value - val.value);
+    return ContainerHeight(value - (val as num));
+  }
 }

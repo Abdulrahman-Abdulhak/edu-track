@@ -1,5 +1,5 @@
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:edu_track/_main/main.dart';
 import 'package:edu_track/utils/sizes/unit_size.dart';
@@ -80,11 +80,13 @@ enum AppIcons {
 
 //* this widget is like the Icon widget but for the applications own icons
 class AppIcon extends AppStatelessWidget {
-  final AppIcons icon;
-  final BoxFit fit;
-  final Color color;
   final UnitSize? size;
 
+  final BoxFit fit;
+  final Color color;
+
+  final AppIcons icon;
+  
   const AppIcon({
     super.key,
     this.size,

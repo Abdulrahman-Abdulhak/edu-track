@@ -1,7 +1,7 @@
-import 'package:edu_track/types/types.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/_main/main.dart';
+import 'package:edu_track/types/types.dart';
 import 'package:edu_track/utils/utils.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
@@ -49,7 +49,7 @@ class _LoginButton extends StatelessWidget {
       onPressed: onPressed,
       gap: .75.rem,
       padding: AppEdgeInsets.symmetric(horizontal: 1.rem, vertical: .625.rem),
-      borderRadius: AppBorderRadius.all(.75.rem),
+      borderRadius: AppBorderRadius.circular(.75.rem),
       border: const AppBorderSide(color: AppColors.gray300),
       width: 100.cqw,
       icon: AppImage(

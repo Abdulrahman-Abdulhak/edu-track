@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:edu_track/_main/main.dart';
 import 'package:edu_track/utils/utils.dart';
-import 'package:edu_track/constants/constants.dart';
 import 'package:edu_track/widgets/widgets.dart';
+import 'package:edu_track/constants/constants.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
   const AlreadyHaveAccount({super.key});

@@ -1,6 +1,5 @@
-import 'package:edu_track/constants/ui/typographies.dart';
-
-import '../../addons/addons.dart';
+import 'package:edu_track/constants/constants.dart';
+import 'package:edu_track/_main/main.dart';
 
 import '../app_text.dart';
 
@@ -19,7 +18,7 @@ class TextSm extends AppText {
     super.textDirection,
     super.textScaler,
     AppTextStyle? style,
-  }) : super(style: AppTextStyle.style(style).merge(Typographies.textSm));
+  }) : super(style: AppTextStyle.copy(style).merge(Typographies.textSm));
 
   TextSm.regular(
     super.data, {
@@ -36,7 +35,7 @@ class TextSm extends AppText {
     super.textScaler,
     AppTextStyle? style,
   }) : super.regular(
-          style: AppTextStyle.style(style).merge(Typographies.textSm),
+          style: AppTextStyle.copy(style).merge(Typographies.textSm),
         );
 
   TextSm.medium(
@@ -54,7 +53,7 @@ class TextSm extends AppText {
     super.textScaler,
     AppTextStyle? style,
   }) : super.medium(
-          style: AppTextStyle.style(style).merge(Typographies.textSm),
+          style: AppTextStyle.copy(style).merge(Typographies.textSm),
         );
 
   TextSm.semiBold(
@@ -72,6 +71,6 @@ class TextSm extends AppText {
     super.textScaler,
     AppTextStyle? style,
   }) : super.semiBold(
-          style: AppTextStyle.style(style).merge(Typographies.textSm),
+          style: AppTextStyle.copy(style).merge(Typographies.textSm),
         );
 }

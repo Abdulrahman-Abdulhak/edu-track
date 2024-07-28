@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:edu_track/_main/main.dart';
-import 'package:edu_track/utils/sizes/sizes.dart';
+import 'package:edu_track/utils/utils.dart';
 
-class Gap extends AppStatelessWidget {
+import '../wrappers/wrappers.dart';
+
+class Gap extends StatelessWidget {
   final Axis direction;
   final UnitSize size;
 
@@ -14,14 +15,8 @@ class Gap extends AppStatelessWidget {
   });
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
-    if (direction == Axis.horizontal) {
-      return SizedBox(width: size.compute(context, constraints));
-    }
-
-    return SizedBox(height: size.compute(context, constraints));
+  Widget build(BuildContext context) {
+    if (direction == Axis.horizontal) return AppSizedBox(width: size);
+    return AppSizedBox(height: size);
   }
-
-  @override
-  bool needsConstraints(BuildContext context) => size.needsConstraints;
 }

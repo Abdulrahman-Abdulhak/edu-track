@@ -19,4 +19,36 @@ class ViewWidth extends UnitSize {
 
   @override
   bool get needsContext => true;
+
+  @override
+  ViewWidth add(Object val) {
+    assertMath(val, ViewWidth);
+
+    if (val is ViewWidth) return ViewWidth(value + val.value);
+    return ViewWidth(value + (val as num));
+  }
+
+  @override
+  ViewWidth divide(Object val) {
+    assertMath(val, ViewWidth);
+
+    if (val is ViewWidth) return ViewWidth(value / val.value);
+    return ViewWidth(value / (val as num));
+  }
+
+  @override
+  ViewWidth multiply(Object val) {
+    assertMath(val, ViewWidth);
+
+    if (val is ViewWidth) return ViewWidth(value * val.value);
+    return ViewWidth(value * (val as num));
+  }
+
+  @override
+  ViewWidth subtract(Object val) {
+    assertMath(val, ViewWidth);
+
+    if (val is ViewWidth) return ViewWidth(value - val.value);
+    return ViewWidth(value - (val as num));
+  }
 }

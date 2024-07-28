@@ -19,4 +19,36 @@ class Rem extends UnitSize {
 
   @override
   bool get needsContext => false;
+
+  @override
+  Rem add(Object val) {
+    assertMath(val, Rem);
+
+    if (val is Rem) return Rem(value + val.value);
+    return Rem(value + (val as num));
+  }
+
+  @override
+  Rem divide(Object val) {
+    assertMath(val, Rem);
+
+    if (val is Rem) return Rem(value / val.value);
+    return Rem(value / (val as num));
+  }
+
+  @override
+  Rem multiply(Object val) {
+    assertMath(val, Rem);
+
+    if (val is Rem) return Rem(value * val.value);
+    return Rem(value * (val as num));
+  }
+
+  @override
+  Rem subtract(Object val) {
+    assertMath(val, Rem);
+
+    if (val is Rem) return Rem(value - val.value);
+    return Rem(value - (val as num));
+  }
 }
