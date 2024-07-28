@@ -50,7 +50,7 @@ class AppTextStyle implements AppClass<TextStyle> {
       : fontSize = style.fontSize?.px,
         wordSpacing = style.wordSpacing?.px,
         letterSpacing = style.letterSpacing?.px,
-        textShadow = AppClass.fromList(style.shadows) as List<AppShadow>,
+        textShadow = AppClass.fromList(style.shadows) as List<AppShadow>?,
         color = style.color,
         decoration = style.decoration,
         decorationStyle = style.decorationStyle,

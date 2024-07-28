@@ -39,9 +39,8 @@ class AppBoxDecoration implements AppClass<BoxDecoration> {
           color: decoration.color,
           gradient: decoration.gradient,
           image: decoration.image,
-          shadows: AppClass.fromList(
-            decoration.boxShadow,
-          ) as List<AppBoxShadow>,
+          shadows:
+              AppClass.fromList(decoration.boxShadow) as List<AppBoxShadow>?,
           shape: decoration.shape,
         );
 
