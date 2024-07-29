@@ -3,6 +3,8 @@
     "autofocus",
     "cqmax",
     "cqmin",
+    "operationable",
+    "plusable",
     "scrollers",
     "sublist",
     "vmax",

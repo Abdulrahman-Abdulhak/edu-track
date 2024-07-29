@@ -31,7 +31,12 @@ class ContainerMax extends UnitSize {
 
   @override
   ContainerMax add(Object val) {
-    assertMath(val, ContainerMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ContainerMax(double.infinity);
+    }
 
     if (val is ContainerMax) return ContainerMax(value + val.value);
     return ContainerMax(value + (val as num));
@@ -39,7 +44,11 @@ class ContainerMax extends UnitSize {
 
   @override
   ContainerMax divide(Object val) {
-    assertMath(val, ContainerMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ContainerMax(0);
+    }
 
     if (val is ContainerMax) return ContainerMax(value / val.value);
     return ContainerMax(value / (val as num));
@@ -47,7 +56,12 @@ class ContainerMax extends UnitSize {
 
   @override
   ContainerMax multiply(Object val) {
-    assertMath(val, ContainerMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ContainerMax(0);
+      if (val.isInfinite) return const ContainerMax(double.infinity);
+    }
 
     if (val is ContainerMax) return ContainerMax(value * val.value);
     return ContainerMax(value * (val as num));
@@ -55,7 +69,11 @@ class ContainerMax extends UnitSize {
 
   @override
   ContainerMax subtract(Object val) {
-    assertMath(val, ContainerMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ContainerMax) return ContainerMax(value - val.value);
     return ContainerMax(value - (val as num));

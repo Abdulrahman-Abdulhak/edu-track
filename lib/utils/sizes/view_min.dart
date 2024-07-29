@@ -27,7 +27,12 @@ class ViewMin extends UnitSize {
 
   @override
   ViewMin add(Object val) {
-    assertMath(val, ViewMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ViewMin(double.infinity);
+    }
 
     if (val is ViewMin) return ViewMin(value + val.value);
     return ViewMin(value + (val as num));
@@ -35,7 +40,11 @@ class ViewMin extends UnitSize {
 
   @override
   ViewMin divide(Object val) {
-    assertMath(val, ViewMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ViewMin(0);
+    }
 
     if (val is ViewMin) return ViewMin(value / val.value);
     return ViewMin(value / (val as num));
@@ -43,7 +52,12 @@ class ViewMin extends UnitSize {
 
   @override
   ViewMin multiply(Object val) {
-    assertMath(val, ViewMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ViewMin(0);
+      if (val.isInfinite) return const ViewMin(double.infinity);
+    }
 
     if (val is ViewMin) return ViewMin(value * val.value);
     return ViewMin(value * (val as num));
@@ -51,7 +65,11 @@ class ViewMin extends UnitSize {
 
   @override
   ViewMin subtract(Object val) {
-    assertMath(val, ViewMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ViewMin) return ViewMin(value - val.value);
     return ViewMin(value - (val as num));

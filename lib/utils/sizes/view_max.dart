@@ -27,7 +27,12 @@ class ViewMax extends UnitSize {
 
   @override
   ViewMax add(Object val) {
-    assertMath(val, ViewMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ViewMax(double.infinity);
+    }
 
     if (val is ViewMax) return ViewMax(value + val.value);
     return ViewMax(value + (val as num));
@@ -35,7 +40,11 @@ class ViewMax extends UnitSize {
 
   @override
   ViewMax divide(Object val) {
-    assertMath(val, ViewMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ViewMax(0);
+    }
 
     if (val is ViewMax) return ViewMax(value / val.value);
     return ViewMax(value / (val as num));
@@ -43,7 +52,12 @@ class ViewMax extends UnitSize {
 
   @override
   ViewMax multiply(Object val) {
-    assertMath(val, ViewMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ViewMax(0);
+      if (val.isInfinite) return const ViewMax(double.infinity);
+    }
 
     if (val is ViewMax) return ViewMax(value * val.value);
     return ViewMax(value * (val as num));
@@ -51,7 +65,11 @@ class ViewMax extends UnitSize {
 
   @override
   ViewMax subtract(Object val) {
-    assertMath(val, ViewMax);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ViewMax) return ViewMax(value - val.value);
     return ViewMax(value - (val as num));

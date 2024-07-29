@@ -143,7 +143,7 @@ class AppTextStyle implements AppClass<TextStyle> {
   }
 
   bool isPixelBased() {
-    return [fontSize, wordSpacing, letterSpacing].arePixels;
+    return [fontSize, wordSpacing, letterSpacing].arePixelsOrNulls;
   }
 
   @override

@@ -28,7 +28,12 @@ class ContainerHeight extends UnitSize {
 
   @override
   ContainerHeight add(Object val) {
-    assertMath(val, ContainerHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ContainerHeight(double.infinity);
+    }
 
     if (val is ContainerHeight) return ContainerHeight(value + val.value);
     return ContainerHeight(value + (val as num));
@@ -36,7 +41,11 @@ class ContainerHeight extends UnitSize {
 
   @override
   ContainerHeight divide(Object val) {
-    assertMath(val, ContainerHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ContainerHeight(0);
+    }
 
     if (val is ContainerHeight) return ContainerHeight(value / val.value);
     return ContainerHeight(value / (val as num));
@@ -44,7 +53,12 @@ class ContainerHeight extends UnitSize {
 
   @override
   ContainerHeight multiply(Object val) {
-    assertMath(val, ContainerHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ContainerHeight(0);
+      if (val.isInfinite) return const ContainerHeight(double.infinity);
+    }
 
     if (val is ContainerHeight) return ContainerHeight(value * val.value);
     return ContainerHeight(value * (val as num));
@@ -52,7 +66,11 @@ class ContainerHeight extends UnitSize {
 
   @override
   ContainerHeight subtract(Object val) {
-    assertMath(val, ContainerHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ContainerHeight) return ContainerHeight(value - val.value);
     return ContainerHeight(value - (val as num));

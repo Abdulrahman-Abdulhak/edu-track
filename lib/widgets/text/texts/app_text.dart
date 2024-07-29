@@ -21,7 +21,7 @@ class AppText extends AppStatelessWidget {
 
   final TextTransform textTransform;
 
-  final String data;
+  final Object data;
 
   const AppText(
     this.data, {
@@ -114,11 +114,11 @@ class AppText extends AppStatelessWidget {
     final styleToUse = (style ?? defaultStyle.style).withStyles(color: color);
 
     final dataToUse = switch (textTransform) {
-      TextTransform.sentenceCapitalize => data.capitalizeSentence(),
-      TextTransform.capitalize => data.capitalizeWord(),
-      TextTransform.uppercase => data.toUpperCase(),
-      TextTransform.lowercase => data.toLowerCase(),
-      TextTransform.none => data,
+      TextTransform.sentenceCapitalize => data.toString().capitalizeSentence(),
+      TextTransform.capitalize => data.toString().capitalizeWord(),
+      TextTransform.uppercase => data.toString().toUpperCase(),
+      TextTransform.lowercase => data.toString().toLowerCase(),
+      TextTransform.none => data.toString(),
     };
 
     return Text(

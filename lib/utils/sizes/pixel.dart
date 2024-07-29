@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'unit_size.dart';
 
-enum _operation {
+enum Operation {
   add,
   multiply,
   subtract,
@@ -12,30 +12,30 @@ enum _operation {
 
 //* this class represents the size of 1 pixel.
 class Pixel extends UnitSize {
-  final _operation _op;
+  final Operation _op;
   final List<UnitSize> _sizes;
 
   const Pixel(super.value)
-      : _op = _operation.none,
+      : _op = Operation.none,
         _sizes = const [];
 
   Pixel.add(UnitSize size1, UnitSize size2)
-      : _op = _operation.add,
+      : _op = Operation.add,
         _sizes = [size1, size2],
         super(0);
 
   Pixel.multiply(UnitSize size1, UnitSize size2)
-      : _op = _operation.multiply,
+      : _op = Operation.multiply,
         _sizes = [size1, size2],
         super(0);
 
   Pixel.subtract(UnitSize size1, UnitSize size2)
-      : _op = _operation.subtract,
+      : _op = Operation.subtract,
         _sizes = [size1, size2],
         super(0);
 
   Pixel.divide(UnitSize size1, UnitSize size2)
-      : _op = _operation.divide,
+      : _op = Operation.divide,
         _sizes = [size1, size2],
         super(0);
 
@@ -46,11 +46,11 @@ class Pixel extends UnitSize {
     if (_sizes.isNotEmpty) {
       result = _sizes.first.compute(context, constraints);
       result = switch (_op) {
-        _operation.add => result + _sizes.last.compute(context, constraints),
-        _operation.multiply =>
+        Operation.add => result + _sizes.last.compute(context, constraints),
+        Operation.multiply =>
           result * _sizes.last.compute(context, constraints),
-        _operation.divide => result / _sizes.last.compute(context, constraints),
-        _operation.subtract =>
+        Operation.divide => result / _sizes.last.compute(context, constraints),
+        Operation.subtract =>
           result - _sizes.last.compute(context, constraints),
         _ => result,
       };
@@ -67,7 +67,12 @@ class Pixel extends UnitSize {
 
   @override
   Pixel add(Object val) {
-    assertMath(val, Pixel);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const Pixel(double.infinity);
+    }
 
     if (val is Pixel) return Pixel(value + val.value);
     return Pixel(value + (val as num));
@@ -75,7 +80,11 @@ class Pixel extends UnitSize {
 
   @override
   Pixel divide(Object val) {
-    assertMath(val, Pixel);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const Pixel(0);
+    }
 
     if (val is Pixel) return Pixel(value / val.value);
     return Pixel(value / (val as num));
@@ -83,7 +92,12 @@ class Pixel extends UnitSize {
 
   @override
   Pixel multiply(Object val) {
-    assertMath(val, Pixel);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const Pixel(0);
+      if (val.isInfinite) return const Pixel(double.infinity);
+    }
 
     if (val is Pixel) return Pixel(value * val.value);
     return Pixel(value * (val as num));
@@ -91,7 +105,11 @@ class Pixel extends UnitSize {
 
   @override
   Pixel subtract(Object val) {
-    assertMath(val, Pixel);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is Pixel) return Pixel(value - val.value);
     return Pixel(value - (val as num));

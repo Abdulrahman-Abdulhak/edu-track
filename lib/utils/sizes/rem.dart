@@ -22,7 +22,12 @@ class Rem extends UnitSize {
 
   @override
   Rem add(Object val) {
-    assertMath(val, Rem);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const Rem(double.infinity);
+    }
 
     if (val is Rem) return Rem(value + val.value);
     return Rem(value + (val as num));
@@ -30,7 +35,11 @@ class Rem extends UnitSize {
 
   @override
   Rem divide(Object val) {
-    assertMath(val, Rem);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const Rem(0);
+    }
 
     if (val is Rem) return Rem(value / val.value);
     return Rem(value / (val as num));
@@ -38,7 +47,12 @@ class Rem extends UnitSize {
 
   @override
   Rem multiply(Object val) {
-    assertMath(val, Rem);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const Rem(0);
+      if (val.isInfinite) return const Rem(double.infinity);
+    }
 
     if (val is Rem) return Rem(value * val.value);
     return Rem(value * (val as num));
@@ -46,7 +60,11 @@ class Rem extends UnitSize {
 
   @override
   Rem subtract(Object val) {
-    assertMath(val, Rem);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is Rem) return Rem(value - val.value);
     return Rem(value - (val as num));

@@ -22,7 +22,12 @@ class ViewHeight extends UnitSize {
 
   @override
   ViewHeight add(Object val) {
-    assertMath(val, ViewHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ViewHeight(double.infinity);
+    }
 
     if (val is ViewHeight) return ViewHeight(value + val.value);
     return ViewHeight(value + (val as num));
@@ -30,7 +35,11 @@ class ViewHeight extends UnitSize {
 
   @override
   ViewHeight divide(Object val) {
-    assertMath(val, ViewHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ViewHeight(0);
+    }
 
     if (val is ViewHeight) return ViewHeight(value / val.value);
     return ViewHeight(value / (val as num));
@@ -38,7 +47,12 @@ class ViewHeight extends UnitSize {
 
   @override
   ViewHeight multiply(Object val) {
-    assertMath(val, ViewHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ViewHeight(0);
+      if (val.isInfinite) return const ViewHeight(double.infinity);
+    }
 
     if (val is ViewHeight) return ViewHeight(value * val.value);
     return ViewHeight(value * (val as num));
@@ -46,7 +60,11 @@ class ViewHeight extends UnitSize {
 
   @override
   ViewHeight subtract(Object val) {
-    assertMath(val, ViewHeight);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ViewHeight) return ViewHeight(value - val.value);
     return ViewHeight(value - (val as num));

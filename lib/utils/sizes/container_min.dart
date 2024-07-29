@@ -31,7 +31,12 @@ class ContainerMin extends UnitSize {
 
   @override
   ContainerMin add(Object val) {
-    assertMath(val, ContainerMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ContainerMin(double.infinity);
+    }
 
     if (val is ContainerMin) return ContainerMin(value + val.value);
     return ContainerMin(value + (val as num));
@@ -39,7 +44,11 @@ class ContainerMin extends UnitSize {
 
   @override
   ContainerMin divide(Object val) {
-    assertMath(val, ContainerMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ContainerMin(0);
+    }
 
     if (val is ContainerMin) return ContainerMin(value / val.value);
     return ContainerMin(value / (val as num));
@@ -47,7 +56,12 @@ class ContainerMin extends UnitSize {
 
   @override
   ContainerMin multiply(Object val) {
-    assertMath(val, ContainerMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ContainerMin(0);
+      if (val.isInfinite) return const ContainerMin(double.infinity);
+    }
 
     if (val is ContainerMin) return ContainerMin(value * val.value);
     return ContainerMin(value * (val as num));
@@ -55,7 +69,11 @@ class ContainerMin extends UnitSize {
 
   @override
   ContainerMin subtract(Object val) {
-    assertMath(val, ContainerMin);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ContainerMin) return ContainerMin(value - val.value);
     return ContainerMin(value - (val as num));

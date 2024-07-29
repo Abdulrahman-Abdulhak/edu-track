@@ -29,7 +29,12 @@ class Em extends UnitSize {
 
   @override
   Em add(Object val) {
-    assertMath(val, Em);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const Em(double.infinity);
+    }
 
     if (val is Em) return Em(value + val.value);
     return Em(value + (val as num));
@@ -37,7 +42,11 @@ class Em extends UnitSize {
 
   @override
   Em divide(Object val) {
-    assertMath(val, Em);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const Em(0);
+    }
 
     if (val is Em) return Em(value / val.value);
     return Em(value / (val as num));
@@ -45,7 +54,12 @@ class Em extends UnitSize {
 
   @override
   Em multiply(Object val) {
-    assertMath(val, Em);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const Em(0);
+      if (val.isInfinite) return const Em(double.infinity);
+    }
 
     if (val is Em) return Em(value * val.value);
     return Em(value * (val as num));
@@ -53,7 +67,11 @@ class Em extends UnitSize {
 
   @override
   Em subtract(Object val) {
-    assertMath(val, Em);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is Em) return Em(value - val.value);
     return Em(value - (val as num));

@@ -22,7 +22,12 @@ class ViewWidth extends UnitSize {
 
   @override
   ViewWidth add(Object val) {
-    assertMath(val, ViewWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ViewWidth(double.infinity);
+    }
 
     if (val is ViewWidth) return ViewWidth(value + val.value);
     return ViewWidth(value + (val as num));
@@ -30,7 +35,11 @@ class ViewWidth extends UnitSize {
 
   @override
   ViewWidth divide(Object val) {
-    assertMath(val, ViewWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ViewWidth(0);
+    }
 
     if (val is ViewWidth) return ViewWidth(value / val.value);
     return ViewWidth(value / (val as num));
@@ -38,7 +47,12 @@ class ViewWidth extends UnitSize {
 
   @override
   ViewWidth multiply(Object val) {
-    assertMath(val, ViewWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ViewWidth(0);
+      if (val.isInfinite) return const ViewWidth(double.infinity);
+    }
 
     if (val is ViewWidth) return ViewWidth(value * val.value);
     return ViewWidth(value * (val as num));
@@ -46,7 +60,11 @@ class ViewWidth extends UnitSize {
 
   @override
   ViewWidth subtract(Object val) {
-    assertMath(val, ViewWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ViewWidth) return ViewWidth(value - val.value);
     return ViewWidth(value - (val as num));

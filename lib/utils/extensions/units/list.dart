@@ -33,4 +33,8 @@ extension UnitSizeList<T> on List<UnitSize?> {
   bool get arePixels {
     return every((size) => size != null && size is Pixel);
   }
+
+  bool get arePixelsOrNulls {
+    return every((size) => size == null || size is Pixel);
+  }
 }

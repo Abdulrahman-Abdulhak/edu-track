@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import './pixel.dart';
+import '../extensions/extensions.dart';
 
 abstract class UnitSize {
   static const zero = Pixel(0);
@@ -31,14 +32,11 @@ abstract class UnitSize {
     }
   }
 
-  void assertMath(
-    Object value,
-    Type type, [
-    String? msg,
-  ]) {
+  void assertMath(Object value, [String? msg]) {
     assert(
-      value.runtimeType == type || value is num,
-      "The value passed to use isn't of type $type nor $num",
+      value.runtimeType == runtimeType || value is UnitSize || value is num,
+      msg ??
+          "The value passed to use isn't of type $runtimeType, $num nor a $UnitSize.",
     );
   }
 
@@ -58,32 +56,85 @@ abstract class UnitSize {
   UnitSize divide(Object val);
 
   bool get isZero => value == 0;
+  bool get isNotZero => value != 0;
+  bool get isFinite => value.isFinite;
+  bool get isInfinite => value.isInfinite;
+
+  bool get isAddable => isZero || isInfinite;
+  bool get isSubtractable => isZero;
+  bool get isMultipliable => isZero || isInfinite;
+  bool get isDividable => isInfinite;
+
+  bool get logical => value.logical;
+
+  bool _operationable(UnitSize other, Operation op) {
+    return switch (op) {
+      Operation.add => other.isAddable,
+      Operation.subtract => other.isSubtractable,
+      Operation.multiply => other.isMultipliable,
+      Operation.divide => other.isDividable,
+      _ => false,
+    };
+  }
+
+  bool _doOperationByPixel(Object other, Operation op) {
+    return other is UnitSize &&
+            (other.runtimeType != runtimeType || _operationable(other, op)) ||
+        other is! num;
+  }
 
   UnitSize operator +(Object other) {
-    assertMath(other, UnitSize);
+    assertMath(other);
 
-    if (other is UnitSize) return Pixel.add(this, other);
+    if (!other.logical) return this;
+    if (other is UnitSize) {
+      if (other.isInfinite) return UnitSize.infinite;
+    }
+
+    if (_doOperationByPixel(other, Operation.add)) {
+      return Pixel.add(this, other as UnitSize);
+    }
     return add(other);
   }
 
   UnitSize operator -(Object other) {
-    assertMath(other, UnitSize);
+    assertMath(other);
 
-    if (other is UnitSize) return Pixel.subtract(this, other);
+    if (other is UnitSize) {
+      if (other.isZero) return UnitSize.zero;
+    }
+
+    if (_doOperationByPixel(other, Operation.subtract)) {
+      return Pixel.subtract(this, other as UnitSize);
+    }
+
     return subtract(other);
   }
 
   UnitSize operator *(Object other) {
-    assertMath(other, UnitSize);
+    assertMath(other);
 
-    if (other is UnitSize) return Pixel.multiply(this, other);
+    if (other is UnitSize) {
+      if (other.isZero) return UnitSize.zero;
+      if (other.isInfinite) return UnitSize.infinite;
+    }
+
+    if (_doOperationByPixel(other, Operation.multiply)) {
+      return Pixel.multiply(this, other as UnitSize);
+    }
     return multiply(other);
   }
 
   UnitSize operator /(Object other) {
-    assertMath(other, UnitSize);
+    assertMath(other);
 
-    if (other is UnitSize) return Pixel.divide(this, other);
+    if (other is UnitSize) {
+      if (other.isInfinite) return UnitSize.zero;
+    }
+
+    if (_doOperationByPixel(other, Operation.divide)) {
+      return Pixel.divide(this, other as UnitSize);
+    }
     return divide(other);
   }
 

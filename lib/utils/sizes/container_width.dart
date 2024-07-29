@@ -28,7 +28,12 @@ class ContainerWidth extends UnitSize {
 
   @override
   ContainerWidth add(Object val) {
-    assertMath(val, ContainerWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+      if (val.isInfinite) return const ContainerWidth(double.infinity);
+    }
 
     if (val is ContainerWidth) return ContainerWidth(value + val.value);
     return ContainerWidth(value + (val as num));
@@ -36,7 +41,11 @@ class ContainerWidth extends UnitSize {
 
   @override
   ContainerWidth divide(Object val) {
-    assertMath(val, ContainerWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isInfinite) return const ContainerWidth(0);
+    }
 
     if (val is ContainerWidth) return ContainerWidth(value / val.value);
     return ContainerWidth(value / (val as num));
@@ -44,7 +53,12 @@ class ContainerWidth extends UnitSize {
 
   @override
   ContainerWidth multiply(Object val) {
-    assertMath(val, ContainerWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return const ContainerWidth(0);
+      if (val.isInfinite) return const ContainerWidth(double.infinity);
+    }
 
     if (val is ContainerWidth) return ContainerWidth(value * val.value);
     return ContainerWidth(value * (val as num));
@@ -52,7 +66,11 @@ class ContainerWidth extends UnitSize {
 
   @override
   ContainerWidth subtract(Object val) {
-    assertMath(val, ContainerWidth);
+    assertMath(val);
+
+    if (val is UnitSize) {
+      if (val.isZero) return this;
+    }
 
     if (val is ContainerWidth) return ContainerWidth(value - val.value);
     return ContainerWidth(value - (val as num));

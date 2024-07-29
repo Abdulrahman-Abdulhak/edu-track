@@ -29,8 +29,22 @@ class MyApp extends StatelessWidget {
       locale: L10n.defaultLocal,
       supportedLocales: L10n.all,
       localizationsDelegates: L10n.delegates,
-      home: const SidebarNavigationScreen(),
+      home: const WidgetLoader(
+        // insert the main widget here.
+        main: SidebarNavigationScreen(),
+      ),
     );
+  }
+}
+
+// this widgets serves as a first loader to the app
+class WidgetLoader extends StatelessWidget {
+  final Widget main;
+  const WidgetLoader({super.key, required this.main});
+
+  @override
+  Widget build(BuildContext context) {
+    return main;
   }
 }
 
@@ -45,22 +59,11 @@ class TestWidget extends StatelessWidget {
         context: context,
         child: Center(
           child: AppText(
-            "Testing Me",
-            style: AppTextStyle(fontSize: 5.cqw),
+            5.cqw + 1,
+            style: AppTextStyle(fontSize: 5.cqw + 1.rem),
           ),
         ),
       ),
     );
   }
 }
-
-// this widgets serves as a first loader to the app
-// class Initial extends StatelessWidget {
-//   final Widget widget;
-//   const Initial({super.key, required this.widget});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return widget;
-//   }
-// }
