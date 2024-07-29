@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import 'package:edu_track/utils/utils.dart';
 
-import './app_shadow.dart';
-import '../../_app_class.dart';
+import '../app_shadow.dart';
+import '../../../_app_class.dart';
 
 //* this class is to be used with the AppText widget
 class AppTextStyle implements AppClass<TextStyle> {

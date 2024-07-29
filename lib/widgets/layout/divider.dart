@@ -37,7 +37,7 @@ class AppDivider extends AppStatelessWidget {
       color: color,
     );
 
-    if (label == null) divider;
+    if (label == null) return divider;
     return AppRow(
       gap: gap,
       children: [

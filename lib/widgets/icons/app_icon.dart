@@ -83,14 +83,14 @@ class AppIcon extends AppStatelessWidget {
   final UnitSize? size;
 
   final BoxFit fit;
-  final Color color;
+  final Color? color;
 
   final AppIcons icon;
 
   const AppIcon({
     super.key,
     this.size,
-    this.color = Colors.black,
+    this.color,
     this.fit = BoxFit.contain,
     required this.icon,
   });
@@ -98,6 +98,7 @@ class AppIcon extends AppStatelessWidget {
   @override
   Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
     final sizeToUse = size?.compute(context, constraints);
+    final colorToUse = color ?? Colors.black;
 
     return SizedBox(
       width: sizeToUse,
@@ -107,8 +108,8 @@ class AppIcon extends AppStatelessWidget {
         fit: fit,
         width: sizeToUse,
         height: sizeToUse,
-        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-        placeholderBuilder: (context) => Placeholder(color: color),
+        colorFilter: ColorFilter.mode(colorToUse, BlendMode.srcIn),
+        placeholderBuilder: (context) => Placeholder(color: colorToUse),
       ),
     );
   }

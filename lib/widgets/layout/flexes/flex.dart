@@ -42,7 +42,7 @@ class AppFlex extends StatelessWidget {
     if (gap != null) {
       newChildren = newChildren.fillBetween(
         Gap(direction: direction, size: gap!),
-        [Gap, GapHorizontal, GapVertical],
+        [Gap, GapHorizontal, GapVertical, Spacer],
       );
     }
 

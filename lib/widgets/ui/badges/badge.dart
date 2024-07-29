@@ -43,7 +43,9 @@ class AppBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyleToUse = textStyle?.withStyles(color: color);
+    final textStyleToUse = labelColor != null
+        ? AppTextStyle(color: labelColor).merge(textStyle)
+        : textStyle;
 
     return AppContainer(
       padding: padding,
@@ -52,7 +54,12 @@ class AppBadge extends StatelessWidget {
         borderRadius: borderRadius,
         border: border,
       ),
-      child: child ?? TextSm.medium("$label", style: textStyleToUse),
+      child: child ??
+          TextSm.medium(
+            "$label",
+            textAlign: TextAlign.center,
+            style: textStyleToUse,
+          ),
     );
   }
 }
