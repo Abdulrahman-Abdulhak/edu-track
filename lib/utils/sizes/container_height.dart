@@ -27,33 +27,30 @@ class ContainerHeight extends UnitSize {
   bool get needsContext => true;
 
   @override
-  ContainerHeight add(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-      if (val.isInfinite) return const ContainerHeight(double.infinity);
-    }
+  ContainerHeight add(UnitSize val) {
+    if (val.isZero) return this;
+    if (val.isInfinite) return const ContainerHeight(double.infinity);
 
     if (val is ContainerHeight) return ContainerHeight(value + val.value);
-    return ContainerHeight(value + (val as num));
+
+    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
   ContainerHeight divide(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
-    if (val is UnitSize) {
-      if (val.isInfinite) return const ContainerHeight(0);
-    }
+    if (val is UnitSize && val.isInfinite) return const ContainerHeight(0);
 
     if (val is ContainerHeight) return ContainerHeight(value / val.value);
-    return ContainerHeight(value / (val as num));
+    if (val is num) return ContainerHeight(value / val);
+
+    throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
 
   @override
   ContainerHeight multiply(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
     if (val is UnitSize) {
       if (val.isZero) return const ContainerHeight(0);
@@ -61,18 +58,16 @@ class ContainerHeight extends UnitSize {
     }
 
     if (val is ContainerHeight) return ContainerHeight(value * val.value);
-    return ContainerHeight(value * (val as num));
+    if (val is num) return ContainerHeight(value * val);
+
+    throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
-  ContainerHeight subtract(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-    }
+  ContainerHeight subtract(UnitSize val) {
+    if (val.isZero) return this;
 
     if (val is ContainerHeight) return ContainerHeight(value - val.value);
-    return ContainerHeight(value - (val as num));
+    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
 }

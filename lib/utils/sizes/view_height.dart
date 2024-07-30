@@ -21,33 +21,30 @@ class ViewHeight extends UnitSize {
   bool get needsContext => true;
 
   @override
-  ViewHeight add(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-      if (val.isInfinite) return const ViewHeight(double.infinity);
-    }
+  ViewHeight add(UnitSize val) {
+    if (val.isZero) return this;
+    if (val.isInfinite) return const ViewHeight(double.infinity);
 
     if (val is ViewHeight) return ViewHeight(value + val.value);
-    return ViewHeight(value + (val as num));
+
+    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
   ViewHeight divide(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
-    if (val is UnitSize) {
-      if (val.isInfinite) return const ViewHeight(0);
-    }
+    if (val is UnitSize && val.isInfinite) return const ViewHeight(0);
 
     if (val is ViewHeight) return ViewHeight(value / val.value);
-    return ViewHeight(value / (val as num));
+    if (val is num) return ViewHeight(value / val);
+
+    throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
 
   @override
   ViewHeight multiply(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
     if (val is UnitSize) {
       if (val.isZero) return const ViewHeight(0);
@@ -55,18 +52,16 @@ class ViewHeight extends UnitSize {
     }
 
     if (val is ViewHeight) return ViewHeight(value * val.value);
-    return ViewHeight(value * (val as num));
+    if (val is num) return ViewHeight(value * val);
+
+    throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
-  ViewHeight subtract(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-    }
+  ViewHeight subtract(UnitSize val) {
+    if (val.isZero) return this;
 
     if (val is ViewHeight) return ViewHeight(value - val.value);
-    return ViewHeight(value - (val as num));
+    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
 }

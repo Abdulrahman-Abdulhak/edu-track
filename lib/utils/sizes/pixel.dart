@@ -66,33 +66,30 @@ class Pixel extends UnitSize {
   bool get needsContext => UnitSize.anyNeedsContext(_sizes);
 
   @override
-  Pixel add(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-      if (val.isInfinite) return const Pixel(double.infinity);
-    }
+  Pixel add(UnitSize val) {
+    if (val.isZero) return this;
+    if (val.isInfinite) return const Pixel(double.infinity);
 
     if (val is Pixel) return Pixel(value + val.value);
-    return Pixel(value + (val as num));
+
+    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
   Pixel divide(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
-    if (val is UnitSize) {
-      if (val.isInfinite) return const Pixel(0);
-    }
+    if (val is UnitSize && val.isInfinite) return const Pixel(0);
 
     if (val is Pixel) return Pixel(value / val.value);
-    return Pixel(value / (val as num));
+    if (val is num) return Pixel(value / val);
+
+    throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
 
   @override
   Pixel multiply(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
     if (val is UnitSize) {
       if (val.isZero) return const Pixel(0);
@@ -100,18 +97,16 @@ class Pixel extends UnitSize {
     }
 
     if (val is Pixel) return Pixel(value * val.value);
-    return Pixel(value * (val as num));
+    if (val is num) return Pixel(value * val);
+
+    throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
-  Pixel subtract(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-    }
+  Pixel subtract(UnitSize val) {
+    if (val.isZero) return this;
 
     if (val is Pixel) return Pixel(value - val.value);
-    return Pixel(value - (val as num));
+    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
 }

@@ -30,33 +30,30 @@ class ContainerMax extends UnitSize {
   bool get needsContext => true;
 
   @override
-  ContainerMax add(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-      if (val.isInfinite) return const ContainerMax(double.infinity);
-    }
+  ContainerMax add(UnitSize val) {
+    if (val.isZero) return this;
+    if (val.isInfinite) return const ContainerMax(double.infinity);
 
     if (val is ContainerMax) return ContainerMax(value + val.value);
-    return ContainerMax(value + (val as num));
+
+    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
   ContainerMax divide(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
-    if (val is UnitSize) {
-      if (val.isInfinite) return const ContainerMax(0);
-    }
+    if (val is UnitSize && val.isInfinite) return const ContainerMax(0);
 
     if (val is ContainerMax) return ContainerMax(value / val.value);
-    return ContainerMax(value / (val as num));
+    if (val is num) return ContainerMax(value / val);
+
+    throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
 
   @override
   ContainerMax multiply(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
     if (val is UnitSize) {
       if (val.isZero) return const ContainerMax(0);
@@ -64,18 +61,16 @@ class ContainerMax extends UnitSize {
     }
 
     if (val is ContainerMax) return ContainerMax(value * val.value);
-    return ContainerMax(value * (val as num));
+    if (val is num) return ContainerMax(value * val);
+
+    throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
-  ContainerMax subtract(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-    }
+  ContainerMax subtract(UnitSize val) {
+    if (val.isZero) return this;
 
     if (val is ContainerMax) return ContainerMax(value - val.value);
-    return ContainerMax(value - (val as num));
+    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
 }

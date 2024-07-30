@@ -26,33 +26,30 @@ class ViewMin extends UnitSize {
   bool get needsContext => true;
 
   @override
-  ViewMin add(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-      if (val.isInfinite) return const ViewMin(double.infinity);
-    }
+  ViewMin add(UnitSize val) {
+    if (val.isZero) return this;
+    if (val.isInfinite) return const ViewMin(double.infinity);
 
     if (val is ViewMin) return ViewMin(value + val.value);
-    return ViewMin(value + (val as num));
+
+    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
   ViewMin divide(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
-    if (val is UnitSize) {
-      if (val.isInfinite) return const ViewMin(0);
-    }
+    if (val is UnitSize && val.isInfinite) return const ViewMin(0);
 
     if (val is ViewMin) return ViewMin(value / val.value);
-    return ViewMin(value / (val as num));
+    if (val is num) return ViewMin(value / val);
+
+    throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
 
   @override
   ViewMin multiply(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
     if (val is UnitSize) {
       if (val.isZero) return const ViewMin(0);
@@ -60,18 +57,16 @@ class ViewMin extends UnitSize {
     }
 
     if (val is ViewMin) return ViewMin(value * val.value);
-    return ViewMin(value * (val as num));
+    if (val is num) return ViewMin(value * val);
+
+    throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
-  ViewMin subtract(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-    }
+  ViewMin subtract(UnitSize val) {
+    if (val.isZero) return this;
 
     if (val is ViewMin) return ViewMin(value - val.value);
-    return ViewMin(value - (val as num));
+    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
 }

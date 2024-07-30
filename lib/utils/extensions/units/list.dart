@@ -13,21 +13,21 @@ extension AppClassList<T> on List<AppClass<T>> {
 
 extension MightAppClassList<T> on List<AppClass<T>?> {
   bool get needsConstraints {
-    return any((item) => item != null && item.needsConstraints);
+    return AppClass.anyNeedsConstraints(this);
   }
 
   bool get needsContext {
-    return any((item) => item != null && item.needsContext);
+    return AppClass.anyNeedsContext(this);
   }
 }
 
 extension UnitSizeList<T> on List<UnitSize?> {
   bool get needsConstraints {
-    return any((size) => size != null && size.needsConstraints);
+    return UnitSize.anyNeedsConstraints(this);
   }
 
   bool get needsContext {
-    return any((size) => size != null && size.needsContext);
+    return UnitSize.anyNeedsContext(this);
   }
 
   bool get arePixels {

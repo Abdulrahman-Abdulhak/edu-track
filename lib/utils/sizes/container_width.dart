@@ -27,33 +27,30 @@ class ContainerWidth extends UnitSize {
   bool get needsContext => true;
 
   @override
-  ContainerWidth add(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-      if (val.isInfinite) return const ContainerWidth(double.infinity);
-    }
+  ContainerWidth add(UnitSize val) {
+    if (val.isZero) return this;
+    if (val.isInfinite) return const ContainerWidth(double.infinity);
 
     if (val is ContainerWidth) return ContainerWidth(value + val.value);
-    return ContainerWidth(value + (val as num));
+
+    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
   ContainerWidth divide(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
-    if (val is UnitSize) {
-      if (val.isInfinite) return const ContainerWidth(0);
-    }
+    if (val is UnitSize && val.isInfinite) return const ContainerWidth(0);
 
     if (val is ContainerWidth) return ContainerWidth(value / val.value);
-    return ContainerWidth(value / (val as num));
+    if (val is num) return ContainerWidth(value / val);
+
+    throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
 
   @override
   ContainerWidth multiply(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
     if (val is UnitSize) {
       if (val.isZero) return const ContainerWidth(0);
@@ -61,18 +58,16 @@ class ContainerWidth extends UnitSize {
     }
 
     if (val is ContainerWidth) return ContainerWidth(value * val.value);
-    return ContainerWidth(value * (val as num));
+    if (val is num) return ContainerWidth(value * val);
+
+    throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
-  ContainerWidth subtract(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-    }
+  ContainerWidth subtract(UnitSize val) {
+    if (val.isZero) return this;
 
     if (val is ContainerWidth) return ContainerWidth(value - val.value);
-    return ContainerWidth(value - (val as num));
+    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
 }

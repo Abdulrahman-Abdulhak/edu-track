@@ -1,11 +1,24 @@
 import 'package:flutter/widgets.dart';
 
 import './pixel.dart';
+import './operationals.dart';
 import '../extensions/extensions.dart';
 
 abstract class UnitSize {
   static const zero = Pixel(0);
   static const infinite = Pixel(double.infinity);
+
+  static Operationals min(UnitSize size1, UnitSize size2) {
+    return Operationals.min(size1, size2);
+  }
+
+  static Operationals max(UnitSize size1, UnitSize size2) {
+    return Operationals.max(size1, size2);
+  }
+
+  static Operationals clamp(UnitSize min, UnitSize size, UnitSize max) {
+    return Operationals.clamp(min, size, max);
+  }
 
   static bool anyNeedsConstraints(List<UnitSize?> sizes) {
     return sizes.any((size) => size != null && size.needsConstraints);
@@ -32,14 +45,6 @@ abstract class UnitSize {
     }
   }
 
-  void assertMath(Object value, [String? msg]) {
-    assert(
-      value.runtimeType == runtimeType || value is UnitSize || value is num,
-      msg ??
-          "The value passed to use isn't of type $runtimeType, $num nor a $UnitSize.",
-    );
-  }
-
   Pixel toPixel(BuildContext? context, BoxConstraints? constraints) {
     return Pixel(compute(context, constraints));
   }
@@ -50,8 +55,8 @@ abstract class UnitSize {
   bool get needsConstraints;
   bool get needsContext;
 
-  UnitSize add(Object val);
-  UnitSize subtract(Object val);
+  UnitSize add(covariant UnitSize val);
+  UnitSize subtract(covariant UnitSize val);
   UnitSize multiply(Object val);
   UnitSize divide(Object val);
 
@@ -83,36 +88,28 @@ abstract class UnitSize {
         other is! num;
   }
 
-  UnitSize operator +(Object other) {
-    assertMath(other);
-
+  UnitSize operator +(UnitSize other) {
     if (!other.logical) return this;
-    if (other is UnitSize) {
-      if (other.isInfinite) return UnitSize.infinite;
-    }
+    if (other.isInfinite) return UnitSize.infinite;
 
     if (_doOperationByPixel(other, Operation.add)) {
-      return Pixel.add(this, other as UnitSize);
+      return Pixel.add(this, other);
     }
     return add(other);
   }
 
-  UnitSize operator -(Object other) {
-    assertMath(other);
-
-    if (other is UnitSize) {
-      if (other.isZero) return UnitSize.zero;
-    }
+  UnitSize operator -(UnitSize other) {
+    if (other.isZero) return UnitSize.zero;
 
     if (_doOperationByPixel(other, Operation.subtract)) {
-      return Pixel.subtract(this, other as UnitSize);
+      return Pixel.subtract(this, other);
     }
 
     return subtract(other);
   }
 
   UnitSize operator *(Object other) {
-    assertMath(other);
+    assert(other is UnitSize || other is num);
 
     if (other is UnitSize) {
       if (other.isZero) return UnitSize.zero;
@@ -126,11 +123,9 @@ abstract class UnitSize {
   }
 
   UnitSize operator /(Object other) {
-    assertMath(other);
+    assert(other is UnitSize || other is num);
 
-    if (other is UnitSize) {
-      if (other.isInfinite) return UnitSize.zero;
-    }
+    if (other is UnitSize && other.isInfinite) return UnitSize.zero;
 
     if (_doOperationByPixel(other, Operation.divide)) {
       return Pixel.divide(this, other as UnitSize);

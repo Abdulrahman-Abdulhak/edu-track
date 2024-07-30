@@ -21,33 +21,30 @@ class ViewWidth extends UnitSize {
   bool get needsContext => true;
 
   @override
-  ViewWidth add(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-      if (val.isInfinite) return const ViewWidth(double.infinity);
-    }
+  ViewWidth add(UnitSize val) {
+    if (val.isZero) return this;
+    if (val.isInfinite) return const ViewWidth(double.infinity);
 
     if (val is ViewWidth) return ViewWidth(value + val.value);
-    return ViewWidth(value + (val as num));
+
+    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
   ViewWidth divide(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
-    if (val is UnitSize) {
-      if (val.isInfinite) return const ViewWidth(0);
-    }
+    if (val is UnitSize && val.isInfinite) return const ViewWidth(0);
 
     if (val is ViewWidth) return ViewWidth(value / val.value);
-    return ViewWidth(value / (val as num));
+    if (val is num) return ViewWidth(value / val);
+
+    throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
 
   @override
   ViewWidth multiply(Object val) {
-    assertMath(val);
+    assert(val is UnitSize || val is num);
 
     if (val is UnitSize) {
       if (val.isZero) return const ViewWidth(0);
@@ -55,18 +52,16 @@ class ViewWidth extends UnitSize {
     }
 
     if (val is ViewWidth) return ViewWidth(value * val.value);
-    return ViewWidth(value * (val as num));
+    if (val is num) return ViewWidth(value * val);
+
+    throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
 
   @override
-  ViewWidth subtract(Object val) {
-    assertMath(val);
-
-    if (val is UnitSize) {
-      if (val.isZero) return this;
-    }
+  ViewWidth subtract(UnitSize val) {
+    if (val.isZero) return this;
 
     if (val is ViewWidth) return ViewWidth(value - val.value);
-    return ViewWidth(value - (val as num));
+    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
 }
