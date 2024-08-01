@@ -1,12 +1,10 @@
 import 'package:edu_track/utils/extensions/extensions.dart';
 import 'package:edu_track/widgets/icons/logo.dart';
 import 'package:edu_track/widgets/layout/flexes/flexes.dart';
-import 'package:edu_track/widgets/layout/flexes/row.dart';
 import 'package:edu_track/widgets/text/texts/text/md.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/ui/colors.dart';
-import '../../utils/l10n/l10n.dart';
 import '../../widgets/icons/app_icon.dart';
 
 class HomeScreen extends StatelessWidget {
