@@ -1,9 +1,8 @@
-import 'package:edu_track/screens/home_screen/home.dart';
+import 'package:edu_track/screens/payment_screen/Payment.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/constants/constants.dart';
 
-import 'package:edu_track/screens/sibebar_navigation_screen/sidebar_navigation.dart';
 // import 'package:edu_track/screens/signup_screen/sign_up.dart';
 
 void main() {
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: L10n.delegates,
       home: const WidgetLoader(
         // insert the main widget here.
-        main: HomeScreen(),
+        main: PaymentScreen(),
       ),
     );
   }

@@ -1,11 +1,8 @@
-import 'package:edu_track/utils/extensions/extensions.dart';
-import 'package:edu_track/widgets/icons/logo.dart';
-import 'package:edu_track/widgets/layout/flexes/flexes.dart';
-import 'package:edu_track/widgets/text/texts/text/md.dart';
 import 'package:flutter/material.dart';
+import 'package:edu_track/core/core.dart';
 
 import '../../constants/ui/colors.dart';
-import '../../widgets/icons/app_icon.dart';
+import '../../widgets/texts/text/md.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
