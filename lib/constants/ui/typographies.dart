@@ -1,7 +1,6 @@
 import 'dart:ui';
 
-import 'package:edu_track/_main/main.dart';
-import 'package:edu_track/utils/utils.dart';
+import 'package:edu_track/core/core.dart';
 
 //* this class holds all the values needed for all text used in the application
 class Typographies {

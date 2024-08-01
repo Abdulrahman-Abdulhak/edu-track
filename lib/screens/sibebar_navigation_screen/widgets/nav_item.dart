@@ -1,8 +1,6 @@
 import "package:flutter/material.dart";
 
-import "package:edu_track/_main/main.dart";
-import "package:edu_track/utils/utils.dart";
-import "package:edu_track/types/types.dart";
+import 'package:edu_track/core/core.dart';
 import "package:edu_track/widgets/widgets.dart";
 import "package:edu_track/constants/constants.dart";
 

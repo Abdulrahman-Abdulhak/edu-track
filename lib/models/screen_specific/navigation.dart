@@ -1,4 +1,4 @@
-import 'package:edu_track/widgets/widgets.dart';
+import 'package:edu_track/core/core.dart';
 
 class NavItemModel {
   final AppIcons icon;

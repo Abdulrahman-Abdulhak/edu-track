@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:edu_track/_main/main.dart';
-import 'package:edu_track/utils/utils.dart';
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
 import 'package:edu_track/screens/sibebar_navigation_screen/sidebar_navigation.dart';
@@ -45,25 +42,5 @@ class WidgetLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return main;
-  }
-}
-
-class TestWidget extends StatelessWidget {
-  const TestWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: AppDefaultTextStyle(
-        style: const AppTextStyle(),
-        context: context,
-        child: Center(
-          child: AppText(
-            "New Test",
-            style: AppTextStyle(fontSize: 5.cqw + 1.rem),
-          ),
-        ),
-      ),
-    );
   }
 }
