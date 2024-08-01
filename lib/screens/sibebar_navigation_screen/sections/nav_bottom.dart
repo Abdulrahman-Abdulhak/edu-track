@@ -36,6 +36,7 @@ class NavBottom extends StatelessWidget {
             ),
           ),
         ),
+        const AppDivider(),
         AppListTile(
           horizontalTitleGap: .75.rem,
           leading: AppContainer(

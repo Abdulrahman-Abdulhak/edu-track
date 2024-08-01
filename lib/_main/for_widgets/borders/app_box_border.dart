@@ -28,6 +28,8 @@ abstract class AppBoxBorder extends AppShapeBorder {
 }
 
 class AppBorder extends AppBoxBorder {
+  static const none = AppBorder.fromBorderSide(AppBorderSide.none);
+
   final AppBorderSide left, top, right, bottom;
 
   const AppBorder({

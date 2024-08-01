@@ -10,6 +10,7 @@ import '../../_app_class.dart';
 
 class AppInputDecoration implements AppClass<InputDecoration> {
   final AppEdgeInsetsGeometry? contentPadding;
+  final List<AppBoxShadow>? shadows;
   final AppTextStyle? counterStyle, errorStyle, floatingLabelStyle, helperStyle;
   final AppTextStyle? hintStyle, labelStyle, prefixStyle, suffixStyle;
   final AppInputBorder? border, disabledBorder, enabledBorder, errorBorder;
@@ -24,14 +25,19 @@ class AppInputDecoration implements AppClass<InputDecoration> {
   final Color? fillColor, focusColor, hoverColor, iconColor, prefixIconColor;
   final Color? suffixIconColor;
   final bool? alignLabelWithHint, filled, isDense;
+  final FloatingLabelAlignment? floatingLabelAlignment;
   final FloatingLabelBehavior? floatingLabelBehavior;
   final Duration? hintFadeDuration;
   final TextDirection? hintTextDirection;
 
   final bool enabled, isCollapsed;
 
+  // not in original InputDecoration
+  final UnitSize contentGap;
+
   const AppInputDecoration({
     this.contentPadding,
+    this.shadows,
     // text styles
     this.counterStyle,
     this.errorStyle,
@@ -87,12 +93,14 @@ class AppInputDecoration implements AppClass<InputDecoration> {
     this.filled,
     this.isDense,
     // rest
+    this.floatingLabelAlignment,
     this.floatingLabelBehavior,
     this.hintFadeDuration,
     this.hintTextDirection,
     // default valued
     this.enabled = true,
     this.isCollapsed = true,
+    this.contentGap = const Rem(.5),
   });
 
   @override
@@ -160,6 +168,7 @@ class AppInputDecoration implements AppClass<InputDecoration> {
       filled: filled,
       isDense: isDense,
       // rest
+      floatingLabelAlignment: floatingLabelAlignment,
       floatingLabelBehavior: floatingLabelBehavior,
       hintFadeDuration: hintFadeDuration,
       hintTextDirection: hintTextDirection,
@@ -171,29 +180,60 @@ class AppInputDecoration implements AppClass<InputDecoration> {
 
   @override
   bool get needsConstraints {
-    return [contentPadding].needsConstraints ||
-        [
+    return contentGap.needsConstraints ||
+        AppClass.anyNeedsConstraints([
+          contentPadding,
+          // styles.
           counterStyle,
           errorStyle,
+          floatingLabelStyle,
           helperStyle,
           hintStyle,
           labelStyle,
           prefixStyle,
           suffixStyle,
-        ].needsConstraints;
+          // borders
+          border,
+          disabledBorder,
+          enabledBorder,
+          errorBorder,
+          focusedBorder,
+          focusedErrorBorder,
+          // input constraints
+          constraints,
+          prefixIconConstraints,
+          suffixIconConstraints,
+        ]) ||
+        shadows != null && shadows!.needsConstraints;
   }
 
   @override
   bool get needsContext {
-    return [contentPadding].needsContext ||
-        [
-          counterStyle,
-          errorStyle,
-          helperStyle,
-          hintStyle,
-          labelStyle,
-          prefixStyle,
-          suffixStyle,
-        ].needsContext;
+    return contentGap.needsContext ||
+        AppClass.anyNeedsContext([
+              contentPadding,
+              // styles.
+              counterStyle,
+              errorStyle,
+              floatingLabelStyle,
+              helperStyle,
+              hintStyle,
+              labelStyle,
+              prefixStyle,
+              suffixStyle,
+              // borders
+              border,
+              disabledBorder,
+              enabledBorder,
+              errorBorder,
+              focusedBorder,
+              focusedErrorBorder,
+              // input constraints
+              constraints,
+              prefixIconConstraints,
+              suffixIconConstraints,
+            ]) &&
+            shadows != null &&
+            shadows!.needsContext;
   }
 }

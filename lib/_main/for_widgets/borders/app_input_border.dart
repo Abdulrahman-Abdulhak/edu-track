@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:edu_track/utils/utils.dart';
 
 import './addons/addons.dart';
+import './app_box_border.dart';
 import './app_shape_border.dart';
 
 abstract class AppInputBorder extends AppShapeBorder {
@@ -31,6 +32,10 @@ abstract class AppInputBorder extends AppShapeBorder {
 
   @override
   bool get needsContext => borderSide.needsContext;
+
+  AppBorderRadius get borderRadiusValue;
+
+  AppBoxBorder toBorderBox();
 }
 
 class AppUnderlineInputBorder extends AppInputBorder {
@@ -64,6 +69,16 @@ class AppUnderlineInputBorder extends AppInputBorder {
 
   @override
   bool get needsContext => super.needsContext || borderRadius.needsContext;
+
+  @override
+  AppBorderRadius get borderRadiusValue => borderRadius;
+
+  @override
+  AppBoxBorder toBorderBox() {
+    return AppBorder(
+      bottom: borderSide,
+    );
+  }
 }
 
 class AppOutlineInputBorder extends AppInputBorder {
@@ -106,6 +121,14 @@ class AppOutlineInputBorder extends AppInputBorder {
       super.needsContext ||
       borderRadius.needsContext ||
       gapPadding.needsContext;
+
+  @override
+  AppBorderRadius get borderRadiusValue => borderRadius;
+
+  @override
+  AppBoxBorder toBorderBox() {
+    return AppBorder.fromBorderSide(borderSide);
+  }
 }
 
 class _NoAppInputBorder extends AppInputBorder {
@@ -121,4 +144,12 @@ class _NoAppInputBorder extends AppInputBorder {
 
   @override
   bool get needsContext => false;
+
+  @override
+  AppBorderRadius get borderRadiusValue => AppBorderRadius.zero;
+
+  @override
+  AppBoxBorder toBorderBox() {
+    return AppBorder.none;
+  }
 }

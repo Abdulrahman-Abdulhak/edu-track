@@ -94,7 +94,7 @@ class AppTextStyle implements AppClass<TextStyle> {
     double? lineHeight,
     FontWeight? fontWeight,
   }) {
-    return AppTextStyle(
+    return withStyle(AppTextStyle(
       fontSize: fontSize,
       wordSpacing: wordSpacing,
       letterSpacing: letterSpacing,
@@ -107,7 +107,13 @@ class AppTextStyle implements AppClass<TextStyle> {
       overflow: overflow,
       fontWeight: fontWeight,
       fontFamily: fontFamily,
-    ).merge(this);
+    ));
+  }
+
+  //* this function creates a new copy of {this} style while using the values
+  //* specified in the new style
+  AppTextStyle withStyle(AppTextStyle? style) {
+    return style != null ? style.merge(this) : AppTextStyle.copy(this);
   }
 
   //* this function transforms the class into {TextStyle}

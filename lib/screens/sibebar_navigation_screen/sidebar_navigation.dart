@@ -31,7 +31,11 @@ class SidebarNavigationScreen extends StatelessWidget {
         child: AppColumn(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Search(),
+            SearchField(
+              onSubmit: (final str) {
+                //TODO: implement.
+              },
+            ),
             GapVertical(size: 1.5.rem),
             const Expanded(child: Middle()),
             const NavBottom(),

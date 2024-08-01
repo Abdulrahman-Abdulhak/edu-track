@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: L10n.delegates,
       home: const WidgetLoader(
         // insert the main widget here.
-        main: TestWidget(),
+        main: SidebarNavigationScreen(),
       ),
     );
   }
@@ -60,7 +60,7 @@ class TestWidget extends StatelessWidget {
         child: Center(
           child: AppText(
             "New Test",
-            style: AppTextStyle(fontSize: UnitSize.clamp(1.rem, 5.vw, 3.rem)),
+            style: AppTextStyle(fontSize: 5.cqw + 1.rem),
           ),
         ),
       ),
