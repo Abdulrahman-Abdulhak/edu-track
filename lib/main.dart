@@ -1,3 +1,4 @@
+import 'package:edu_track/screens/home_screen/home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/constants/constants.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: L10n.delegates,
       home: const WidgetLoader(
         // insert the main widget here.
-        main: SidebarNavigationScreen(),
+        main: HomeScreen(),
       ),
     );
   }
