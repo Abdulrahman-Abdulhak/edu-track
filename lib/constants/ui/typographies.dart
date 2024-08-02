@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:edu_track/core/core.dart';
 
 //* this class holds all the values needed for all text used in the application
@@ -29,8 +27,4 @@ class Typographies {
     fontSize: Em(1.875),
     lineHeight: 2.375 / 1.875,
   );
-
-  static const regular = AppTextStyle(fontWeight: FontWeight.w400);
-  static const medium = AppTextStyle(fontWeight: FontWeight.w500);
-  static const semiBold = AppTextStyle(fontWeight: FontWeight.w600);
 }

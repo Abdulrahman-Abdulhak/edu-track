@@ -1,22 +1,22 @@
 import 'package:edu_track/screens/payment_screen/Payment.dart';
 import 'package:flutter/material.dart';
 
+import 'package:edu_track/router/router.dart';
 import 'package:edu_track/constants/constants.dart';
-
-// import 'package:edu_track/screens/signup_screen/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static final _router = AppRouter();
+
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp.router(
+      title: 'EduTrack',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -26,10 +26,12 @@ class MyApp extends StatelessWidget {
       locale: L10n.defaultLocal,
       supportedLocales: L10n.all,
       localizationsDelegates: L10n.delegates,
-      home: const WidgetLoader(
-        // insert the main widget here.
-        main: PaymentScreen(),
-      ),
+      routerConfig: _router.config(),
+      builder: (context, child) {
+        return WidgetLoader(
+          main: child ?? const Center(child: Text("No child provided")),
+        );
+      },
     );
   }
 }

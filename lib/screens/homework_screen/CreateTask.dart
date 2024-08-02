@@ -75,13 +75,15 @@ class EduTrackPage extends StatelessWidget {
                   ['S', 'M', 'T', 'W', 'T', 'F', 'S'][index],
                   style: TextStyle(
                     color: index == 3 ? Colors.purple : Colors.grey,
-                    fontWeight: index == 3 ? FontWeight.bold : FontWeight.normal,
+                    fontWeight:
+                        index == 3 ? FontWeight.bold : FontWeight.normal,
                   ),
                 ),
                 SizedBox(height: 4.0),
                 CircleAvatar(
                   radius: 16.0,
-                  backgroundColor: index == 3 ? Colors.purple : Colors.transparent,
+                  backgroundColor:
+                      index == 3 ? Colors.purple : Colors.transparent,
                   child: Text(
                     '${21 + index}',
                     style: TextStyle(
@@ -146,6 +148,7 @@ class EduTrackPage extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildClassItem({
     required String time,
     required IconData icon,

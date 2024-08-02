@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class HomeworkSubmission extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,8 @@ class HomeworkPage extends StatelessWidget {
             Divider(),
             ListTile(
               title: Text('Task 11 - P11.Pdf'),
-              trailing: Text('Monday 2024', style: TextStyle(color: Colors.grey)),
+              trailing:
+                  Text('Monday 2024', style: TextStyle(color: Colors.grey)),
             ),
             Card(
               margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -60,7 +60,8 @@ class HomeworkPage extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Submission Status', style: TextStyle(fontWeight: FontWeight.bold)),
+              title: Text('Submission Status',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             ListTile(
               title: Text('Submission status'),
@@ -72,24 +73,28 @@ class HomeworkPage extends StatelessWidget {
             ListTile(
               title: Text('Grading Status'),
               trailing: Chip(
-                label: Text('Not Graded', style: TextStyle(color: Colors.white)),
+                label:
+                    Text('Not Graded', style: TextStyle(color: Colors.white)),
                 backgroundColor: Colors.grey,
               ),
             ),
             ListTile(
               title: Text('Due date'),
-              trailing: Text('Saturday, 1 June 2024, 12:00 AM', style: TextStyle(color: Colors.grey)),
+              trailing: Text('Saturday, 1 June 2024, 12:00 AM',
+                  style: TextStyle(color: Colors.grey)),
             ),
             ListTile(
               title: Text('Time remaining'),
-              trailing: Text('Saturday, 20 June 2024, 12:00 AM', style: TextStyle(color: Colors.grey)),
+              trailing: Text('Saturday, 20 June 2024, 12:00 AM',
+                  style: TextStyle(color: Colors.grey)),
             ),
             ListTile(
               title: Text('Last modified'),
               trailing: Text('—', style: TextStyle(color: Colors.grey)),
             ),
             ListTile(
-              title: Text('Upload Submission', style: TextStyle(fontWeight: FontWeight.bold)),
+              title: Text('Upload Submission',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Card(
               margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -111,9 +116,9 @@ class HomeworkPage extends StatelessWidget {
                 ),
               ],
             ),
-
             ListTile(
-              title: Text('Submission Comment', style: TextStyle(fontWeight: FontWeight.bold)),
+              title: Text('Submission Comment',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             Card(
               margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -126,7 +131,8 @@ class HomeworkPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('there is another solution in last page 😁.'),
-                    Text('Sunday, 14 June 2024, 5:37 PM', style: TextStyle(color: Colors.grey)),
+                    Text('Sunday, 14 June 2024, 5:37 PM',
+                        style: TextStyle(color: Colors.grey)),
                   ],
                 ),
                 trailing: TextButton(
