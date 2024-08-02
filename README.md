@@ -1,16 +1,22 @@
-# edu_track
+# EduTrack
 
-A new Flutter project.
+### by Code Wizards
 
-## Getting Started
+A new project in the field of learning and learning institution management.
+which helps people and students around the globe find learning suitable for them.
 
-This project is a starting point for a Flutter application.
+## Why?
 
-A few resources to get you started if this is your first Flutter project:
+- Facilitates Online Learning.
 
+## How To Use
+
+- run "git clone https://github.com/Abdulrahman-Abdulhak/edu-track.git". (skip if you already have the repo)
+- run "flutter pub get --no-example"
+- run "dart run build_runner build"
+
+built using Flutter.
+
+<!--
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook) -->

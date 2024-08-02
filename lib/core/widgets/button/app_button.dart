@@ -19,13 +19,13 @@ class AppButton extends AppStatelessWidget {
   final Color? backgroundColor;
 
   //? button properties
-  final UnitSize? gap;
   final FocusNode? focusNode;
   final WidgetStatesController? statesController;
   final VoidFunction? onLongPress;
   final VoidFunctionBool? onHover, onFocusChange;
   final Widget? icon;
 
+  final UnitSize gap;
   final bool autoFocus;
   final Clip clipBehavior;
 
@@ -42,13 +42,13 @@ class AppButton extends AppStatelessWidget {
     this.border,
     this.backgroundColor,
     // button arguments
-    this.gap,
     this.focusNode,
     this.onFocusChange,
     this.statesController,
     this.onHover,
     this.onLongPress,
     this.icon,
+    this.gap = const Rem(.5),
     this.autoFocus = false,
     this.clipBehavior = Clip.none,
     required this.onPressed,
@@ -90,6 +90,7 @@ class AppButton extends AppStatelessWidget {
         child: icon != null
             ? AppRow(
                 gap: gap,
+                mainAxisSize: MainAxisSize.min,
                 children: [icon, child],
               )
             : child,

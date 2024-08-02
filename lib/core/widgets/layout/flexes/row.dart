@@ -10,7 +10,7 @@ class AppRow extends AppFlex {
     super.textDirection,
     super.mainAxisAlignment = MainAxisAlignment.start,
     super.crossAxisAlignment = CrossAxisAlignment.center,
-    super.mainAxisSize = MainAxisSize.min,
+    super.mainAxisSize = MainAxisSize.max,
     super.verticalDirection = VerticalDirection.down,
     super.clipBehavior = Clip.none,
     required super.children,

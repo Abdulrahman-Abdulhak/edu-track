@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../text/text.dart';
 import '../layout/layout.dart';
 import '../../_main/main.dart';
 import '../../utils/utils.dart';
@@ -294,6 +295,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
     final label = decoration?.label;
     final labelStyle = decoration?.labelStyle;
     final labelText = decoration?.labelText;
+    final labelGap = decoration?.labelGap;
 
     // TextField specific params.
     final autoCorrect = widget.autoCorrect;
@@ -404,7 +406,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
     //   styleUsed = styleUsed;
     // }
 
-    var result = AppContainer(
+    Widget result = AppContainer(
       padding: contentPadding,
       decoration: AppBoxDecoration(
         color: filled ? backgroundColorUsed : null,
@@ -452,7 +454,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
       ),
     );
 
-    return MouseRegion(
+    result = MouseRegion(
       onEnter: onMouseEnter,
       onExit: onMouseExit,
       child: GestureDetector(
@@ -460,6 +462,29 @@ class _AppTextFieldState extends AppState<AppTextField> {
         child: result,
       ),
     );
+
+    final labelToUse = label ??
+        (labelText != null
+            ? AppText(
+                labelText,
+                style: labelStyle,
+              )
+            : null);
+
+    if (labelToUse != null) {
+      result = AppColumn(
+        gap: labelGap,
+        children: [
+          GestureDetector(
+            onTap: onTap,
+            child: labelToUse,
+          ),
+          result
+        ],
+      );
+    }
+
+    return result;
   }
 
   @override

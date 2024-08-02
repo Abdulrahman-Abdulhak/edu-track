@@ -1,11 +1,13 @@
-import 'package:edu_track/constants/constants.dart';
-import 'package:edu_track/constants/ui/colors.dart';
-import 'package:edu_track/screens/payment_screen/course_details.dart';
-import 'package:edu_track/screens/payment_screen/pay_button.dart';
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:edu_track/core/core.dart';
+import 'package:auto_route/annotations.dart';
 
+import 'package:edu_track/core/core.dart';
+import 'package:edu_track/widgets/widgets.dart';
+import 'package:edu_track/constants/constants.dart';
+
+import './sections/sections.dart';
+
+@RoutePage()
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
 
@@ -28,19 +30,14 @@ class PaymentScreen extends StatelessWidget {
       body: AppPadding(
         padding: AppEdgeInsets.all(1.rem),
         child: AppColumn(
-          gap: .75.rem,
+          gap: 1.rem,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextSm.regular('Payment for course'),
-            CoursePaymentDetail(
-              courseTitle:
-                  'Python Programing for beginners. Basic rules in 5 hourse',
-              cost: '10',
-            ),
-            const Divider(),
-            PayButton(),
-            const Divider(),
-            TextXs.semiBold('Or Pay with Banks'),
+          children: const [
+            CoursePaymentsDetails(),
+            AppDivider(),
+            DefinedPayButtons(),
+            AppDivider(),
+            BankPayments(),
           ],
         ),
       ),

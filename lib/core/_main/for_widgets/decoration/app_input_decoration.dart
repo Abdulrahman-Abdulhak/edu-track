@@ -33,7 +33,7 @@ class AppInputDecoration implements AppClass<InputDecoration> {
   final bool enabled, isCollapsed;
 
   // not in original InputDecoration
-  final UnitSize contentGap;
+  final UnitSize contentGap, labelGap;
 
   const AppInputDecoration({
     this.contentPadding,
@@ -101,6 +101,7 @@ class AppInputDecoration implements AppClass<InputDecoration> {
     this.enabled = true,
     this.isCollapsed = true,
     this.contentGap = const Rem(.5),
+    this.labelGap = const Rem(.375),
   });
 
   @override

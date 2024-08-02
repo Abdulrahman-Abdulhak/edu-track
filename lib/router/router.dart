@@ -11,6 +11,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: SignUpRoute.page,
           path: Router.signUpPath,
+        ),
+        AutoRoute(
+          page: PaymentRoute.page,
+          path: Router.paymentPath,
           initial: true,
         ),
       ];

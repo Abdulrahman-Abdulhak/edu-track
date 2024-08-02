@@ -33,7 +33,6 @@ class NavItem extends StatelessWidget {
         color: index == focusedIndex ? AppColors.gray50 : null,
         borderRadius: AppBorderRadius.circular(6.px),
       ),
-      width: UnitSize.infinite,
       child: GestureDetector(
         onTap: onPressed,
         child: AppPadding(
