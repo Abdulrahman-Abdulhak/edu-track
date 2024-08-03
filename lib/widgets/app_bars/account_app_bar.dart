@@ -26,19 +26,24 @@ class AccountAppBar extends AppHeaderNav {
         ),
       ),
       leadingGap: .75.rem,
-      title: AppColumn(
-        children: [
-          TextSm.semiBold(
-            account.name,
-            textTransform: TextTransform.capitalize,
-            style: const AppTextStyle(color: AppColors.gray900),
-          ),
-          TextSm(
-            account.email,
-            color: AppColors.gray600,
-            textTransform: TextTransform.lowercase,
-          ),
-        ],
+      title: AppDefaultTextStyle(
+        context: context,
+        overflow: TextOverflow.ellipsis,
+        child: AppColumn(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextSm.semiBold(
+              account.name,
+              textTransform: TextTransform.capitalize,
+              style: const AppTextStyle(color: AppColors.gray900),
+            ),
+            TextSm(
+              account.email,
+              color: AppColors.gray600,
+              textTransform: TextTransform.lowercase,
+            ),
+          ],
+        ),
       ),
       actions: actions,
     );

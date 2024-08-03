@@ -21,3 +21,8 @@ typedef AppPrivateCommandCallback = void Function(
   String action,
   Map<String, dynamic> data,
 );
+
+typedef MaybeConstrainedWidgetBuilder = Widget Function(
+  BuildContext context,
+  BoxConstraints? constraints,
+);
