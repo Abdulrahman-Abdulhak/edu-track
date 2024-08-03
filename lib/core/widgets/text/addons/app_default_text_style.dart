@@ -30,17 +30,17 @@ class AppDefaultTextStyle extends InheritedTheme {
     this.textDirection,
     this.textScaler,
     BuildContext? context,
-    required AppTextStyle style,
+    AppTextStyle? style,
     required super.child,
   })  : assert(
-          style.fontSize != null || style.fontSize == null && context != null,
+          (style == null || style.fontSize == null) && context != null,
           "AppDefaultTextStyle style.fontSize is null so the context must have a value.",
         ),
         assert(
-          style.isPixelBased(),
+          style == null || style.isPixelBased(),
           "AppDefaultTextStyle style property needs to be in pixel based",
         ),
-        style = style.fontSize == null
+        style = style == null || style.fontSize == null
             ? AppDefaultTextStyle.of(context!).style
             : style;
 
