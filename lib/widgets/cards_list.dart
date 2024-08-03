@@ -6,7 +6,7 @@ import 'package:edu_track/constants/constants.dart';
 import './texts/texts.dart';
 
 class CardsList<T> extends StatelessWidget {
-  final UnitSize? gap;
+  final UnitSize? listHeight, gap;
   final AppEdgeInsetsGeometry? indentation;
   final ButtonStyle? seeMoreStyle;
   final Widget? loading, empty;
@@ -16,7 +16,6 @@ class CardsList<T> extends StatelessWidget {
   final Color nameColor, seeMoreTextColor;
 
   final int cardCount;
-  final UnitSize listHeight;
   final String name;
   final NullableIndexedWidgetBuilder cardBuilder;
   final void Function() onSeeMore;
@@ -30,11 +29,11 @@ class CardsList<T> extends StatelessWidget {
     this.isLoading,
     this.indentation,
     this.seeMoreText,
+    this.listHeight,
     this.seeMoreTextColor = AppColors.brand700,
     this.nameColor = AppColors.gray900,
     required this.name,
     required this.onSeeMore,
-    required this.listHeight,
     required this.cardCount,
     required this.cardBuilder,
   });
