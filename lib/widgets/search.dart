@@ -8,6 +8,7 @@ class SearchField extends StatelessWidget {
   final AppInputDecoration? decoration;
   final AppInputBorder? border;
   final VoidFunctionString? onChange;
+  final Widget? suffixIcon;
 
   final AppEdgeInsetsGeometry contentPadding;
   final Widget prefixIcon;
@@ -21,6 +22,7 @@ class SearchField extends StatelessWidget {
     this.decoration,
     this.border,
     this.onChange,
+    this.suffixIcon,
     this.hintText = "Search",
     this.prefixIcon = const AppIcon(
       icon: AppIcons.search,
@@ -48,6 +50,7 @@ class SearchField extends StatelessWidget {
                 .withStyles(color: AppColors.gray500)
                 .withStyle(style),
             prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
             border: border ??
                 AppOutlineInputBorder(
                   borderRadius: AppBorderRadius.circular(.5.rem),

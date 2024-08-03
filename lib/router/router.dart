@@ -15,11 +15,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: PaymentRoute.page,
           path: AppRoutes.paymentPath,
-          initial: true,
         ),
         AutoRoute(
           page: HomeworkAddRoute.page,
           path: TeacherRoutes.homeworkUpload,
+          initial: true,
         ),
       ];
 }

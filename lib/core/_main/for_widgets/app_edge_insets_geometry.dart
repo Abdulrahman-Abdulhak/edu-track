@@ -35,6 +35,16 @@ abstract class AppEdgeInsetsGeometry implements AppClass<EdgeInsetsGeometry> {
   bool get needsConstraints => _properties.needsConstraints;
 
   List<UnitSize> get _properties;
+
+  UnitSize get _left;
+  UnitSize get _top;
+  UnitSize get _right;
+  UnitSize get _bottom;
+  UnitSize get _start;
+  UnitSize get _end;
+
+  UnitSize get horizontal => _left + _right + _start + _end;
+  UnitSize get vertical => _top + _bottom;
 }
 
 // a substitute for EdgeInsets that can use the {UnitSize} class
@@ -90,6 +100,24 @@ class AppEdgeInsets extends AppEdgeInsetsGeometry {
 
   @override
   List<UnitSize> get _properties => [left, top, right, bottom];
+
+  @override
+  UnitSize get _left => left;
+
+  @override
+  UnitSize get _top => top;
+
+  @override
+  UnitSize get _right => right;
+
+  @override
+  UnitSize get _bottom => bottom;
+
+  @override
+  UnitSize get _start => UnitSize.zero;
+
+  @override
+  UnitSize get _end => UnitSize.zero;
 }
 
 // a substitute for EdgeInsetsDirectional that can use the {UnitSize} class
@@ -149,4 +177,22 @@ class AppEdgeInsetsDirectional extends AppEdgeInsetsGeometry {
 
   @override
   List<UnitSize> get _properties => [start, top, end, bottom];
+
+  @override
+  UnitSize get _left => UnitSize.zero;
+
+  @override
+  UnitSize get _top => top;
+
+  @override
+  UnitSize get _right => UnitSize.zero;
+
+  @override
+  UnitSize get _bottom => bottom;
+
+  @override
+  UnitSize get _start => start;
+
+  @override
+  UnitSize get _end => end;
 }
