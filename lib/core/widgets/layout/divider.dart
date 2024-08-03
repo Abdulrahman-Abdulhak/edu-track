@@ -38,11 +38,12 @@ class AppDivider extends AppStatelessWidget {
 
     if (label == null) return divider;
     return AppRow(
+      mainAxisSize: MainAxisSize.max,
       gap: gap,
       children: [
-        divider,
+        Expanded(child: divider),
         label!,
-        divider,
+        Expanded(child: divider),
       ],
     );
   }
