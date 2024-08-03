@@ -1,5 +1,5 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/annotations.dart';
 
 import 'package:edu_track/core/core.dart';
 import 'package:edu_track/widgets/widgets.dart';
@@ -16,25 +16,9 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        title: AppRow(
-          mainAxisSize: MainAxisSize.min,
-          gap: .5.rem,
-          children: [
-            Logo(size: 1.5.em),
-            TextMd.semiBold(translation(context).teamName),
-          ],
-        ),
-        actions: [
-          AppIcon(
-            icon: AppIcons.menuSolid,
-            color: AppColors.gray700,
-            size: 1.5.rem,
-          ),
-        ],
-      ),
+      appBar: MainAppBar(),
       body: AppPadding(
         padding: AppEdgeInsets.symmetric(vertical: 3.rem, horizontal: 1.rem),
         child: AppColumn(
@@ -46,6 +30,7 @@ class SignUpScreen extends StatelessWidget {
             AppDivider(
               label: TextSm(
                 translation(context).or,
+                textTransform: TextTransform.uppercase,
                 style: const AppTextStyle(color: AppColors.gray500),
               ),
               color: AppColors.gray200,

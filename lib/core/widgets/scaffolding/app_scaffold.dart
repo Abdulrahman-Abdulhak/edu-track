@@ -5,6 +5,7 @@ class AppScaffold extends StatelessWidget {
   //TODO: make the appBar of type AppPreferredSizeWidget
   final PreferredSizeWidget? appBar;
   final Color? backgroundColor;
+  //TODO: complete the use of the unused properties.
   final Widget? body, drawer, bottomNavigationBar, floatingActionButton;
 
   //? Router Params

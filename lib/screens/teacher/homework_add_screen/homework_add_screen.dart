@@ -1,18 +1,10 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 
-class HomeworkUp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-    );
-  }
-}
+@RoutePage()
+class HomeworkAddScreen extends StatelessWidget {
+  const HomeworkAddScreen({super.key});
 
-class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -9,7 +9,7 @@ import '../../types/types.dart';
 class AppIconButton extends StatelessWidget {
   final AppIcons? icon;
   final UnitSize? size;
-  final Color? iconColor, color;
+  final Color? color, backgroundColor;
   final AppEdgeInsetsGeometry? padding;
   final AppBoxBorder? border;
   final AppBorderRadiusGeometry? borderRadius;
@@ -21,8 +21,8 @@ class AppIconButton extends StatelessWidget {
     super.key,
     this.icon,
     this.size,
-    this.iconColor,
     this.color,
+    this.backgroundColor,
     this.padding,
     this.border,
     this.borderRadius,
@@ -36,7 +36,7 @@ class AppIconButton extends StatelessWidget {
         AppIcon(
           icon: icon!,
           size: size,
-          color: iconColor,
+          color: color,
         );
 
     final paddingToUse = padding ?? AppEdgeInsets.all(6.px);
@@ -46,7 +46,7 @@ class AppIconButton extends StatelessWidget {
     return AppContainer(
       clipBehavior: Clip.antiAlias,
       decoration: AppBoxDecoration(
-        color: color,
+        color: backgroundColor,
         border: border,
         borderRadius: borderRadiusToUse,
       ),

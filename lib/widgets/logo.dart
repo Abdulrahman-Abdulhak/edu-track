@@ -10,9 +10,7 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(shape: BoxShape.circle),
+    return AppAvatar(
       child: AppImage(
         path: AppImages.appLogo,
         height: size,

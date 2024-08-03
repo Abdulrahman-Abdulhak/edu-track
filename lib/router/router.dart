@@ -10,12 +10,16 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: SignUpRoute.page,
-          path: Router.signUpPath,
+          path: AppRoutes.signUpPath,
         ),
         AutoRoute(
           page: PaymentRoute.page,
-          path: Router.paymentPath,
+          path: AppRoutes.paymentPath,
           initial: true,
+        ),
+        AutoRoute(
+          page: HomeworkAddRoute.page,
+          path: TeacherRoutes.homeworkUpload,
         ),
       ];
 }

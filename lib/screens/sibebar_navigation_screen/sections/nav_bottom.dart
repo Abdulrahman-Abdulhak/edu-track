@@ -1,16 +1,17 @@
 import "package:flutter/material.dart";
 
 import 'package:edu_track/core/core.dart';
-import "package:edu_track/Models/Models.dart";
+import "package:edu_track/models/models.dart";
 import "package:edu_track/widgets/widgets.dart";
 import "package:edu_track/constants/constants.dart";
 
 import '../widgets/widgets.dart';
 
-const _NavItems = [
+const _navItems = [
   NavItemModel(icon: AppIcons.lifeBuoy, label: "Support"),
   NavItemModel(icon: AppIcons.settings, label: "Settings"),
 ];
+const _userAccount = Account(name: "Johan M.", email: "johan-m@edy-truck.com");
 
 class NavBottom extends StatelessWidget {
   const NavBottom({super.key});
@@ -25,7 +26,7 @@ class NavBottom extends StatelessWidget {
     return AppColumn(
       children: [
         NavItems(
-          items: _NavItems.to(
+          items: _navItems.to(
             (item) => NavItem(
               onPressed: () {
                 // TODO: implement.
@@ -65,14 +66,19 @@ class NavBottom extends StatelessWidget {
             color: AppColors.gray600,
             textTransform: TextTransform.lowercase,
           ),
-          trailing: AppIconButton(
-            onPressed: () {
-              //TODO: implement.
-            },
-            icon: AppIcons.logOut,
-            size: 1.25.rem,
-            iconColor: AppColors.gray500,
-            padding: AppEdgeInsets.all(.5.rem),
+          trailing: AccountAppBar(
+            account: _userAccount,
+            actions: [
+              AppIconButton(
+                onPressed: () {
+                  //TODO: implement.
+                },
+                icon: AppIcons.logOut,
+                size: 1.25.rem,
+                color: AppColors.gray500,
+                padding: AppEdgeInsets.all(.5.rem),
+              ),
+            ],
           ),
         ),
       ],

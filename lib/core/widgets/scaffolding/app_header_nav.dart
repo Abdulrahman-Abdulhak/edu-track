@@ -9,11 +9,13 @@ import '../../utils/utils.dart';
 
 //TODO: make it implements AppPreferredSizeWidget
 class AppHeaderNav extends StatelessWidget implements PreferredSizeWidget {
+  final AppEdgeInsetsGeometry? padding;
+  final AppTextStyle? titleStyle;
+
   final double? height;
   final String? titleText;
   final List<Widget>? actions;
   final Widget? leading, title;
-  final AppTextStyle? titleStyle;
   final PreferredSizeWidget? bottom;
 
   final UnitSize leadingGap, actionsGap, inActionsGap;
@@ -23,25 +25,24 @@ class AppHeaderNav extends StatelessWidget implements PreferredSizeWidget {
 
   AppHeaderNav({
     super.key,
+    this.padding,
+    this.titleStyle,
     this.height,
     this.titleText,
     this.actions,
     this.leading,
     this.title,
-    this.titleStyle,
     this.bottom,
     this.leadingGap = const Rem(2),
     this.actionsGap = const Rem(1.25),
     this.inActionsGap = const Rem(1.125),
-  })  : assert(
-          AppObject.xor(titleText, title),
-          "titleText and title can't be null nor be specified at the same time.",
-        ),
-        preferredSize = _NavPreferredSize(height, bottom?.preferredSize.height);
+  }) : preferredSize = _NavPreferredSize(height, bottom?.preferredSize.height);
 
   @override
   Widget build(BuildContext context) {
+    print(titleText);
     Widget title = this.title ?? AppText(titleText!, style: titleStyle);
+    print("reached here");
 
     final router = context.router;
     Widget? leadingToUse = leading;
@@ -72,8 +73,10 @@ class AppHeaderNav extends StatelessWidget implements PreferredSizeWidget {
       result = AppColumn(children: [result, bottom]);
     }
 
-    return AppSizedBox(
+    return AppContainer(
+      padding: padding ?? AppEdgeInsets.symmetric(horizontal: 1.rem),
       height: preferredSize.height.px,
+      alignment: Alignment.center,
       child: result,
     );
   }

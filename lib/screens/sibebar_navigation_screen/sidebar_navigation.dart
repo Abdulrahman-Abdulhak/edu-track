@@ -13,15 +13,7 @@ class SidebarNavigationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        title: AppRow(
-          gap: .5.rem,
-          children: [
-            Logo(size: 2.rem),
-            TextDisplayXs.medium("EduTrack"),
-          ],
-        ),
-      ),
+      appBar: SideNavAppBar(),
       body: AppPadding(
         padding: AppEdgeInsets.symmetric(
           horizontal: 1.5.rem,

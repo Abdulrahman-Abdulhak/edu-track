@@ -70,7 +70,7 @@ class NavItem extends StatelessWidget {
                   },
                   icon: AppIcons.chevronDown,
                   size: 1.25.em,
-                  iconColor: AppColors.gray400,
+                  color: AppColors.gray400,
                 ),
             ],
           ),
