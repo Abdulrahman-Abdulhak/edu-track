@@ -1,71 +1,46 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:edu_track/constants/constants.dart';
+import 'package:edu_track/screens/chat_screen/profile_image.dart';
+import 'package:edu_track/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:edu_track/core/core.dart';
 
-class Chat extends StatelessWidget {
+@RoutePage()
+class MessageScreen extends StatelessWidget {
+  const MessageScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: CircleAvatar(
-          backgroundImage: AssetImage(''),
-        ),
-        title: Text('EduTrack'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications_none),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
+    var badge = AppBadge();
+    var badgeStyle = Typographies.textXs;
+    var badgeTextHeight = badgeStyle.fontSize! * badgeStyle.lineHeight!;
+    var badgeHeight = badge.padding.vertical + badgeTextHeight;
+    
+    return AppScaffold(
+      appBar: MeassageAppBar(),
+      body: AppPadding(
+        padding: AppEdgeInsets.symmetric(vertical: 1.rem, horizontal: 1.rem),
+        child: AppColumn(
           crossAxisAlignment: CrossAxisAlignment.start,
+          gap: 1.5.rem,
           children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-              ),
+            SearchField(
+              onSubmit: (String str) {},
             ),
-            SizedBox(height: 16),
-            Text('Active Now',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 16),
-            Container(
-              height: 80,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  ActiveUserAvatar('.png'),
-                  ActiveUserAvatar('.png'),
-                  ActiveUserAvatar('.png'),
-                  ActiveUserAvatar('.png'),
-                ],
-              ),
+            TextMd.semiBold('Active Now'),
+            ProfileImage(),
+            TextMd.semiBold('Recent Message'),
+            AppListTile(
+              leading: ProfileImage(),
+              title: AppRow(children: [
+                AppBadge(
+                  child: TextXs.medium(
+                    'LQP Organization',
+                    color: AppColors.brand700,
+                  ),
+                )
+              ]),
             ),
-            SizedBox(height: 16),
-            Text('Recent Message',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 16),
             Expanded(
               child: ListView(
                 children: [
@@ -90,51 +65,19 @@ class HomePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
-            label: '',
+            icon: AppIcon(icon: AppIcons.home),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: '',
+            icon: AppIcon(icon: AppIcons.chat),
+          
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: '',
+            icon: AppIcon(icon: AppIcons.calendar),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class ActiveUserAvatar extends StatelessWidget {
-  final String imagePath;
-
-  ActiveUserAvatar(this.imagePath);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Stack(
-        children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage(imagePath),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: CircleAvatar(
-              radius: 8,
-              backgroundColor: Colors.green,
-            ),
+          BottomNavigationBarItem(
+            icon: ,
           ),
         ],
       ),
