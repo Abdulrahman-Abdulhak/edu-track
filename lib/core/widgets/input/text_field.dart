@@ -34,6 +34,7 @@ class AppTextField extends StatefulWidget {
   final types.VoidFunctionString? onChange, onSubmit;
   final types.VoidFunction? onEditingComplete, onTap;
   final types.PointerDownEventCallBack? onTapOutside;
+  final types.TextErrorCheckCallBack? errorCheck;
   final String? restorationId;
   final ScrollController? scrollController;
   final ScrollPhysics? scrollPhysics;
@@ -93,6 +94,7 @@ class AppTextField extends StatefulWidget {
     this.onEditingComplete,
     this.onTap,
     this.onTapOutside,
+    this.errorCheck,
     this.restorationId,
     this.scrollController,
     this.scrollPhysics,
@@ -138,18 +140,36 @@ class _AppTextFieldState extends AppState<AppTextField> {
   bool _isEmpty = true, _isFocused = false, _isHovered = false;
   bool _isError = false;
 
-  void onFocusChanged(FocusNode focusNode) {
+  void errorCheck(TextEditingController controller) {
+    if (widget.errorCheck == null) return;
+
+    final isError = widget.errorCheck!(controller.text);
+    if (isError != _isError) {
+      setState(() => _isError = isError);
+    }
+  }
+
+  void onFocusChanged(TextEditingController controller, FocusNode focusNode) {
     focusNode.addListener(() {
-      if (focusNode.hasFocus == _isFocused) return;
+      final focus = focusNode.hasFocus;
+      if (focus == _isFocused) return; // nothing changed.
+
+      //
+      if (_isFocused && !focus) {
+        errorCheck(controller);
+      }
+
       setState(() {
-        _isFocused = focusNode.hasFocus;
+        _isFocused = focus;
       });
     });
   }
 
   void focusEvents() {
     final focusNode = _usedFocusNode!;
-    onFocusChanged(focusNode);
+    final controller = _usedController!;
+
+    onFocusChanged(controller, focusNode);
   }
 
   void onChanged(TextEditingController controller) {
@@ -234,17 +254,23 @@ class _AppTextFieldState extends AppState<AppTextField> {
 
     final prefix = decoration?.prefix;
     final prefixIcon = decoration?.prefixIcon;
+    final errorPrefixIcon = decoration?.errorPrefixIcon;
     final prefixIconColor = decoration?.prefixIconColor;
     final prefixIconConstraints = decoration?.prefixIconConstraints;
     final prefixStyle = decoration?.prefixStyle;
     final prefixText = decoration?.prefixText;
 
+    final prefixIconToUse = isError ? errorPrefixIcon : prefixIcon;
+
     final suffix = decoration?.suffix;
     final suffixIcon = decoration?.suffixIcon;
+    final errorSuffixIcon = decoration?.errorSuffixIcon;
     final suffixIconColor = decoration?.suffixIconColor;
     final suffixIconConstraints = decoration?.suffixIconConstraints;
     final suffixStyle = decoration?.suffixStyle;
     final suffixText = decoration?.suffixText;
+
+    final suffixIconToUse = isError ? errorPrefixIcon : suffixIcon;
 
     final counter = decoration?.counter;
     final counterStyle = decoration?.counterStyle;
@@ -417,7 +443,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
       child: AppRow(
         gap: contentGap,
         children: [
-          prefixIcon,
+          prefixIconToUse,
           Expanded(
             child: TextField(
               cursorHeight: caretHeight?.compute(context, widgetConstraints),
@@ -449,7 +475,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
               ),
             ),
           ),
-          suffixIcon,
+          suffixIconToUse,
         ],
       ),
     );

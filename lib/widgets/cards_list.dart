@@ -78,12 +78,12 @@ class CardsList<T> extends StatelessWidget {
             ],
           ),
         ),
-        _handleListShowCase(indentationToUse.horizontal / 2),
+        _handleListShowCase(indentationToUse),
       ],
     );
   }
 
-  Widget _handleListShowCase(UnitSize indentation) {
+  Widget _handleListShowCase(AppEdgeInsetsGeometry indentation) {
     if (AppObject.toBool(isLoading)) {
       return loading ??
           AppSizedBox(
@@ -106,23 +106,12 @@ class CardsList<T> extends StatelessWidget {
           );
     }
 
-    final gapToUse = gap ?? .5.rem;
-
-    // subtract the gap size because the list view will generate a Gap anyway.
-    final indentationToUse = indentation - gapToUse;
     return AppListView.separated(
+      padding: indentation,
       scrollDirection: Axis.horizontal,
-      gap: gapToUse,
-      itemCount: cardCount + 2,
-      itemBuilder: (context, index) {
-        if (index == 0) return GapHorizontal(size: indentationToUse);
-        if (index == cardCount + 1) {
-          return GapHorizontal(
-            size: indentationToUse,
-          );
-        }
-        return cardBuilder(context, index - 1);
-      },
+      gap: gap ?? .5.rem,
+      itemCount: cardCount,
+      itemBuilder: cardBuilder,
     );
   }
 }

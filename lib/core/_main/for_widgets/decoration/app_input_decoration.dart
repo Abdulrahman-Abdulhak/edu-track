@@ -17,8 +17,8 @@ class AppInputDecoration implements AppClass<InputDecoration> {
   final AppInputBorder? focusedBorder, focusedErrorBorder;
   final AppBoxConstraints? constraints, prefixIconConstraints;
   final AppBoxConstraints? suffixIconConstraints;
-  final Widget? counter, error, helper, icon, label, prefix, prefixIcon, suffix;
-  final Widget? suffixIcon;
+  final Widget? counter, error, helper, icon, label, prefix, prefixIcon;
+  final Widget? errorPrefixIcon, suffix, suffixIcon, errorSuffixIcon;
   final String? counterText, errorText, helperText, hintText, labelText;
   final String? prefixText, semanticCounterText, suffixText;
   final int? errorMaxLines, helperMaxLines, hintMaxLines;
@@ -66,8 +66,10 @@ class AppInputDecoration implements AppClass<InputDecoration> {
     this.label,
     this.prefix,
     this.prefixIcon,
+    this.errorPrefixIcon,
     this.suffix,
     this.suffixIcon,
+    this.errorSuffixIcon,
     // strings
     this.counterText,
     this.errorText,

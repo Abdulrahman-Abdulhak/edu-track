@@ -7,6 +7,8 @@ typedef StringFunction = String Function(String str);
 
 typedef PointerDownEventCallBack = void Function(PointerDownEvent event);
 
+typedef TextErrorCheckCallBack = bool Function(String text);
+
 typedef InputCounterWidgetBuilder = Widget? Function(
   BuildContext context, {
   required int currentLength,

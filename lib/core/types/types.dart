@@ -1,1 +1,1 @@
-export 'function.dart';
+export './function.dart';
