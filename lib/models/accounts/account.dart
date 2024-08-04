@@ -11,6 +11,7 @@ enum UserType {
 class Account {
   final String name, email;
   final UserType type;
+  final int? messages;
 
   final String? organization;
 
@@ -28,6 +29,7 @@ class Account {
 
   const Account({
     this.organization,
+    this.messages,
     required this.name,
     required this.email,
     required this.type,

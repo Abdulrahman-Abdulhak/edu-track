@@ -1,8 +1,9 @@
-import 'package:edu_track/models/models.dart';
-import 'package:edu_track/screens/chat_screen/widgets/profile_image.dart';
 import 'package:flutter/material.dart';
-import 'package:edu_track/core/core.dart';
 
+import 'package:edu_track/core/core.dart';
+import 'package:edu_track/models/models.dart';
+
+import './profile_image.dart';
 import '../../../constants/ui/colors.dart';
 import '../../../widgets/texts/texts.dart';
 
@@ -19,49 +20,53 @@ class ChatTile extends StatelessWidget {
         child: ProfileImage(account: account),
       ),
       title: AppRow(
-        gap: .38.rem,
+        gap: .3125.rem,
         children: [
-          AppBadge(
-            color: AppColors.brand50,
-            child: AppRow(
-              gap: .38.rem,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const AppIcon(
-                  icon: AppIcons.dot,
-                  color: AppColors.brand700,
-                ),
-                TextXs.medium(
-                  'LQP Organization',
-                  color: AppColors.brand700,
-                ),
-              ],
+          if (account.type != UserType.organization)
+            AppBadge(
+              color: AppColors.brand50,
+              child: AppRow(
+                gap: .375.rem,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const AppIcon(
+                    icon: AppIcons.dot,
+                    color: AppColors.brand700,
+                  ),
+                  TextXs.medium(
+                    account.organization!,
+                    color: AppColors.brand700,
+                  ),
+                ],
+              ),
             ),
-          ),
           AppBadge(
             color: AppColors.blue50,
             child: TextXs.medium(
-              'Student',
+              account.type.name,
               color: AppColors.blue700,
             ),
           ),
         ],
       ),
-      subtitle: TextLg.semiBold('Olivia Rhye'),
-      trailing: AppContainer(
-        width: 1.25.rem,
-        height: 1.25.rem,
-        clipBehavior: Clip.antiAlias,
-        decoration: const AppBoxDecoration(
-          color: AppColors.brand500,
-          shape: BoxShape.circle,
-        ),
-        child: TextXs.medium(
-          '2',
-          color: AppColors.white,
-          textAlign: TextAlign.center,
-        ),
-      ),
+      subtitle: TextLg.semiBold(account.name),
+      trailing: account.messages != null
+          ? AppContainer(
+              width: 1.25.rem,
+              height: 1.25.rem,
+              clipBehavior: Clip.antiAlias,
+              margin: AppEdgeInsetsDirectional.only(end: 1.rem),
+              decoration: const AppBoxDecoration(
+                color: AppColors.brand500,
+                shape: BoxShape.circle,
+              ),
+              child: TextXs.medium(
+                account.messages!,
+                color: AppColors.white,
+                textAlign: TextAlign.center,
+              ),
+            )
+          : null,
     );
   }
 }
