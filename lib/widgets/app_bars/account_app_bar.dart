@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:edu_track/core/core.dart';
 import 'package:edu_track/models/models.dart';
+import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
 import '../texts/texts.dart';
@@ -13,18 +14,7 @@ class AccountAppBar extends AppHeaderNav {
   @override
   Widget build(BuildContext context) {
     return AppHeaderNav(
-      leading: AppAvatar(
-        color: AppColors.brand50,
-        width: 2.5.rem,
-        child: TextMd.regular(
-          account.initials,
-          textTransform: TextTransform.uppercase,
-          style: AppTextStyle(
-            color: AppColors.brand600,
-            fontSize: 1.rem,
-          ),
-        ),
-      ),
+      leading: AccountImage(account: account),
       leadingGap: .75.rem,
       title: AppDefaultTextStyle(
         context: context,

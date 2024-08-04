@@ -9,7 +9,7 @@ abstract class AppBoxBorder extends AppShapeBorder {
     if (border == null) return null;
 
     return switch (border.runtimeType) {
-      Border _ => AppBorder.fromOrigin(border as Border),
+      Border => AppBorder.fromOrigin(border as Border),
       _ => throw "The border passed isn't defined for AppBoxBorder",
     };
   }

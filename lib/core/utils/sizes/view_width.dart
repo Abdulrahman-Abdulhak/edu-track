@@ -64,4 +64,9 @@ class ViewWidth extends UnitSize {
     if (val is ViewWidth) return ViewWidth(value - val.value);
     throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
+
+  @override
+  String toString() {
+    return "ViewWidth($value)";
+  }
 }

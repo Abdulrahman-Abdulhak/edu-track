@@ -1,18 +1,23 @@
-import 'package:edu_track/screens/chat_screen/profile_image.dart';
+import 'package:edu_track/models/models.dart';
+import 'package:edu_track/screens/chat_screen/widgets/profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:edu_track/core/core.dart';
 
-import '../../constants/ui/colors.dart';
-import '../../widgets/texts/texts.dart';
+import '../../../constants/ui/colors.dart';
+import '../../../widgets/texts/texts.dart';
 
 class ChatTile extends StatelessWidget {
-  const ChatTile({super.key});
+  final Account account;
+  const ChatTile({super.key, required this.account});
 
   @override
   Widget build(BuildContext context) {
     return AppListTile(
-      leading:
-          AppSizedBox(width: 3.5.rem, height: 3.5.rem, child: ProfileImage()),
+      leading: AppSizedBox(
+        width: 3.5.rem,
+        height: 3.5.rem,
+        child: ProfileImage(account: account),
+      ),
       title: AppRow(
         gap: .38.rem,
         children: [

@@ -70,9 +70,7 @@ class Pixel extends UnitSize {
     if (val.isZero) return this;
     if (val.isInfinite) return const Pixel(double.infinity);
 
-    if (val is Pixel) return Pixel(value + val.value);
-
-    throw "invalid value to add. (only zero and infinite UnitSizes and $runtimeType are allowed)";
+    return Pixel.add(this, val);
   }
 
   @override
@@ -81,8 +79,19 @@ class Pixel extends UnitSize {
 
     if (val is UnitSize && val.isInfinite) return const Pixel(0);
 
-    if (val is Pixel) return Pixel(value / val.value);
-    if (val is num) return Pixel(value / val);
+    if (val is num) {
+      return switch (_op) {
+        Operation.none => Pixel(value / val),
+        Operation.add => Pixel.add(_sizes.first / val, _sizes.last / val),
+        Operation.subtract => Pixel.subtract(
+            _sizes.first / val,
+            _sizes.last / val,
+          ),
+        Operation.multiply => Pixel.multiply(_sizes.first / val, _sizes.last),
+        Operation.divide => Pixel.divide(_sizes.first / val, _sizes.last),
+      };
+    }
+    if (val is UnitSize) return Pixel.divide(this, val);
 
     throw "invalid value to divide. (only infinite UnitSize and $runtimeType are allowed)";
   }
@@ -96,8 +105,19 @@ class Pixel extends UnitSize {
       if (val.isInfinite) return const Pixel(double.infinity);
     }
 
-    if (val is Pixel) return Pixel(value * val.value);
-    if (val is num) return Pixel(value * val);
+    if (val is num) {
+      return switch (_op) {
+        Operation.none => Pixel(value * val),
+        Operation.add => Pixel.add(_sizes.first * val, _sizes.last * val),
+        Operation.subtract => Pixel.subtract(
+            _sizes.first * val,
+            _sizes.last * val,
+          ),
+        Operation.multiply => Pixel.multiply(_sizes.first * val, _sizes.last),
+        Operation.divide => Pixel.divide(_sizes.first * val, _sizes.last),
+      };
+    }
+    if (val is UnitSize) return Pixel.multiply(this, val);
 
     throw "invalid value to multiply. (only zero and infinite UnitSizes and $runtimeType are allowed)";
   }
@@ -105,8 +125,17 @@ class Pixel extends UnitSize {
   @override
   Pixel subtract(UnitSize val) {
     if (val.isZero) return this;
+    return Pixel.subtract(this, val);
+  }
 
-    if (val is Pixel) return Pixel(value - val.value);
-    throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
+  @override
+  String toString() {
+    return switch (_op) {
+      Operation.none => "Pixel($value)",
+      Operation.add => "Add(${_sizes.first}, ${_sizes.last})",
+      Operation.subtract => "Subtract(${_sizes.first}, ${_sizes.last})",
+      Operation.multiply => "Multiply(${_sizes.first}, ${_sizes.last})",
+      Operation.divide => "Divide(${_sizes.first}, ${_sizes.last})",
+    };
   }
 }

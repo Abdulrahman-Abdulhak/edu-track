@@ -73,4 +73,9 @@ class ContainerMin extends UnitSize {
     if (val is ContainerMin) return ContainerMin(value - val.value);
     throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
+
+  @override
+  String toString() {
+    return "ContainerMin($value)";
+  }
 }

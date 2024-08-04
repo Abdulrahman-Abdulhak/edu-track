@@ -5,8 +5,8 @@ import 'package:edu_track/constants/constants.dart';
 
 import '../texts/texts.dart';
 
-class MeassageAppBar extends AppHeaderNav {
-  MeassageAppBar({super.key});
+class MessageAppBar extends AppHeaderNav {
+  MessageAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

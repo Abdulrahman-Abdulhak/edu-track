@@ -73,4 +73,9 @@ class ContainerMax extends UnitSize {
     if (val is ContainerMax) return ContainerMax(value - val.value);
     throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
+
+  @override
+  String toString() {
+    return "ContainerMax($value)";
+  }
 }

@@ -7,17 +7,15 @@ import '../_app_class.dart';
 
 // a substitute for EdgeInsetsGeometry that can use the {UnitSize} class
 abstract class AppEdgeInsetsGeometry implements AppClass<EdgeInsetsGeometry> {
-  static AppEdgeInsetsGeometry? fromOrigin(Object? borderRadius) {
-    if (borderRadius == null) return null;
+  static AppEdgeInsetsGeometry? fromOrigin(Object? edge) {
+    if (edge == null) return null;
 
-    return switch (borderRadius.runtimeType) {
-      EdgeInsets _ => AppEdgeInsets.fromOrigin(
-          borderRadius as EdgeInsets,
+    return switch (edge.runtimeType) {
+      EdgeInsets => AppEdgeInsets.fromOrigin(edge as EdgeInsets),
+      EdgeInsetsDirectional => AppEdgeInsetsDirectional.fromOrigin(
+          edge as EdgeInsetsDirectional,
         ),
-      EdgeInsetsDirectional _ => AppEdgeInsetsDirectional.fromOrigin(
-          borderRadius as EdgeInsetsDirectional,
-        ),
-      _ => throw "The border passed isn't defined for AppBorderRadiusGeometry",
+      _ => throw "The border passed isn't defined for AppEdgeInsetsGeometry",
     };
   }
 

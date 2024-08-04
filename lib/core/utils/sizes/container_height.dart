@@ -70,4 +70,9 @@ class ContainerHeight extends UnitSize {
     if (val is ContainerHeight) return ContainerHeight(value - val.value);
     throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
+
+  @override
+  String toString() {
+    return "ContainerHeight($value)";
+  }
 }

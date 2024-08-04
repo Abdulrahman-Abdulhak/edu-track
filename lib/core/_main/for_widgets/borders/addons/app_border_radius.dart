@@ -10,10 +10,10 @@ abstract class AppBorderRadiusGeometry
     if (borderRadius == null) return null;
 
     return switch (borderRadius.runtimeType) {
-      AppBorderRadius _ => AppBorderRadius.fromOrigin(
+      AppBorderRadius => AppBorderRadius.fromOrigin(
           borderRadius as BorderRadius,
         ),
-      AppBorderRadiusDirectional _ => AppBorderRadiusDirectional.fromOrigin(
+      AppBorderRadiusDirectional => AppBorderRadiusDirectional.fromOrigin(
           borderRadius as BorderRadiusDirectional,
         ),
       _ => throw "The border passed isn't defined for AppBorderRadiusGeometry",

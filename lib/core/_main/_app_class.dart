@@ -22,17 +22,17 @@ abstract class AppClass<T> {
 
   static AppClass<Object> fromObject(Object obj) {
     return switch (obj.runtimeType) {
-      BorderRadiusGeometry _ => AppBorderRadiusGeometry.fromOrigin(obj),
-      BorderSide _ => AppBorderSide.fromOrigin(obj as BorderSide),
-      Radius _ => AppRadius.fromOrigin(obj as Radius),
-      BoxBorder _ => AppBoxBorder.fromOrigin(obj),
-      BoxConstraints _ => AppBoxConstraints.fromOrigin(obj as BoxConstraints),
-      BoxDecoration _ => AppBoxDecoration.fromOrigin(obj as BoxDecoration),
-      Offset _ => AppOffset.fromOrigin(obj as Offset),
-      BoxShadow _ => AppShadow.fromOrigin(obj as BoxShadow),
-      Shadow _ => AppShadow.fromOrigin(obj as Shadow),
-      Size _ => AppSize.fromOrigin(obj as Size),
-      TextStyle _ => AppTextStyle.fromOrigin(obj as TextStyle),
+      BorderRadiusGeometry => AppBorderRadiusGeometry.fromOrigin(obj),
+      BorderSide => AppBorderSide.fromOrigin(obj as BorderSide),
+      Radius => AppRadius.fromOrigin(obj as Radius),
+      BoxBorder => AppBoxBorder.fromOrigin(obj),
+      BoxConstraints => AppBoxConstraints.fromOrigin(obj as BoxConstraints),
+      BoxDecoration => AppBoxDecoration.fromOrigin(obj as BoxDecoration),
+      Offset => AppOffset.fromOrigin(obj as Offset),
+      BoxShadow => AppBoxShadow.fromOrigin(obj as BoxShadow),
+      Shadow => AppShadow.fromOrigin(obj as Shadow),
+      Size => AppSize.fromOrigin(obj as Size),
+      TextStyle => AppTextStyle.fromOrigin(obj as TextStyle),
       _ => throw "The object passed isn't of type AppClass<Object>.",
     } as AppClass<Object>;
   }

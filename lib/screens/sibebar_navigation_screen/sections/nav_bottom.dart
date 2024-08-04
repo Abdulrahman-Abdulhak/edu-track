@@ -11,7 +11,12 @@ const _navItems = [
   NavItemModel(icon: AppIcons.lifeBuoy, label: "Support"),
   NavItemModel(icon: AppIcons.settings, label: "Settings"),
 ];
-const _userAccount = Account(name: "Johan M.", email: "johan-m@edy-truck.com");
+final _userAccount = Account(
+  name: "Johan M.",
+  email: "johan-m@edy-truck.com",
+  type: UserType.teacher,
+  organization: "Elite School",
+);
 
 class NavBottom extends StatelessWidget {
   const NavBottom({super.key});

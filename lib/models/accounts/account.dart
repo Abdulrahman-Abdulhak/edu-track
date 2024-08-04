@@ -1,7 +1,18 @@
 import 'package:edu_track/core/core.dart';
 
+enum UserType {
+  student,
+  teacher,
+  manager,
+  parent,
+  organization,
+}
+
 class Account {
   final String name, email;
+  final UserType type;
+
+  final String? organization;
 
   String get initials {
     final words = name.words();
@@ -15,5 +26,10 @@ class Account {
     return current;
   }
 
-  const Account({required this.name, required this.email});
+  const Account({
+    this.organization,
+    required this.name,
+    required this.email,
+    required this.type,
+  }) : assert(type == UserType.organization || organization != null);
 }

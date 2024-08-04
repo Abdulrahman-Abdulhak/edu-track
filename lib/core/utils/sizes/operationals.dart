@@ -100,6 +100,11 @@ class _Min extends Operationals {
 
   @override
   _Min _multiply(num val) => _Min(size1.multiply(val), size2.multiply(val));
+
+  @override
+  String toString() {
+    return "Min($size1, $size2)";
+  }
 }
 
 class _Max extends Operationals {
@@ -136,6 +141,11 @@ class _Max extends Operationals {
 
   @override
   _Max _multiply(num val) => _Max(size1.multiply(val), size2.multiply(val));
+
+  @override
+  String toString() {
+    return "Max($size1, $size2)";
+  }
 }
 
 class _Clamp extends Operationals {
@@ -181,5 +191,10 @@ class _Clamp extends Operationals {
   @override
   _Clamp _multiply(num val) {
     return _Clamp(min.multiply(val), size.multiply(val), max.multiply(val));
+  }
+
+  @override
+  String toString() {
+    return "Clamp($min, $size, $max)";
   }
 }

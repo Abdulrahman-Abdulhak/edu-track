@@ -40,9 +40,7 @@ class AppHeaderNav extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(titleText);
     Widget title = this.title ?? AppText(titleText!, style: titleStyle);
-    print("reached here");
 
     final router = context.router;
     Widget? leadingToUse = leading;

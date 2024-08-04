@@ -8,6 +8,7 @@ import 'package:edu_track/widgets/widgets.dart';
 const _schoolAccount = Account(
   name: "Elite Scholars Academy",
   email: "esa@edu-track.com",
+  type: UserType.organization,
 );
 
 @RoutePage()

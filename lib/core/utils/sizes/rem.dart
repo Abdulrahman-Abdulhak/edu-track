@@ -64,4 +64,9 @@ class Rem extends UnitSize {
     if (val is Rem) return Rem(value - val.value);
     throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
+
+  @override
+  String toString() {
+    return "Rem($value)";
+  }
 }

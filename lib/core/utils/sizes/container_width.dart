@@ -70,4 +70,9 @@ class ContainerWidth extends UnitSize {
     if (val is ContainerWidth) return ContainerWidth(value - val.value);
     throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
+
+  @override
+  String toString() {
+    return "ContainerWidth($value)";
+  }
 }

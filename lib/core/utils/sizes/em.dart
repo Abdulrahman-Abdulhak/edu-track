@@ -70,4 +70,9 @@ class Em extends UnitSize {
     if (val is Em) return Em(value - val.value);
     throw "invalid value to subtract. (only zero UnitSize and $runtimeType are allowed)";
   }
+
+  @override
+  String toString() {
+    return "Em($value)";
+  }
 }

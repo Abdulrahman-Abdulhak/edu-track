@@ -1,2 +1,2 @@
 export './app_icon.dart';
-export '../../../widgets/logo.dart';
+export '../../../widgets/images/logo.dart';
