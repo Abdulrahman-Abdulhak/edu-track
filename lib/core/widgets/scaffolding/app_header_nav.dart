@@ -98,7 +98,6 @@ class AppHeaderNav extends AppStatelessWidget
 
 const _defaultNavHeight = Rem(4.5); // 72.px
 
-//TODO: make it extends AppSize
 class _NavPreferredSize extends AppSize {
   _NavPreferredSize(this.navHeight, this.bottomHeight)
       : super.fromHeight(

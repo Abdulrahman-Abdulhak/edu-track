@@ -17,8 +17,7 @@ class EmailSection extends StatelessWidget {
         AppTextField(
           keyboardType: TextInputType.emailAddress,
           decoration: AppInputDecoration(
-            //TODO: add text transformation
-            hintText: translation(context).enterYourEmail,
+            hintText: translation(context).enterYourEmail.capitalizeSentence(),
             hintStyle: Typographies.textMd.withStyles(
               color: AppColors.gray500,
             ),

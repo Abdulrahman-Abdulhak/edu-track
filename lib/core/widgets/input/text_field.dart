@@ -10,6 +10,11 @@ import '../../_main/main.dart';
 import '../../utils/utils.dart';
 import '../../types/types.dart' as types;
 
+enum InputErrorCheckTiming {
+  valueChange,
+  focusOut,
+}
+
 class AppTextField extends StatefulWidget {
   final UnitSize? caretHeight;
   final AppInputDecoration? decoration;
@@ -61,73 +66,74 @@ class AppTextField extends StatefulWidget {
   final BoxWidthStyle selectionWidthStyle;
   final TextAlign textAlign;
   final TextCapitalization textCapitalization;
+  final InputErrorCheckTiming errorCheckTiming;
 
-  const AppTextField({
-    super.key,
-    this.caretHeight,
-    this.decoration,
-    this.style,
-    this.autofillHints,
-    this.buildCounter,
-    this.contentInsertionConfiguration,
-    this.contextMenuBuilder,
-    this.controller,
-    this.caretColor,
-    this.caretErrorColor,
-    this.caretOpacityAnimates,
-    this.enableInteractiveSelection,
-    this.enabled,
-    this.showCaret,
-    this.focusNode,
-    this.inputFormatters,
-    this.keyboardAppearance,
-    this.keyboardType,
-    this.magnifierConfiguration,
-    this.maxLength,
-    this.maxLines,
-    this.minLines,
-    this.maxLengthEnforcement,
-    this.mouseCursor,
-    this.onAppPrivateCommand,
-    this.onChange,
-    this.onSubmit,
-    this.onEditingComplete,
-    this.onTap,
-    this.onTapOutside,
-    this.errorCheck,
-    this.restorationId,
-    this.scrollController,
-    this.scrollPhysics,
-    this.selectionControls,
-    this.smartDashesType,
-    this.smartQuotesType,
-    this.spellCheckConfiguration,
-    this.statesController,
-    this.strutStyle,
-    this.textAlignVertical,
-    this.textDirection,
-    this.textInputAction,
-    this.undoController,
-    this.caretWidth = const Pixel(2),
-    this.scrollPadding = const AppEdgeInsets.all(Pixel(20)),
-    this.autoCorrect = false,
-    this.enableIMEPersonalizedLearning = true,
-    this.enableSuggestions = true,
-    this.expands = false,
-    this.autoFocus = false,
-    this.canRequestFocus = true,
-    this.obscureText = false,
-    this.onTapAlwaysCalled = false,
-    this.readOnly = false,
-    this.scribbleEnabled = true,
-    this.clipBehavior = Clip.hardEdge,
-    this.dragStartBehavior = DragStartBehavior.start,
-    this.obscuringCharacter = '*',
-    this.selectionHeightStyle = BoxHeightStyle.tight,
-    this.selectionWidthStyle = BoxWidthStyle.tight,
-    this.textAlign = TextAlign.start,
-    this.textCapitalization = TextCapitalization.none,
-  });
+  const AppTextField(
+      {super.key,
+      this.caretHeight,
+      this.decoration,
+      this.style,
+      this.autofillHints,
+      this.buildCounter,
+      this.contentInsertionConfiguration,
+      this.contextMenuBuilder,
+      this.controller,
+      this.caretColor,
+      this.caretErrorColor,
+      this.caretOpacityAnimates,
+      this.enableInteractiveSelection,
+      this.enabled,
+      this.showCaret,
+      this.focusNode,
+      this.inputFormatters,
+      this.keyboardAppearance,
+      this.keyboardType,
+      this.magnifierConfiguration,
+      this.maxLength,
+      this.maxLines,
+      this.minLines,
+      this.maxLengthEnforcement,
+      this.mouseCursor,
+      this.onAppPrivateCommand,
+      this.onChange,
+      this.onSubmit,
+      this.onEditingComplete,
+      this.onTap,
+      this.onTapOutside,
+      this.errorCheck,
+      this.restorationId,
+      this.scrollController,
+      this.scrollPhysics,
+      this.selectionControls,
+      this.smartDashesType,
+      this.smartQuotesType,
+      this.spellCheckConfiguration,
+      this.statesController,
+      this.strutStyle,
+      this.textAlignVertical,
+      this.textDirection,
+      this.textInputAction,
+      this.undoController,
+      this.caretWidth = const Pixel(2),
+      this.scrollPadding = const AppEdgeInsets.all(Pixel(20)),
+      this.autoCorrect = false,
+      this.enableIMEPersonalizedLearning = true,
+      this.enableSuggestions = true,
+      this.expands = false,
+      this.autoFocus = false,
+      this.canRequestFocus = true,
+      this.obscureText = false,
+      this.onTapAlwaysCalled = false,
+      this.readOnly = false,
+      this.scribbleEnabled = true,
+      this.clipBehavior = Clip.hardEdge,
+      this.dragStartBehavior = DragStartBehavior.start,
+      this.obscuringCharacter = '*',
+      this.selectionHeightStyle = BoxHeightStyle.tight,
+      this.selectionWidthStyle = BoxWidthStyle.tight,
+      this.textAlign = TextAlign.start,
+      this.textCapitalization = TextCapitalization.none,
+      this.errorCheckTiming = InputErrorCheckTiming.focusOut});
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -154,9 +160,8 @@ class _AppTextFieldState extends AppState<AppTextField> {
       final focus = focusNode.hasFocus;
       if (focus == _isFocused) return; // nothing changed.
 
-      //
-      if (_isFocused && !focus) {
-        errorCheck(controller);
+      if (widget.errorCheckTiming == InputErrorCheckTiming.focusOut) {
+        if (_isFocused && !focus) errorCheck(controller);
       }
 
       setState(() {
@@ -175,6 +180,10 @@ class _AppTextFieldState extends AppState<AppTextField> {
   void onChanged(TextEditingController controller) {
     controller.addListener(() {
       final text = controller.text;
+
+      if (widget.errorCheckTiming == InputErrorCheckTiming.valueChange) {
+        errorCheck(controller);
+      }
 
       if (text.isEmpty) setState(() => _isEmpty = true);
       widget.onChange?.call(text);
@@ -270,7 +279,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
     final suffixStyle = decoration?.suffixStyle;
     final suffixText = decoration?.suffixText;
 
-    final suffixIconToUse = isError ? errorPrefixIcon : suffixIcon;
+    final suffixIconToUse = isError ? errorSuffixIcon : suffixIcon;
 
     final counter = decoration?.counter;
     final counterStyle = decoration?.counterStyle;
@@ -291,6 +300,15 @@ class _AppTextFieldState extends AppState<AppTextField> {
     final errorStyle = decoration?.errorStyle;
     final errorText = decoration?.errorText;
 
+    final errorToUse = error ??
+        (errorText != null
+            ? AppText(
+                errorText,
+                maxLineCount: errorMaxLines,
+                style: errorStyle,
+              )
+            : null);
+
     final focusColor = decoration?.focusColor;
     final focusedBorder = decoration?.focusedBorder;
     final focusedErrorBorder = decoration?.focusedErrorBorder;
@@ -303,6 +321,15 @@ class _AppTextFieldState extends AppState<AppTextField> {
     final helperMaxLines = decoration?.helperMaxLines;
     final helperStyle = decoration?.helperStyle;
     final helperText = decoration?.helperText;
+
+    final helperToUse = helper ??
+        (helperText != null
+            ? AppText(
+                helperText,
+                maxLineCount: helperMaxLines,
+                style: helperStyle,
+              )
+            : null);
 
     final hintFadeDuration = decoration?.hintFadeDuration;
     final hintMaxLines = decoration?.hintMaxLines;
@@ -402,18 +429,25 @@ class _AppTextFieldState extends AppState<AppTextField> {
     AppInputBorder? borderUsed;
     Color? backgroundColorUsed;
 
+    if (isFocused) {
+      backgroundColorUsed ??= focusColor;
+    }
     if (isHovered) {
-      backgroundColorUsed = fillColor;
+      backgroundColorUsed ??= hoverColor;
+    }
+
+    if (enabled != null && !enabled) {
+      borderUsed ??= disabledBorder;
     }
     if (isFocused && isError) {
-      borderUsed = focusedErrorBorder ?? errorBorder;
+      borderUsed ??= focusedErrorBorder ?? errorBorder;
+    } else if (isError) {
+      borderUsed = errorBorder;
+    } else if (isFocused) {
+      borderUsed = focusedBorder;
     }
-    if (isError) {
-      borderUsed ??= errorBorder;
-    }
-    if (isFocused) {
-      borderUsed ??= focusedBorder;
-      backgroundColorUsed ??= focusColor;
+    if (enabled != null && enabled) {
+      borderUsed ??= enabledBorder;
     }
 
     styleUsed ??= style;
@@ -457,6 +491,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
               textAlign: textAlign,
               focusNode: focusNode,
               controller: controller,
+              autofocus: autoFocus,
               canRequestFocus: canRequestFocus,
               textCapitalization: textCapitalization,
               textDirection: textDirection,

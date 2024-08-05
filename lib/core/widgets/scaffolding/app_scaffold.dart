@@ -6,7 +6,6 @@ import '../../utils/utils.dart';
 import '../../types/types.dart';
 
 class AppScaffold extends AppStatelessWidget {
-  //TODO: make the appBar of type AppPreferredSizeWidget
   final AppPreferredSizeWidget? appBar;
   final Color? backgroundColor;
   //TODO: complete the use of the unused properties.
