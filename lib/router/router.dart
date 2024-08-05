@@ -24,11 +24,15 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ChatsRoute.page,
           path: AppRoutes.chatsPath,
-          initial: true,
         ),
         AutoRoute(
           page: MessageChatRoute.page,
           path: AppRoutes.messageChatsPath,
         ),
+        AutoRoute(
+          page: CalenderRoute.page,
+          path: AppRoutes.calenderPath,
+          initial: true,
+        )
       ];
 }
