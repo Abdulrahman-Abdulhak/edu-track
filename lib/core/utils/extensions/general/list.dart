@@ -11,6 +11,12 @@ extension AppList<T> on List<T> {
     return [for (var i = 0; i < length; i++) callback(this[i])];
   }
 
+  //TODO: merge with [this.to()].
+  //* same as normal {this.to} but with index passed to function.
+  List<K> toIndexed<K>(K Function(T item, int i) callback) {
+    return [for (var i = 0; i < length; i++) callback(this[i], i)];
+  }
+
   //* this creates a new list from this list with {item} being filled between its
   //* original items.
   //? by specifying the {skipTypes} parameter, every time the function encounters

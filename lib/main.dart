@@ -8,8 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static final _router = AppRouter();
-
   const MyApp({super.key});
 
   @override
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
       locale: L10n.defaultLocal,
       supportedLocales: L10n.all,
       localizationsDelegates: L10n.delegates,
-      routerConfig: _router.config(),
+      routerConfig: AppRouter.router.config(),
       builder: (context, child) {
         return WidgetLoader(
           main: child ?? const Center(child: Text("No child provided")),

@@ -11,7 +11,7 @@ const _navItems = [
   NavItemModel(icon: AppIcons.lifeBuoy, label: "Support"),
   NavItemModel(icon: AppIcons.settings, label: "Settings"),
 ];
-final _userAccount = Account(
+const _userAccount = Account(
   name: "Johan M.",
   email: "johan-m@edy-truck.com",
   type: UserType.teacher,

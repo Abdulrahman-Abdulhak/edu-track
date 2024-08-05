@@ -48,7 +48,6 @@ class AppHeaderNav extends AppStatelessWidget
     BoxConstraints? constraints,
   ) {
     Widget title = this.title ?? AppText(titleText!, style: titleStyle);
-    print("Now Here");
 
     final router = context.router;
     Widget? leadingToUse = leading;

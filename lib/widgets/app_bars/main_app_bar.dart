@@ -6,7 +6,9 @@ import 'package:edu_track/constants/constants.dart';
 import '../texts/texts.dart';
 
 class MainAppBar extends AppHeaderNav {
-  MainAppBar({super.key});
+  final bool? withNotifications;
+
+  MainAppBar({super.key, this.withNotifications});
 
   @override
   PreferredSizeWidget compute(
@@ -17,8 +19,20 @@ class MainAppBar extends AppHeaderNav {
       leading: Logo(size: 1.5.em),
       leadingGap: .5.rem,
       title: TextMd.semiBold(translation(context).teamName),
+      actionsGap: .25.rem,
       actions: [
+        if (AppObject.toBool(withNotifications))
+          AppIconButton(
+            padding: AppEdgeInsets.all(.5.rem),
+            onPressed: () => {
+              //TODO: implement.
+            },
+            icon: AppIcons.notification,
+            color: AppColors.gray700,
+            size: 1.5.rem,
+          ),
         AppIconButton(
+          padding: AppEdgeInsets.all(.5.rem),
           onPressed: () => {
             //TODO: implement.
           },
