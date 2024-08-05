@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+
+import '../_main/main.dart';
 
 typedef VoidFunction = void Function();
 typedef VoidFunctionBool = void Function(bool);
@@ -27,4 +30,10 @@ typedef AppPrivateCommandCallback = void Function(
 typedef MaybeConstrainedWidgetBuilder = Widget Function(
   BuildContext context,
   BoxConstraints? constraints,
+);
+
+// router types
+typedef AppHeaderNavBuilder = AppPreferredSizeWidget Function(
+  BuildContext context,
+  TabsRouter tabsRouter,
 );

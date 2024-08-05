@@ -45,7 +45,9 @@ class AppBorderSide implements AppClass<BorderSide> {
   }
 
   @override
-  bool get needsConstraints => width.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return width.needsConstraints;
+  }
 
   @override
   bool get needsContext => width.needsContext;

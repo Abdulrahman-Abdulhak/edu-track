@@ -9,7 +9,10 @@ class MessageAppBar extends AppHeaderNav {
   MessageAppBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget compute(
+    BuildContext context,
+    BoxConstraints? constraints,
+  ) {
     return AppHeaderNav(
       leading: Logo(size: 1.5.em),
       leadingGap: .5.rem,
@@ -32,6 +35,6 @@ class MessageAppBar extends AppHeaderNav {
           size: 1.5.rem,
         ),
       ],
-    );
+    ).compute(context, constraints);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_radius.dart';
+import './app_radius.dart';
 import '../../../_app_class.dart';
 import '../../../../utils/utils.dart';
 
@@ -32,7 +32,9 @@ abstract class AppBorderRadiusGeometry
   bool get needsContext => _properties.needsContext;
 
   @override
-  bool get needsConstraints => _properties.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return _properties.needsConstraints(context);
+  }
 
   List<AppRadius> get _properties;
 }

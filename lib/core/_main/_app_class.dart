@@ -8,13 +8,13 @@ abstract class AppClass<T> {
     return list.any((item) => item != null && item.needsContext);
   }
 
-  static bool anyNeedsConstraints(List<AppClass?> list) {
-    return list.any((item) => item != null && item.needsConstraints);
+  static bool anyNeedsConstraints(List<AppClass?> list, BuildContext context) {
+    return list.any((item) => item != null && item.needsConstraints(context));
   }
 
   static List<T>? computeList<T>(
     List<AppClass<T>>? list,
-    BuildContext? context,
+    BuildContext context,
     BoxConstraints? constraints,
   ) {
     return list?.to((item) => item.compute(context, constraints));
@@ -44,8 +44,8 @@ abstract class AppClass<T> {
 
   const AppClass();
 
-  T compute(BuildContext? context, BoxConstraints? constraints);
+  T compute(BuildContext context, BoxConstraints? constraints);
 
+  bool needsConstraints(BuildContext context);
   bool get needsContext;
-  bool get needsConstraints;
 }

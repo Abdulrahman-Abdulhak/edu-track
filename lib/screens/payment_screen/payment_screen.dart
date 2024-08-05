@@ -12,7 +12,7 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       appBar: PageAppBar(titleText: "Payment"),
       body: AppPadding(
         padding: AppEdgeInsets.all(1.rem),

@@ -56,7 +56,7 @@ class AppButton extends AppStatelessWidget {
   });
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     // button calculated border radius
     final borderRadius = (this.borderRadius ?? AppBorderRadius.zero)
         .compute(context, constraints);
@@ -101,6 +101,9 @@ class AppButton extends AppStatelessWidget {
   @override
   bool needsConstraints(BuildContext context) {
     return [width, height].needsConstraints ||
-        AppClass.anyNeedsConstraints([padding, borderRadius, border]);
+        AppClass.anyNeedsConstraints(
+          [padding, borderRadius, border],
+          context,
+        );
   }
 }

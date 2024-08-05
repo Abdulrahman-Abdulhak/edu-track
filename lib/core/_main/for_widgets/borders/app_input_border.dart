@@ -27,7 +27,9 @@ abstract class AppInputBorder extends AppShapeBorder {
   InputBorder compute(BuildContext? context, BoxConstraints? constraints);
 
   @override
-  bool get needsConstraints => borderSide.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return borderSide.needsConstraints(context);
+  }
 
   @override
   bool get needsContext => borderSide.needsContext;
@@ -63,8 +65,10 @@ class AppUnderlineInputBorder extends AppInputBorder {
   }
 
   @override
-  bool get needsConstraints =>
-      super.needsConstraints || borderRadius.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return super.needsConstraints(context) ||
+        borderRadius.needsConstraints(context);
+  }
 
   @override
   bool get needsContext => super.needsContext || borderRadius.needsContext;
@@ -110,10 +114,11 @@ class AppOutlineInputBorder extends AppInputBorder {
   }
 
   @override
-  bool get needsConstraints =>
-      super.needsConstraints ||
-      borderRadius.needsConstraints ||
-      gapPadding.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return super.needsConstraints(context) ||
+        borderRadius.needsConstraints(context) ||
+        gapPadding.needsConstraints;
+  }
 
   @override
   bool get needsContext =>
@@ -139,7 +144,9 @@ class _NoAppInputBorder extends AppInputBorder {
   }
 
   @override
-  bool get needsConstraints => false;
+  bool needsConstraints(BuildContext context) {
+    return false;
+  }
 
   @override
   bool get needsContext => false;

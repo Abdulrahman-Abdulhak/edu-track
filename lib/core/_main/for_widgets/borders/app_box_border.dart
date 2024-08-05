@@ -18,12 +18,6 @@ abstract class AppBoxBorder extends AppShapeBorder {
 
   @override
   BoxBorder compute(BuildContext? context, BoxConstraints? constraints);
-
-  @override
-  bool get needsConstraints;
-
-  @override
-  bool get needsContext;
 }
 
 class AppBorder extends AppBoxBorder {
@@ -80,7 +74,9 @@ class AppBorder extends AppBoxBorder {
   }
 
   @override
-  bool get needsConstraints => [left, top, right, bottom].needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return [left, top, right, bottom].needsConstraints(context);
+  }
 
   @override
   bool get needsContext => [left, top, right, bottom].needsContext;

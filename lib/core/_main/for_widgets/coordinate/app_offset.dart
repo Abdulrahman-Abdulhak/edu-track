@@ -32,7 +32,9 @@ class AppOffset extends AppClass<Offset> {
   }
 
   @override
-  bool get needsConstraints => [dx, dy].needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return [dx, dy].needsConstraints;
+  }
 
   @override
   bool get needsContext => [dx, dy].needsContext;

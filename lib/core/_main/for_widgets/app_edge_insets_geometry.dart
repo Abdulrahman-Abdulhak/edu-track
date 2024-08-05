@@ -23,14 +23,14 @@ abstract class AppEdgeInsetsGeometry implements AppClass<EdgeInsetsGeometry> {
 
   @override
   EdgeInsetsGeometry compute(
-    BuildContext? context,
+    BuildContext context,
     BoxConstraints? constraints,
   );
 
   @override
   bool get needsContext => _properties.needsContext;
   @override
-  bool get needsConstraints => _properties.needsConstraints;
+  bool needsConstraints(BuildContext context) => _properties.needsConstraints;
 
   List<UnitSize> get _properties;
 
@@ -87,7 +87,7 @@ class AppEdgeInsets extends AppEdgeInsetsGeometry {
         bottom = insets.bottom.px;
 
   @override
-  EdgeInsets compute(BuildContext? context, BoxConstraints? constraints) {
+  EdgeInsets compute(BuildContext context, BoxConstraints? constraints) {
     return EdgeInsets.fromLTRB(
       left.compute(context, constraints),
       top.compute(context, constraints),
@@ -162,7 +162,7 @@ class AppEdgeInsetsDirectional extends AppEdgeInsetsGeometry {
 
   @override
   EdgeInsetsDirectional compute(
-    BuildContext? context,
+    BuildContext context,
     BoxConstraints? constraints,
   ) {
     return EdgeInsetsDirectional.fromSTEB(

@@ -39,7 +39,9 @@ class AppSize extends AppClass<Size> {
   }
 
   @override
-  bool get needsConstraints => [width, height].needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return [width, height].needsConstraints;
+  }
 
   @override
   bool get needsContext => [width, height].needsContext;

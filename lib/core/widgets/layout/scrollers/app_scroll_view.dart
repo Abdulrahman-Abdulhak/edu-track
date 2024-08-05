@@ -158,7 +158,7 @@ abstract class AppBoxScrollView extends AppScrollView {
 
   @override
   bool needsConstraints(BuildContext context) {
-    return [padding].needsConstraints;
+    return [padding].needsConstraints(context);
   }
 
   /// Subclasses should override this method to build the layout model.

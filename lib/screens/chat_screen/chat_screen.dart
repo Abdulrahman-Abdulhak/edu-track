@@ -65,39 +65,41 @@ class MessageScreen extends StatelessWidget {
       horizontal: padding.horizontal / 2,
     );
 
+    // list of all items used to display on the scroller.
+    final itemsOfScroller = [
+      AppPadding(
+        padding: inlinePadding,
+        child: SearchField(
+          onSubmit: (String str) {
+            //TODO: implement.
+          },
+        ),
+      ),
+      ActiveUsers(
+        indentation: AppEdgeInsets.symmetric(
+          horizontal: padding.horizontal / 2,
+        ),
+      ),
+      AppPadding(
+        padding: inlinePadding,
+        child: TextMd.semiBold('Recent Message'),
+      ),
+      ..._chatUsers, // we are using the accounts so we add all of [_chatUsers] items.
+    ];
+
     return AppScaffold(
       appBar: MessageAppBar(),
       body: AppListView.separated(
         padding: AppEdgeInsets.symmetric(vertical: padding.vertical / 2),
         gap: 1.5.rem,
-        itemCount: _chatUsers.length + 3, // add the 3 normal widgets.
+        itemCount: itemsOfScroller.length,
         itemBuilder: (context, index) {
-          if (index == 0) {
-            return AppPadding(
-              padding: inlinePadding,
-              child: SearchField(
-                onSubmit: (String str) {
-                  //TODO: implement.5
-                },
-              ),
-            );
-          }
-          if (index == 1) {
-            return ActiveUsers(
-              indentation: AppEdgeInsets.symmetric(
-                horizontal: padding.horizontal / 2,
-              ),
-            );
-          }
-          if (index == 2) {
-            return AppPadding(
-              padding: inlinePadding,
-              child: TextMd.semiBold('Recent Message'),
-            );
-          }
+          final item = itemsOfScroller[index];
+
+          if (item is Widget) return item;
           return AppPadding(
             padding: inlinePadding,
-            child: ChatTile(account: _chatUsers[index - 3]),
+            child: ChatTile(account: item as Account),
           );
         },
       ),

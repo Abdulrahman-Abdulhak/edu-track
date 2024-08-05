@@ -11,7 +11,7 @@ class SidebarNavigationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       backgroundColor: AppColors.white,
       appBar: SideNavAppBar(),
       body: AppPadding(

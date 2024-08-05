@@ -66,7 +66,7 @@ class AppListTile extends AppStatelessWidget {
   });
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     final contentPaddingToUse = contentPadding ?? AppEdgeInsets.zero;
     final horizontalTitleGapToUse = horizontalTitleGap ?? 1.rem;
     final minVerticalPaddingToUse = minVerticalPadding ?? UnitSize.zero;
@@ -126,6 +126,6 @@ class AppListTile extends AppStatelessWidget {
           leadingAndTrailingTextStyle,
           subtitleTextStyle,
           titleTextStyle,
-        ]);
+        ], context);
   }
 }

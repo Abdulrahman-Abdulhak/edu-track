@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-class AppScaffold extends StatelessWidget {
+import '../../_main/main.dart';
+import '../../utils/utils.dart';
+import '../../types/types.dart';
+
+class AppScaffold extends AppStatelessWidget {
   //TODO: make the appBar of type AppPreferredSizeWidget
-  final PreferredSizeWidget? appBar;
+  final AppPreferredSizeWidget? appBar;
   final Color? backgroundColor;
   //TODO: complete the use of the unused properties.
   final Widget? body, drawer, bottomNavigationBar, floatingActionButton;
@@ -13,10 +17,10 @@ class AppScaffold extends StatelessWidget {
   final AnimatedIndexedStackBuilder? builder;
   final AnimatedIndexedStackTransitionBuilder? transitionBuilder;
   final FloatingActionButtonBuilder? floatingActionButtonBuilder;
-  final AppBarBuilder? appBarBuilder;
+  final AppHeaderNavBuilder? appBarBuilder;
   final BottomNavigationBuilder? bottomNavigationBuilder;
 
-  final Curve animationCurve;
+  final Curve transitionCurve;
   final Duration animationDuration;
   final bool lazyLoad;
   final int homeIndex;
@@ -40,7 +44,7 @@ class AppScaffold extends StatelessWidget {
     this.floatingActionButtonBuilder,
     this.appBarBuilder,
     this.bottomNavigationBuilder,
-    this.animationCurve = Curves.ease,
+    this.transitionCurve = Curves.ease,
     this.animationDuration = const Duration(milliseconds: 300),
     this.lazyLoad = true,
     this.homeIndex = -1,
@@ -64,7 +68,7 @@ class AppScaffold extends StatelessWidget {
     this.floatingActionButtonBuilder,
     this.appBarBuilder,
     this.bottomNavigationBuilder,
-    this.animationCurve = Curves.ease,
+    this.transitionCurve = Curves.ease,
     this.animationDuration = const Duration(milliseconds: 300),
     this.lazyLoad = true,
     this.homeIndex = -1,
@@ -74,7 +78,8 @@ class AppScaffold extends StatelessWidget {
   }) : _intersected = true;
 
   @override
-  Widget build(BuildContext context) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
+    // remake of the properties in case of [AppScaffold.intersect]
     final appBar = _intersected ? null : this.appBar;
     final drawer = _intersected ? null : this.drawer;
     final bottomNavigationBar = _intersected ? null : this.bottomNavigationBar;
@@ -101,7 +106,7 @@ class AppScaffold extends StatelessWidget {
         homeIndex: homeIndex,
         navigatorObservers: navigatorObservers,
         inheritNavigatorObservers: inheritNavigatorObservers,
-        curve: animationCurve,
+        curve: transitionCurve,
         transitionBuilder: (context, child, animation) =>
             transitionBuilder?.call(context, child, animation) ??
             FadeTransition(
@@ -136,11 +141,16 @@ class AppScaffold extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: appBar,
+      appBar: appBar?.compute(context, constraints),
       body: body,
       drawer: drawer,
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,
     );
+  }
+
+  @override
+  bool needsConstraints(BuildContext context) {
+    return [appBar].needsConstraints(context);
   }
 }

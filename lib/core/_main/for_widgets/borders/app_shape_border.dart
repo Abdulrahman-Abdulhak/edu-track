@@ -18,15 +18,6 @@ abstract class AppShapeBorder implements AppClass<ShapeBorder> {
   }
 
   const AppShapeBorder();
-
-  @override
-  ShapeBorder compute(BuildContext? context, BoxConstraints? constraints);
-
-  @override
-  bool get needsConstraints;
-
-  @override
-  bool get needsContext;
 }
 
 abstract class AppOutlinedBorder extends AppShapeBorder {
@@ -43,7 +34,12 @@ abstract class AppOutlinedBorder extends AppShapeBorder {
   const AppOutlinedBorder({this.borderSide = AppBorderSide.none});
 
   @override
-  bool get needsConstraints => borderSide.needsConstraints;
+  OutlinedBorder compute(BuildContext? context, BoxConstraints? constraints);
+
+  @override
+  bool needsConstraints(BuildContext context) {
+    return borderSide.needsConstraints(context);
+  }
 
   @override
   bool get needsContext => borderSide.needsContext;

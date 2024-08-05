@@ -5,14 +5,24 @@ import '../../sizes/sizes.dart';
 import '../../../_main/main.dart';
 
 extension AppClassList<T> on List<AppClass<T>> {
-  List<T> compute(BuildContext? context, BoxConstraints? constraints) {
+  List<T> compute(BuildContext context, BoxConstraints? constraints) {
     return to((item) => item.compute(context, constraints));
   }
 }
 
 extension MightAppClassList<T> on List<AppClass<T>?> {
-  bool get needsConstraints {
-    return AppClass.anyNeedsConstraints(this);
+  bool needsConstraints(BuildContext context) {
+    return AppClass.anyNeedsConstraints(this, context);
+  }
+
+  bool get needsContext {
+    return AppClass.anyNeedsContext(this);
+  }
+}
+
+extension MightWidgetList<T> on List<AppStatelessWidget?> {
+  bool needsConstraints(BuildContext context) {
+    return AppClass.anyNeedsConstraints(this, context);
   }
 
   bool get needsContext {

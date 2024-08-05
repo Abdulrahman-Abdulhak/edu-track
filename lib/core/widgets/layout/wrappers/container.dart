@@ -32,7 +32,7 @@ class AppContainer extends AppStatelessWidget {
   });
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     //TODO: Implement AppMatrix4 for the tranform property.
     //TODO: add the rest of the Container properties.
     return Container(
@@ -59,6 +59,6 @@ class AppContainer extends AppStatelessWidget {
           foregroundDecoration,
           margin,
           padding,
-        ]);
+        ], context);
   }
 }

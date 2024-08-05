@@ -22,6 +22,7 @@ class ChatTile extends StatelessWidget {
       title: AppRow(
         gap: .3125.rem,
         children: [
+          // There is non need for the organization tag if the chat is with the organization it self.
           if (account.type != UserType.organization)
             AppBadge(
               color: AppColors.brand50,
@@ -55,6 +56,8 @@ class ChatTile extends StatelessWidget {
               width: 1.25.rem,
               height: 1.25.rem,
               clipBehavior: Clip.antiAlias,
+              // According to the design the messages counter should appear
+              // a bit to the left of the end of the tile
               margin: AppEdgeInsetsDirectional.only(end: 1.rem),
               decoration: const AppBoxDecoration(
                 color: AppColors.brand500,

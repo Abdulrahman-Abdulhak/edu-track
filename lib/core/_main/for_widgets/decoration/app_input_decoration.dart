@@ -107,7 +107,7 @@ class AppInputDecoration implements AppClass<InputDecoration> {
   });
 
   @override
-  InputDecoration compute(BuildContext? context, BoxConstraints? constraints) {
+  InputDecoration compute(BuildContext context, BoxConstraints? constraints) {
     return InputDecoration(
       contentPadding: contentPadding?.compute(context, constraints),
       // text styles
@@ -182,32 +182,35 @@ class AppInputDecoration implements AppClass<InputDecoration> {
   }
 
   @override
-  bool get needsConstraints {
+  bool needsConstraints(BuildContext context) {
     return contentGap.needsConstraints ||
-        AppClass.anyNeedsConstraints([
-          contentPadding,
-          // styles.
-          counterStyle,
-          errorStyle,
-          floatingLabelStyle,
-          helperStyle,
-          hintStyle,
-          labelStyle,
-          prefixStyle,
-          suffixStyle,
-          // borders
-          border,
-          disabledBorder,
-          enabledBorder,
-          errorBorder,
-          focusedBorder,
-          focusedErrorBorder,
-          // input constraints
-          constraints,
-          prefixIconConstraints,
-          suffixIconConstraints,
-        ]) ||
-        shadows != null && shadows!.needsConstraints;
+        AppClass.anyNeedsConstraints(
+          [
+            contentPadding,
+            // styles.
+            counterStyle,
+            errorStyle,
+            floatingLabelStyle,
+            helperStyle,
+            hintStyle,
+            labelStyle,
+            prefixStyle,
+            suffixStyle,
+            // borders
+            border,
+            disabledBorder,
+            enabledBorder,
+            errorBorder,
+            focusedBorder,
+            focusedErrorBorder,
+            // input constraints
+            constraints,
+            prefixIconConstraints,
+            suffixIconConstraints,
+          ],
+          context,
+        ) ||
+        shadows != null && shadows!.needsConstraints(context);
   }
 
   @override

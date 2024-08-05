@@ -35,7 +35,7 @@ class AppSingleChildScrollView extends AppStatelessWidget {
   });
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     return SingleChildScrollView(
       padding: padding?.compute(context, constraints),
       controller: controller,
@@ -53,6 +53,6 @@ class AppSingleChildScrollView extends AppStatelessWidget {
 
   @override
   bool needsConstraints(BuildContext context) {
-    return [padding].needsConstraints;
+    return [padding].needsConstraints(context);
   }
 }

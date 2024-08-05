@@ -97,7 +97,7 @@ class AppIcon extends AppStatelessWidget {
   });
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     final sizeToUse = size?.compute(context, constraints);
     final colorToUse = color ?? Colors.black;
 

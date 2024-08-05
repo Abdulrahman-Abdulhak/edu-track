@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:edu_track/core/core.dart';
 import 'package:edu_track/models/models.dart';
-import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
 import '../texts/texts.dart';
+import '../images/images.dart';
 
 class AccountAppBar extends AppHeaderNav {
   final Account account;
   AccountAppBar({super.key, super.actions, required this.account});
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget compute(
+    BuildContext context,
+    BoxConstraints? constraints,
+  ) {
     return AppHeaderNav(
       leading: AccountImage(account: account),
       leadingGap: .75.rem,
@@ -36,6 +39,6 @@ class AccountAppBar extends AppHeaderNav {
         ),
       ),
       actions: actions,
-    );
+    ).compute(context, constraints);
   }
 }

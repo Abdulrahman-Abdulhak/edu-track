@@ -528,6 +528,6 @@ class _AppTextFieldState extends AppState<AppTextField> {
           widget.decoration,
           widget.style,
           widget.scrollPadding,
-        ]);
+        ], context);
   }
 }

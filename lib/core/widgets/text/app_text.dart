@@ -108,7 +108,7 @@ class AppText extends AppStatelessWidget {
   ]);
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     final defaultStyle = AppDefaultTextStyle.of(context);
     final styleToUse = (style ?? defaultStyle.style).withStyles(color: color);
 
@@ -138,6 +138,6 @@ class AppText extends AppStatelessWidget {
   @override
   bool needsConstraints(BuildContext context) {
     final style = this.style ?? AppDefaultTextStyle.of(context).style;
-    return [style].needsConstraints;
+    return [style].needsConstraints(context);
   }
 }

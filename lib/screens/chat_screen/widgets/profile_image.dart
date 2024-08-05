@@ -13,22 +13,26 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppRow(
-      children: [
-        //TODO: implement AppStack.
-        Stack(
-          children: [
-            AccountImage(account: account),
-            if (active)
-              Positioned(
-                bottom: 0,
-                right: 0,
+    Widget result = AccountImage(account: account);
+
+    if (active) {
+      result = AppRow(
+        children: [
+          AppStack(
+            children: [
+              result,
+              AppPositioned(
+                bottom: 0.px,
+                right: 0.px,
                 child: activeStatus(),
               )
-          ],
-        ),
-      ],
-    );
+            ],
+          ),
+        ],
+      );
+    }
+
+    return result;
   }
 
   Widget activeStatus() {

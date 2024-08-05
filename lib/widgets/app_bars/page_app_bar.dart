@@ -7,10 +7,13 @@ class PageAppBar extends AppHeaderNav {
   PageAppBar({super.key, required super.titleText});
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget compute(
+    BuildContext context,
+    BoxConstraints? constraints,
+  ) {
     return AppHeaderNav(
       titleText: titleText,
       titleStyle: Typographies.textMd.merge(AppTypographies.semiBold),
-    );
+    ).compute(context, constraints);
   }
 }

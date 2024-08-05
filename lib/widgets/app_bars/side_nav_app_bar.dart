@@ -8,11 +8,14 @@ class SideNavAppBar extends AppHeaderNav {
   SideNavAppBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget compute(
+    BuildContext context,
+    BoxConstraints? constraints,
+  ) {
     return AppHeaderNav(
       leadingGap: .5.rem,
       leading: Logo(size: 2.rem),
       title: TextDisplayXs.medium("EduTrack"),
-    );
+    ).compute(context, constraints);
   }
 }

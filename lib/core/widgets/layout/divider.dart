@@ -27,7 +27,7 @@ class AppDivider extends AppStatelessWidget {
   });
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     final divider = Divider(
       indent: indent?.compute(context, constraints),
       endIndent: endIndent?.compute(context, constraints),

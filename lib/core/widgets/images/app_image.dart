@@ -49,7 +49,7 @@ class AppImage extends AppStatelessWidget {
   }
 
   @override
-  Widget awareBuild(BuildContext context, BoxConstraints? constraints) {
+  Widget compute(BuildContext context, BoxConstraints? constraints) {
     final type = _determineImageType();
 
     if (type == _imageType.svg) {

@@ -45,7 +45,7 @@ class AppBoxDecoration implements AppClass<BoxDecoration> {
         );
 
   @override
-  BoxDecoration compute(BuildContext? context, BoxConstraints? constraints) {
+  BoxDecoration compute(BuildContext context, BoxConstraints? constraints) {
     return BoxDecoration(
       border: border?.compute(context, constraints),
       borderRadius: borderRadius?.compute(context, constraints),
@@ -59,9 +59,10 @@ class AppBoxDecoration implements AppClass<BoxDecoration> {
   }
 
   @override
-  bool get needsConstraints =>
-      AppClass.anyNeedsConstraints([border, borderRadius]) ||
-      shadows != null && shadows!.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return AppClass.anyNeedsConstraints([border, borderRadius], context) ||
+        shadows != null && shadows!.needsConstraints(context);
+  }
 
   @override
   bool get needsContext =>

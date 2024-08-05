@@ -24,7 +24,9 @@ class AppRadius implements AppClass<Radius> {
   }
 
   @override
-  bool get needsConstraints => [x, y].needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return [x, y].needsConstraints;
+  }
 
   @override
   bool get needsContext => [x, y].needsContext;

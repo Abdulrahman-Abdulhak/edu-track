@@ -117,7 +117,7 @@ class AppTextStyle implements AppClass<TextStyle> {
 
   //* this function transforms the class into {TextStyle}
   @override
-  TextStyle compute(BuildContext? context, BoxConstraints? constraints) {
+  TextStyle compute(BuildContext context, BoxConstraints? constraints) {
     //TODO: implement the rest.
     return TextStyle(
       fontSize: fontSize?.compute(context, constraints),
@@ -152,9 +152,9 @@ class AppTextStyle implements AppClass<TextStyle> {
   }
 
   @override
-  bool get needsConstraints =>
+  bool needsConstraints(BuildContext context) =>
       [fontSize, wordSpacing, letterSpacing].needsConstraints ||
-      textShadow != null && textShadow!.needsConstraints;
+      textShadow != null && textShadow!.needsConstraints(context);
 
   @override
   bool get needsContext =>

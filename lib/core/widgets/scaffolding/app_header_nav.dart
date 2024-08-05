@@ -4,24 +4,25 @@ import 'package:auto_route/auto_route.dart';
 import '../text/text.dart';
 import '../button/button.dart';
 import '../layout/layout.dart';
+import '../preferred_size/preferred_size.dart';
 import '../../_main/main.dart';
 import '../../utils/utils.dart';
 
-//TODO: make it implements AppPreferredSizeWidget
-class AppHeaderNav extends StatelessWidget implements PreferredSizeWidget {
+class AppHeaderNav extends AppStatelessWidget
+    implements AppPreferredSizeWidget {
   final AppEdgeInsetsGeometry? padding;
   final AppTextStyle? titleStyle;
 
-  final double? height;
+  final UnitSize? height;
   final String? titleText;
   final List<Widget>? actions;
   final Widget? leading, title;
-  final PreferredSizeWidget? bottom;
+  final AppPreferredSizeWidget? bottom;
 
   final UnitSize leadingGap, actionsGap, inActionsGap;
 
   @override
-  final Size preferredSize;
+  final AppSize preferredSize;
 
   AppHeaderNav({
     super.key,
@@ -36,11 +37,18 @@ class AppHeaderNav extends StatelessWidget implements PreferredSizeWidget {
     this.leadingGap = const Rem(2),
     this.actionsGap = const Rem(1.25),
     this.inActionsGap = const Rem(1.125),
-  }) : preferredSize = _NavPreferredSize(height, bottom?.preferredSize.height);
+  }) : preferredSize = _NavPreferredSize(
+          height,
+          bottom?.preferredSize.height,
+        );
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget compute(
+    BuildContext context,
+    BoxConstraints? constraints,
+  ) {
     Widget title = this.title ?? AppText(titleText!, style: titleStyle);
+    print("Now Here");
 
     final router = context.router;
     Widget? leadingToUse = leading;
@@ -71,23 +79,31 @@ class AppHeaderNav extends StatelessWidget implements PreferredSizeWidget {
       result = AppColumn(children: [result, bottom]);
     }
 
-    return AppContainer(
-      padding: padding ?? AppEdgeInsets.symmetric(horizontal: 1.rem),
-      height: preferredSize.height.px,
-      alignment: Alignment.center,
-      child: result,
-    );
+    return AppPreferredSize(
+      preferredSize: preferredSize,
+      child: AppContainer(
+        padding: padding ?? AppEdgeInsets.symmetric(horizontal: 1.rem),
+        height: preferredSize.height,
+        alignment: Alignment.center,
+        child: result,
+      ),
+    ).compute(context, constraints);
+  }
+
+  @override
+  bool needsConstraints(BuildContext context) {
+    return preferredSize.needsConstraints(context);
   }
 }
 
-const _defaultNavHeight = 72;
+const _defaultNavHeight = Rem(4.5); // 72.px
 
 //TODO: make it extends AppSize
-class _NavPreferredSize extends Size {
+class _NavPreferredSize extends AppSize {
   _NavPreferredSize(this.navHeight, this.bottomHeight)
       : super.fromHeight(
-          (navHeight ?? _defaultNavHeight) + (bottomHeight ?? 0),
+          (navHeight ?? _defaultNavHeight) + (bottomHeight ?? UnitSize.zero),
         );
 
-  final double? navHeight, bottomHeight;
+  final UnitSize? navHeight, bottomHeight;
 }

@@ -24,7 +24,7 @@ class AppShadow implements AppClass<Shadow> {
         color = shadow.color;
 
   @override
-  Shadow compute(BuildContext? context, BoxConstraints? constraints) {
+  Shadow compute(BuildContext context, BoxConstraints? constraints) {
     return Shadow(
       blurRadius: blurRadius.compute(context, constraints),
       offset: offset.compute(context, constraints),
@@ -33,8 +33,9 @@ class AppShadow implements AppClass<Shadow> {
   }
 
   @override
-  bool get needsConstraints =>
-      blurRadius.needsConstraints || offset.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return blurRadius.needsConstraints || offset.needsConstraints(context);
+  }
 
   @override
   bool get needsContext => blurRadius.needsContext || offset.needsContext;
@@ -62,7 +63,7 @@ class AppBoxShadow extends AppShadow {
         );
 
   @override
-  BoxShadow compute(BuildContext? context, BoxConstraints? constraints) {
+  BoxShadow compute(BuildContext context, BoxConstraints? constraints) {
     return BoxShadow(
       blurRadius: blurRadius.compute(context, constraints),
       spreadRadius: spreadRadius.compute(context, constraints),
@@ -73,8 +74,9 @@ class AppBoxShadow extends AppShadow {
   }
 
   @override
-  bool get needsConstraints =>
-      spreadRadius.needsConstraints || super.needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return spreadRadius.needsConstraints || super.needsConstraints(context);
+  }
 
   @override
   bool get needsContext => spreadRadius.needsContext || super.needsContext;

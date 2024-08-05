@@ -30,12 +30,14 @@ class AppBoxConstraints implements AppClass<BoxConstraints> {
   }
 
   @override
-  bool get needsConstraints => [
-        minWidth,
-        maxWidth,
-        minHeight,
-        maxHeight,
-      ].needsConstraints;
+  bool needsConstraints(BuildContext context) {
+    return [
+      minWidth,
+      maxWidth,
+      minHeight,
+      maxHeight,
+    ].needsConstraints;
+  }
 
   @override
   bool get needsContext => [
