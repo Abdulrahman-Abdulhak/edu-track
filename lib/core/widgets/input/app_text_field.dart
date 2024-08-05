@@ -10,7 +10,7 @@ import '../../_main/main.dart';
 import '../../utils/utils.dart';
 import '../../types/types.dart' as types;
 
-enum InputErrorCheckTiming {
+enum InputValidatorTiming {
   valueChange,
   focusOut,
 }
@@ -39,7 +39,7 @@ class AppTextField extends StatefulWidget {
   final types.VoidFunctionString? onChange, onSubmit;
   final types.VoidFunction? onEditingComplete, onTap;
   final types.PointerDownEventCallBack? onTapOutside;
-  final types.TextErrorCheckCallBack? errorCheck;
+  final types.TextErrorCheckCallBack? validator;
   final String? restorationId;
   final ScrollController? scrollController;
   final ScrollPhysics? scrollPhysics;
@@ -66,7 +66,7 @@ class AppTextField extends StatefulWidget {
   final BoxWidthStyle selectionWidthStyle;
   final TextAlign textAlign;
   final TextCapitalization textCapitalization;
-  final InputErrorCheckTiming errorCheckTiming;
+  final InputValidatorTiming validatorTiming;
 
   const AppTextField(
       {super.key,
@@ -100,7 +100,7 @@ class AppTextField extends StatefulWidget {
       this.onEditingComplete,
       this.onTap,
       this.onTapOutside,
-      this.errorCheck,
+      this.validator,
       this.restorationId,
       this.scrollController,
       this.scrollPhysics,
@@ -133,7 +133,7 @@ class AppTextField extends StatefulWidget {
       this.selectionWidthStyle = BoxWidthStyle.tight,
       this.textAlign = TextAlign.start,
       this.textCapitalization = TextCapitalization.none,
-      this.errorCheckTiming = InputErrorCheckTiming.focusOut});
+      this.validatorTiming = InputValidatorTiming.focusOut});
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -147,9 +147,9 @@ class _AppTextFieldState extends AppState<AppTextField> {
   bool _isError = false;
 
   void errorCheck(TextEditingController controller) {
-    if (widget.errorCheck == null) return;
+    if (widget.validator == null) return;
 
-    final isError = widget.errorCheck!(controller.text);
+    final isError = widget.validator!(controller.text);
     if (isError != _isError) {
       setState(() => _isError = isError);
     }
@@ -160,7 +160,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
       final focus = focusNode.hasFocus;
       if (focus == _isFocused) return; // nothing changed.
 
-      if (widget.errorCheckTiming == InputErrorCheckTiming.focusOut) {
+      if (widget.validatorTiming == InputValidatorTiming.focusOut) {
         if (_isFocused && !focus) errorCheck(controller);
       }
 
@@ -181,7 +181,7 @@ class _AppTextFieldState extends AppState<AppTextField> {
     controller.addListener(() {
       final text = controller.text;
 
-      if (widget.errorCheckTiming == InputErrorCheckTiming.valueChange) {
+      if (widget.validatorTiming == InputValidatorTiming.valueChange) {
         errorCheck(controller);
       }
 

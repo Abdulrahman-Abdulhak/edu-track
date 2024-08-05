@@ -4,8 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import '../_main/main.dart';
 
 typedef VoidFunction = void Function();
-typedef VoidFunctionBool = void Function(bool);
-typedef VoidFunctionString = void Function(String str);
+typedef VoidFunctionT<T> = void Function(T);
+typedef VoidFunctionBool = VoidFunctionT<bool>;
+typedef VoidFunctionString = VoidFunctionT<String>;
 typedef StringFunction = String Function(String str);
 
 typedef PointerDownEventCallBack = void Function(PointerDownEvent event);
