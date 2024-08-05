@@ -70,6 +70,9 @@ class MessageScreen extends StatelessWidget {
       AppPadding(
         padding: inlinePadding,
         child: SearchField(
+          filterAction: () {
+            //TODO: implement.
+          },
           onSubmit: (String str) {
             //TODO: implement.
           },
