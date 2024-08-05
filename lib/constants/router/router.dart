@@ -1,7 +1,8 @@
 class AppRoutes {
   static const signUpPath = '/sign-up';
   static const paymentPath = '/payment';
-  static const messagePath = '/message';
+  static const chatsPath = '/chats';
+  static const messageChatsPath = '/message_chat';
 }
 
 class TeacherRoutes {

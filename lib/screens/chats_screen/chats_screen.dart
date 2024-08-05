@@ -5,8 +5,8 @@ import 'package:edu_track/core/core.dart';
 import 'package:edu_track/models/models.dart';
 import 'package:edu_track/widgets/widgets.dart';
 
-import './sections/sections.dart';
-import './widgets/widgets.dart';
+import 'sections/sections.dart';
+import 'widgets/widgets.dart';
 
 const _chatUsers = [
   Account(
@@ -55,8 +55,8 @@ const _chatUsers = [
 ];
 
 @RoutePage()
-class MessageScreen extends StatelessWidget {
-  const MessageScreen({super.key});
+class ChatsScreen extends StatelessWidget {
+  const ChatsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

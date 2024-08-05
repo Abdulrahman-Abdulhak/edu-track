@@ -22,9 +22,13 @@ class AppRouter extends RootStackRouter {
           path: TeacherRoutes.homeworkUpload,
         ),
         AutoRoute(
-          page: MessageRoute.page,
-          path: AppRoutes.messagePath,
+          page: ChatsRoute.page,
+          path: AppRoutes.chatsPath,
           initial: true,
+        ),
+        AutoRoute(
+          page: MessageChatRoute.page,
+          path: AppRoutes.messageChatsPath,
         ),
       ];
 }
