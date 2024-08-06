@@ -25,6 +25,10 @@ class AppRouter extends RootStackRouter {
               page: ChatsRoute.page,
               path: AppRoutes.chatsPath,
             ),
+            AutoRoute(
+              page: CalenderRoute.page,
+              path: AppRoutes.calenderPath,
+            ),
           ],
         ),
         AutoRoute(
@@ -43,15 +47,11 @@ class AppRouter extends RootStackRouter {
           page: MessageChatRoute.page,
           path: AppRoutes.messageChatsPath,
         ),
-        AutoRoute(
-          page: CalenderRoute.page,
-          path: AppRoutes.calenderPath,
-          initial: true,
-        )
       ];
 
   List<PageRouteInfo> get mainTabs => [
         const HomeRoute(),
         const ChatsRoute(),
+        CalenderRoute(addTask: false),
       ];
 }

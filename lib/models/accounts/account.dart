@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:edu_track/core/core.dart';
 
 enum UserType {
@@ -34,4 +36,7 @@ class Account {
     required this.email,
     required this.type,
   }) : assert(type == UserType.organization || organization != null);
+
+  //TODO: make [id] a member of Account. (instead of just a getter method)
+  int get id => Random().nextInt(999999999999);
 }

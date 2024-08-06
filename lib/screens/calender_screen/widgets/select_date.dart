@@ -5,11 +5,14 @@ import 'package:edu_track/core/core.dart';
 import '../../../constants/ui/colors.dart';
 
 class SelectDate extends StatelessWidget {
-  const SelectDate({super.key});
+  final void Function(DateTime selectedDate) onDateChange;
+
+  const SelectDate({super.key, required this.onDateChange});
 
   @override
   Widget build(BuildContext context) {
     return AppContainer(
+      //TODO: recreate it in another way.
       child: DatePicker(
         DateTime.now(),
         width: 50,
@@ -25,9 +28,7 @@ class SelectDate extends StatelessWidget {
           fontSize: 12,
           color: AppColors.gray500,
         ),
-        onDateChange: (selectedDate) {
-          //TODO
-        },
+        onDateChange: onDateChange,
       ),
     );
   }

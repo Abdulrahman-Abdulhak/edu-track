@@ -5,44 +5,54 @@ import '../../../constants/ui/colors.dart';
 import '../../../widgets/texts/texts.dart';
 
 class TopSection extends StatelessWidget {
-  const TopSection({super.key});
+  final bool addTaskMode;
+  final DateTime date;
+  final VoidFunction onAddTaskPressed;
+
+  const TopSection({
+    super.key,
+    required this.addTaskMode,
+    required this.date,
+    required this.onAddTaskPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppContainer(
-      padding: AppEdgeInsets.only(
+      padding: AppEdgeInsetsDirectional.only(
         bottom: 2.rem,
         top: 2.rem,
-        left: 2.rem,
-        right: 1.rem,
+        start: 2.rem,
+        end: 1.rem,
       ),
-      color: AppColors.brand700,
       child: AppRow(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: addTaskMode
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.spaceBetween,
         children: [
           TextDisplayXs.semiBold(
-            'August',
+            date.monthName(context),
             color: AppColors.white,
           ),
-          AppButton(
-            backgroundColor: AppColors.brand50,
-            borderRadius: AppBorderRadius.all(AppRadius.circular(.5.rem)),
-            onPressed: () {},
-            child: AppRow(
+          if (!addTaskMode)
+            AppButton(
+              backgroundColor: AppColors.brand50,
+              borderRadius: AppBorderRadius.all(AppRadius.circular(.5.rem)),
+              padding: AppEdgeInsets.symmetric(
+                vertical: .5.rem,
+                horizontal: .875.rem,
+              ),
+              onPressed: onAddTaskPressed,
+              icon: const AppIcon(
+                icon: AppIcons.plus,
+                color: AppColors.brand700,
+              ),
               gap: .5.rem,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const AppIcon(
-                  icon: AppIcons.plus,
-                  color: AppColors.brand700,
-                ),
-                TextSm.semiBold(
-                  'Add Task',
-                  color: AppColors.brand700,
-                ),
-              ],
+              child: TextSm.semiBold(
+                'Add Task',
+                color: AppColors.brand700,
+              ),
             ),
-          ),
         ],
       ),
     );

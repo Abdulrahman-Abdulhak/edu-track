@@ -13,6 +13,7 @@ class SearchField extends StatelessWidget {
   final AppEdgeInsetsGeometry contentPadding;
   final Widget prefixIcon;
   final String hintText;
+  final bool enabled;
 
   final VoidFunctionString onSubmit;
 
@@ -24,6 +25,7 @@ class SearchField extends StatelessWidget {
     this.onChange,
     this.filterAction,
     this.hintText = "Search",
+    this.enabled = true,
     this.prefixIcon = const AppIcon(
       icon: AppIcons.search,
       color: AppColors.gray500,
@@ -42,6 +44,8 @@ class SearchField extends StatelessWidget {
       keyboardType: TextInputType.text,
       onChange: onChange,
       onSubmit: onSubmit,
+      enabled: enabled,
+      canRequestFocus: enabled,
       decoration: decoration ??
           AppInputDecoration(
             contentPadding: contentPadding,

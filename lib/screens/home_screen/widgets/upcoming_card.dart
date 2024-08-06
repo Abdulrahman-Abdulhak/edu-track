@@ -50,33 +50,11 @@ class UpcomingCard extends StatelessWidget {
               // to prevent stretching the badge.
               AppRow(
                 children: [
-                  AppBadge(
-                    iconGap: 0.375.rem,
-                    color: AppColors.brand50,
-                    icon: AppIcons.dot,
-                    iconColor: AppColors.brand500,
-                    child: TextXs.medium(
-                      course.organization.name,
-                      color: AppColors.brand700,
-                    ),
-                  ),
+                  OrganizationBadge(account: course.organization),
                 ],
               ),
               TextSm.semiBold(course.title, color: AppColors.gray900),
-              AppRow(
-                gap: .25.rem,
-                children: [
-                  AppIcon(
-                    icon: AppIcons.clockOutline,
-                    size: 1.rem,
-                    color: AppColors.gray500,
-                  ),
-                  TextXs(
-                    DateTime.now().toStringWhen(lecture.date!, context),
-                    color: AppColors.gray500,
-                  ),
-                ],
-              ),
+              DateTag(date: lecture.date!),
             ],
           ),
           const Spacer(),

@@ -165,22 +165,45 @@ extension AppDateTime on DateTime {
     };
   }
 
+  String monthName(BuildContext context) {
+    return switch (month) {
+      DateTime.january => "january",
+      DateTime.february => "february",
+      DateTime.march => "march",
+      DateTime.april => "april",
+      DateTime.may => "may",
+      DateTime.june => "june",
+      DateTime.july => "july",
+      DateTime.august => "august",
+      DateTime.september => "september",
+      DateTime.october => "october",
+      DateTime.november => "november",
+      DateTime.december => "december",
+      _ => "unknown",
+    };
+  }
+
+  String get hourString {
+    final isAm = 0 <= this.hour && this.hour < 12;
+    final hour = this.hour == 0
+        ? 12
+        : this.hour > 12
+            ? this.hour - 12
+            : this.hour;
+    final minute = this.minute;
+    final hourString =
+        "$hour:${minute < 10 ? "0$minute" : minute}${isAm ? "AM" : "PM"}";
+
+    return hourString;
+  }
+
   String toStringWhen(DateTime other, BuildContext context) {
     final difference = other.difference(this);
 
-    final isAm = 0 <= other.hour && other.hour < 12;
-    final hour = other.hour == 0
-        ? 12
-        : other.hour > 12
-            ? other.hour - 12
-            : other.hour;
-    final minute = other.minute;
-    final hourString = "$hour:$minute${isAm ? "AM" : "PM"}";
-
-    if (isInDay(other)) return "today, at $hourString";
+    if (isInDay(other)) return "today, ${other.hourString}";
     if (isInWeek(other)) {
-      if (difference.inDays == 1) return "tomorrow, at $hourString";
-      return "${other.dayName(context)}, at $hourString";
+      if (difference.inDays == 1) return "tomorrow, ${other.hourString}";
+      return "${other.dayName(context)}, ${other.hourString}";
     }
 
     return ""; //TODO: implement rest.
