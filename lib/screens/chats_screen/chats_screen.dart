@@ -90,39 +90,19 @@ class ChatsScreen extends StatelessWidget {
       ..._chatUsers, // we are using the accounts so we add all of [_chatUsers] items.
     ];
 
-    return AppScaffold(
-      appBar: MessageAppBar(),
-      body: AppListView.separated(
-        padding: AppEdgeInsets.symmetric(vertical: padding.vertical / 2),
-        gap: 1.5.rem,
-        itemCount: itemsOfScroller.length,
-        itemBuilder: (context, index) {
-          final item = itemsOfScroller[index];
+    return AppListView.separated(
+      padding: AppEdgeInsets.symmetric(vertical: padding.vertical / 2),
+      gap: 1.5.rem,
+      itemCount: itemsOfScroller.length,
+      itemBuilder: (context, index) {
+        final item = itemsOfScroller[index];
 
-          if (item is Widget) return item;
-          return AppPadding(
-            padding: inlinePadding,
-            child: ChatTile(account: item as Account),
-          );
-        },
-      ),
-      //! needs labels
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: AppIcon(icon: AppIcons.home),
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: AppIcon(icon: AppIcons.chat),
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: AppIcon(icon: AppIcons.calendar),
-      //     ),
-      //     // BottomNavigationBarItem(
-      //     //   icon: ,
-      //     // ),
-      //   ],
-      // ),
+        if (item is Widget) return item;
+        return AppPadding(
+          padding: inlinePadding,
+          child: ChatTile(account: item as Account),
+        );
+      },
     );
   }
 }

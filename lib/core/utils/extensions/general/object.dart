@@ -7,6 +7,7 @@ extension AppObject on Object {
     if (falsy.contains(obj)) return false;
 
     if (obj is Iterable) return obj.isNotEmpty;
+    if (obj is Set) return obj.isNotEmpty;
     if (obj is Map) return obj.isNotEmpty;
 
     return true;

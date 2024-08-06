@@ -1,4 +1,5 @@
 export './texts/texts.dart';
+export './addons/addons.dart';
 export './images/images.dart';
 export './app_bars/app_bars.dart';
 

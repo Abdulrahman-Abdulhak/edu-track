@@ -13,13 +13,17 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: MainRoute.page,
-          path: AppRoutes.home,
+          path: AppRoutes.main,
           initial: true,
           children: [
             AutoRoute(
               page: HomeRoute.page,
               path: '',
               initial: true,
+            ),
+            AutoRoute(
+              page: ChatsRoute.page,
+              path: AppRoutes.chatsPath,
             ),
           ],
         ),
@@ -36,10 +40,6 @@ class AppRouter extends RootStackRouter {
           path: TeacherRoutes.homeworkUpload,
         ),
         AutoRoute(
-          page: ChatsRoute.page,
-          path: AppRoutes.chatsPath,
-        ),
-        AutoRoute(
           page: MessageChatRoute.page,
           path: AppRoutes.messageChatsPath,
         ),
@@ -48,5 +48,10 @@ class AppRouter extends RootStackRouter {
           path: AppRoutes.calenderPath,
           initial: true,
         )
+      ];
+
+  List<PageRouteInfo> get mainTabs => [
+        const HomeRoute(),
+        const ChatsRoute(),
       ];
 }

@@ -24,10 +24,14 @@ class AppPreferences {
     assert(_didInitialize, "You are yet to call init() method.");
   }
 
-  void init() async {
+  Future<bool> init() async {
+    if (_didInitialize) return true;
+
     _sharedPreferences = await SharedPreferencesWithCache.create(
       cacheOptions: SharedPreferencesWithCacheOptions(allowList: allowList),
     );
+
+    return true;
   }
 
   bool containsKey(String key) {

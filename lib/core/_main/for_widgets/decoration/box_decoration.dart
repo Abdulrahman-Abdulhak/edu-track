@@ -49,7 +49,7 @@ class AppBoxDecoration implements AppClass<BoxDecoration> {
     return BoxDecoration(
       border: border?.compute(context, constraints),
       borderRadius: borderRadius?.compute(context, constraints),
-      boxShadow: shadows?.compute(context, constraints) as List<BoxShadow>?,
+      boxShadow: shadows?.compute<BoxShadow>(context, constraints),
       backgroundBlendMode: backgroundBlendMode,
       color: color,
       gradient: gradient,

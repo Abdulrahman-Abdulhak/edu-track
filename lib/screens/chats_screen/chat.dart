@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+
+//TODO: DELETE.
 
 class Chat_ extends StatelessWidget {
   @override
@@ -130,7 +131,6 @@ class ChatPage extends StatelessWidget {
                 backgroundImage: AssetImage('assets/avatar.png'),
               ),
               SizedBox(width: 8),
-
               Text(sender),
               Spacer(),
               Text(time),
@@ -252,7 +252,8 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-  Widget _buildReactionMessage(BuildContext context, IconData icon, Color color) {
+  Widget _buildReactionMessage(
+      BuildContext context, IconData icon, Color color) {
     return Align(
       alignment: Alignment.centerRight,
       child: Icon(
@@ -263,28 +264,27 @@ class ChatPage extends StatelessWidget {
   }
 
   Widget _buildMessageInput() {
-
     return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Row(
-    children: [
-    Expanded(
-    child: TextField(
-    decoration: InputDecoration(
-    hintText: 'Message',
-    border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(8.0),
-    ),
-    ),
-    ),
-    ),
-    SizedBox(width: 8),
-    IconButton(
-    icon: Icon(Icons.send, color: Colors.blue),
-    onPressed: () {},
-    ),
-    ],
-    ),
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Message',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 8),
+          IconButton(
+            icon: Icon(Icons.send, color: Colors.blue),
+            onPressed: () {},
+          ),
+        ],
+      ),
     );
-    }
+  }
 }

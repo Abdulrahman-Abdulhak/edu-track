@@ -22,6 +22,9 @@ dependencies:
   auto_route: ^9.1.0
   # app local data
   shared_preferences: ^2.3.1
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
 
   date_picker_timeline: ^1.2.6
 
@@ -29,21 +32,26 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # linters
   flutter_lints: ^3.0.0
+  custom_lint: ^0.6.4
+  riverpod_lint: ^2.3.10
   # for building and generating dart code according to the generators.
   # use it with "dart run build_runner (build or watch)".
   build_runner: ^2.4.11
   # generators
   auto_route_generator: ^9.0.0
+  riverpod_generator: ^2.4.0
 
 flutter:
   generate: true
   uses-material-design: true
 
   assets:
-    - assets/images/jpg/logos/
-    - assets/images/svg/logos/
     - assets/icons/svg/
+    - assets/images/svg/logos/
+    - assets/images/svg/design/
+    - assets/images/jpg/logos/
     - assets/images/png/logos/
 
   # To add custom fonts to your application, add a fonts section here,

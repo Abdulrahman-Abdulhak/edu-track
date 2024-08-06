@@ -29,21 +29,32 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppContainer(
-      color: AppColors.white,
+      decoration: AppBoxDecoration(
+        color: AppColors.white,
+        border: AppBorder(
+          top: AppBorderSide(width: 1.px, color: AppColors.gray100),
+        ),
+      ),
       padding: AppEdgeInsets.symmetric(horizontal: 35.px, vertical: 12.px),
       child: AppRow(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: _icons.toIndexed((item, i) {
-          if (item is Widget) return item;
+          Widget? child;
+          AppIcons? icon;
+
+          if (item is Widget) child = item;
+          if (item is AppIcons) icon = item;
 
           final isActive = tabs.activeIndex == i;
           return AppIconButton(
+            padding: AppEdgeInsets.all(.5.rem),
             onPressed: () {
               tabs.setActiveIndex(i);
             },
-            icon: item as AppIcons,
+            icon: icon,
             size: _iconsSize,
             color: isActive ? AppColors.purple700 : AppColors.gray700,
+            child: child,
           );
         }),
       ),

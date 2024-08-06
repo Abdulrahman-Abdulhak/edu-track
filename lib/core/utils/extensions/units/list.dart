@@ -5,8 +5,10 @@ import '../../sizes/sizes.dart';
 import '../../../_main/main.dart';
 
 extension AppClassList<T> on List<AppClass<T>> {
-  List<T> compute(BuildContext context, BoxConstraints? constraints) {
-    return to((item) => item.compute(context, constraints));
+  List<R> compute<R>(BuildContext context, BoxConstraints? constraints) {
+    return AppClass.computeList(this, context, constraints)!.to(
+      (item) => item as R,
+    );
   }
 }
 

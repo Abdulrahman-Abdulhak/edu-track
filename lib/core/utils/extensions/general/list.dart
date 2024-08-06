@@ -70,6 +70,13 @@ extension AppList<T> on List<T> {
     return this[length + index];
   }
 
+  // similar to [reduce()] but returns a singular different type from the list.
+  R toValue<R>(R Function(R acc, T item) callback, R initialValue) {
+    R value = initialValue;
+    forEach((item) => value = callback(value, item));
+    return value;
+  }
+
   List<T> operator +(List<T> other) {
     return [...this, ...other];
   }
@@ -97,5 +104,19 @@ extension StringList on List<String?> {
 
   String combineFirstLetters() {
     return combine((str) => str.firstChar);
+  }
+}
+
+extension ListOfLists<T> on List<List<T>> {
+  List<T> flatten() {
+    final newList = <T>[];
+
+    for (final list in this) {
+      for (final item in list) {
+        newList.add(item);
+      }
+    }
+
+    return newList;
   }
 }

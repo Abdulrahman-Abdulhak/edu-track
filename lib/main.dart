@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:edu_track/router/router.dart';
 import 'package:edu_track/constants/constants.dart';
+import 'package:edu_track/providers/providers.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,12 +36,24 @@ class MyApp extends StatelessWidget {
 }
 
 // this widgets serves as a first loader to the app
-class WidgetLoader extends StatelessWidget {
+class WidgetLoader extends ConsumerWidget {
   final Widget main;
   const WidgetLoader({super.key, required this.main});
 
   @override
-  Widget build(BuildContext context) {
-    return main;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loadedResult = ref.watch(loadedProvider);
+
+    final loaded = switch (loadedResult) {
+      AsyncData(:final value) => value,
+      _ => false,
+    };
+
+    return loaded
+        ? main
+        : const Center(
+            child:
+                CircularProgressIndicator(), //TODO: replace with splash screen.
+          );
   }
 }

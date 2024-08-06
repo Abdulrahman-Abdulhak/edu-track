@@ -51,6 +51,7 @@ class AppIconButton extends StatelessWidget {
         borderRadius: borderRadiusToUse,
       ),
       child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: onPressed,
         child: AppPadding(
           padding: paddingToUse,

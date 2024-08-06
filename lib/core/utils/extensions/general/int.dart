@@ -2,7 +2,17 @@
 extension TimeUnits on int {
   //? Time Units
   // it is the value of 1 millisecond {Duration}
-  get ms => Duration(milliseconds: this);
+  Duration get ms => Duration(milliseconds: this);
   // it is the value of 1 second {Duration}
-  get s => Duration(seconds: this);
+  Duration get s => Duration(seconds: this);
+  // it is the value of 1 minutes {Duration}
+  Duration get minute => Duration(minutes: this);
+  // it is the value of 1 hour {Duration}
+  Duration get h => Duration(hours: this);
+  // it is the value of 1 day {Duration}
+  Duration get day => Duration(days: this);
+}
+
+extension AppInt on int {
+  bool devisableBy(int num) => this % num == 0;
 }

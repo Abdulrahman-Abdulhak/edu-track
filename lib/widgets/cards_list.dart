@@ -6,7 +6,7 @@ import 'package:edu_track/constants/constants.dart';
 import './texts/texts.dart';
 
 class CardsList<T> extends StatelessWidget {
-  final UnitSize? listHeight, gap;
+  final UnitSize? gap;
   final AppEdgeInsetsGeometry? indentation;
   final ButtonStyle? seeMoreStyle;
   final Widget? loading, empty;
@@ -15,6 +15,7 @@ class CardsList<T> extends StatelessWidget {
   final String? seeMoreText;
   final Color nameColor, seeMoreTextColor;
 
+  final UnitSize listHeight;
   final int cardCount;
   final String name;
   final NullableIndexedWidgetBuilder cardBuilder;
@@ -29,9 +30,9 @@ class CardsList<T> extends StatelessWidget {
     this.isLoading,
     this.indentation,
     this.seeMoreText,
-    this.listHeight,
     this.seeMoreTextColor = AppColors.brand700,
     this.nameColor = AppColors.gray900,
+    required this.listHeight,
     required this.name,
     required this.onSeeMore,
     required this.cardCount,
@@ -84,34 +85,32 @@ class CardsList<T> extends StatelessWidget {
   }
 
   Widget _handleListShowCase(AppEdgeInsetsGeometry indentation) {
+    Widget result;
+
     if (AppObject.toBool(isLoading)) {
-      return loading ??
-          AppSizedBox(
-            height: listHeight,
-            width: 100.vw,
-            child: const Center(
-              child: AppText("Implement Loading for this cardList"),
-            ),
+      result = loading ??
+          const Center(
+            child: AppText("Implement Loading for this cardList"),
           );
+    } else if (!cardCount.logical) {
+      result = empty ??
+          Center(
+            child: TextMd('No available items to display.'),
+          );
+    } else {
+      result = AppListView.separated(
+        padding: indentation,
+        scrollDirection: Axis.horizontal,
+        gap: gap ?? .5.rem,
+        itemCount: cardCount,
+        itemBuilder: cardBuilder,
+      );
     }
 
-    if (cardCount.logical) {
-      return empty ??
-          AppSizedBox(
-            height: listHeight,
-            width: 100.vw,
-            child: Center(
-              child: TextMd('No available items to display.'),
-            ),
-          );
-    }
-
-    return AppListView.separated(
-      padding: indentation,
-      scrollDirection: Axis.horizontal,
-      gap: gap ?? .5.rem,
-      itemCount: cardCount,
-      itemBuilder: cardBuilder,
+    return AppSizedBox(
+      height: listHeight,
+      width: 100.vw,
+      child: result,
     );
   }
 }
