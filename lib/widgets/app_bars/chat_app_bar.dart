@@ -1,5 +1,5 @@
 import 'package:edu_track/models/models.dart';
-import 'package:edu_track/screens/chats_screen/widgets/profile_image.dart';
+import 'package:edu_track/screens/chat_screen/chats_screen/widgets/profile_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/core/core.dart';
@@ -11,7 +11,10 @@ class MessageChatAppBar extends AppHeaderNav {
   MessageChatAppBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget compute(
+    BuildContext context,
+    BoxConstraints? constraints,
+  ) {
     return AppHeaderNav(
       leading: AppIconButton(
         onPressed: () => {
@@ -25,11 +28,13 @@ class MessageChatAppBar extends AppHeaderNav {
       title: AppRow(
         gap: .75.rem,
         children: [
-          ProfileImage(
+          const ProfileImage(
             account: Account(
+              id: 15,
               name: "",
               email: '',
               type: UserType.student,
+              organization: "",
             ),
           ),
           AppColumn(
@@ -87,6 +92,6 @@ class MessageChatAppBar extends AppHeaderNav {
           size: 1.5.rem,
         ),
       ],
-    );
+    ).compute(context, constraints);
   }
 }

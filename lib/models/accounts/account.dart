@@ -11,6 +11,7 @@ enum UserType {
 }
 
 class Account {
+  final int id;
   final String name, email;
   final UserType type;
   final int? messages;
@@ -32,11 +33,9 @@ class Account {
   const Account({
     this.organization,
     this.messages,
+    required this.id,
     required this.name,
     required this.email,
     required this.type,
   }) : assert(type == UserType.organization || organization != null);
-
-  //TODO: make [id] a member of Account. (instead of just a getter method)
-  int get id => Random().nextInt(999999999999);
 }

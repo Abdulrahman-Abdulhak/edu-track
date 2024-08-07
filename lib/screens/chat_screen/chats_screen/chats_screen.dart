@@ -1,65 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:edu_track/core/core.dart';
 import 'package:edu_track/models/models.dart';
 import 'package:edu_track/widgets/widgets.dart';
+import 'package:edu_track/providers/providers.dart';
 
 import 'sections/sections.dart';
 import 'widgets/widgets.dart';
 
-const _chatUsers = [
-  Account(
-    name: "Olivia Rhye",
-    email: "email",
-    type: UserType.student,
-    organization: "LQP Organization",
-    messages: 2,
-  ),
-  Account(
-    name: "Johnny Johan",
-    email: "email",
-    type: UserType.student,
-    organization: "LQP Organization",
-  ),
-  Account(
-    name: "Olivia Rhye",
-    email: "email",
-    type: UserType.student,
-    organization: "LQP Organization",
-  ),
-  Account(
-    name: "Phoenix B.",
-    email: "email",
-    type: UserType.teacher,
-    organization: "LQP Organization",
-  ),
-  Account(
-    name: "Andi Lane",
-    email: "email",
-    type: UserType.manager,
-    organization: "NOP Organization",
-  ),
-  Account(
-    name: "Natalia Postman",
-    email: "email",
-    type: UserType.parent,
-    organization: "NOP Organization",
-  ),
-  Account(
-    name: "Malia R.",
-    email: "email",
-    type: UserType.student,
-    organization: "NOP Organization",
-  ),
-];
-
 @RoutePage()
-class ChatsScreen extends StatelessWidget {
+class ChatsScreen extends ConsumerWidget {
   const ChatsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final users = ref.watch(chatsProvider);
+
     final padding = AppEdgeInsets.symmetric(vertical: 1.rem, horizontal: 1.rem);
     final inlinePadding = AppEdgeInsets.symmetric(
       horizontal: padding.horizontal / 2,
@@ -87,7 +45,7 @@ class ChatsScreen extends StatelessWidget {
         padding: inlinePadding,
         child: TextMd.semiBold('Recent Message'),
       ),
-      ..._chatUsers, // we are using the accounts so we add all of [_chatUsers] items.
+      ...users, // we are using the accounts so we add all of [_chatUsers] items.
     ];
 
     return AppListView.separated(

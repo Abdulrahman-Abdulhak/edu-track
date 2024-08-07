@@ -17,13 +17,24 @@ class AppRouter extends RootStackRouter {
           initial: true,
           children: [
             AutoRoute(
-              page: HomeRoute.page,
-              path: '',
               initial: true,
+              page: HomeRoute.page,
+              path: AppRoutes.initial,
             ),
             AutoRoute(
-              page: ChatsRoute.page,
-              path: AppRoutes.chatsPath,
+              page: ChatNavigatorRoute.page,
+              path: AppRoutes.chatNavigatorPath,
+              children: [
+                AutoRoute(
+                  initial: true,
+                  page: ChatsRoute.page,
+                  path: AppRoutes.initial,
+                ),
+                AutoRoute(
+                  page: MessageChatRoute.page,
+                  path: AppRoutes.messageChatsPath,
+                ),
+              ],
             ),
             AutoRoute(
               page: CalenderRoute.page,
@@ -42,10 +53,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: HomeworkAddRoute.page,
           path: TeacherRoutes.homeworkUpload,
-        ),
-        AutoRoute(
-          page: MessageChatRoute.page,
-          path: AppRoutes.messageChatsPath,
         ),
       ];
 

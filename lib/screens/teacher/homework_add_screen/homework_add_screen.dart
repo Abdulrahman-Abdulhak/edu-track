@@ -6,6 +6,7 @@ import 'package:edu_track/models/models.dart';
 import 'package:edu_track/widgets/widgets.dart';
 
 const _schoolAccount = Account(
+  id: 15,
   name: "Elite Scholars Academy",
   email: "esa@edu-track.com",
   type: UserType.organization,

@@ -10,6 +10,7 @@ final _now = DateTime.now();
 final _courses = [
   Course(
     professor: const Account(
+      id: 15,
       name: "Mohamad Hamda",
       email: "MohamadHamda@gmail.com",
       type: UserType.teacher,
@@ -18,6 +19,7 @@ final _courses = [
     title: "Number Theory: Prime Numbers and Cryptography",
     type: CourseType.mathematics,
     organization: const Account(
+      id: 15,
       name: "LQP Organization",
       email: "LQPOrganization@gmail.com",
       type: UserType.organization,
@@ -36,6 +38,7 @@ final _courses = [
   ),
   Course(
     professor: const Account(
+      id: 15,
       name: "Abdulrhman Abdullah",
       email: "Prof.AbdulrhmanAbdullah@gmail.com",
       type: UserType.teacher,
@@ -44,6 +47,7 @@ final _courses = [
     title: "Software Engineering: Principles and Practices",
     type: CourseType.computer,
     organization: const Account(
+      id: 15,
       name: "LQP Organization",
       email: "LQPOrganization@gmail.com",
       type: UserType.organization,

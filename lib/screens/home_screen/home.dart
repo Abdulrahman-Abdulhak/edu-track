@@ -7,6 +7,7 @@ import 'package:edu_track/models/models.dart';
 import './sections/sections.dart';
 
 const _userAccount = Account(
+  id: 15,
   name: "Johan M.",
   email: "johan-m@edy-truck.com",
   type: UserType.teacher,

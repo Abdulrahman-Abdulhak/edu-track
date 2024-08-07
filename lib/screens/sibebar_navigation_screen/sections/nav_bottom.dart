@@ -12,6 +12,7 @@ const _navItems = [
   NavItemModel(icon: AppIcons.settings, label: "Settings"),
 ];
 const _userAccount = Account(
+  id: 15,
   name: "Johan M.",
   email: "johan-m@edy-truck.com",
   type: UserType.teacher,

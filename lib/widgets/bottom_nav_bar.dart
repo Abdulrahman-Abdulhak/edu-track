@@ -8,6 +8,7 @@ import 'package:edu_track/constants/constants.dart';
 import './images/images.dart';
 
 const _userAccount = Account(
+  id: 15,
   name: "Johan M.",
   email: "johan-m@edy-truck.com",
   type: UserType.teacher,
