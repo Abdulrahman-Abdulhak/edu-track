@@ -1,10 +1,10 @@
-import 'package:edu_track/models/models.dart';
-import 'package:edu_track/screens/chat_screen/chats_screen/widgets/profile_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_track/core/core.dart';
+import 'package:edu_track/models/models.dart';
 import 'package:edu_track/constants/constants.dart';
 
+import '../profile_image.dart';
 import '../texts/texts.dart';
 
 class MessageChatAppBar extends AppHeaderNav {
@@ -16,15 +16,8 @@ class MessageChatAppBar extends AppHeaderNav {
     BoxConstraints? constraints,
   ) {
     return AppHeaderNav(
-      leading: AppIconButton(
-        onPressed: () => {
-          //TODO: implement.
-        },
-        icon: AppIcons.arrowLeft,
-        color: AppColors.gray700,
-        size: 1.5.rem,
-      ),
-      leadingGap: .5.rem,
+      backIconColor: AppColors.gray700,
+      leadingGap: 2.rem,
       title: AppRow(
         gap: .75.rem,
         children: [

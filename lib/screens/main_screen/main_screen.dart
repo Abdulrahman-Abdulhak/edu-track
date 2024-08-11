@@ -15,9 +15,19 @@ class MainScreen extends StatelessWidget {
     return AppScaffold(
       backgroundColor: AppColors.white,
       routes: AppRouter.router.mainTabs,
-      appBar: MainAppBar(withNotifications: true),
+      appBarBuilder: (context, tabsRouter) {
+        if (AppRoutes.isInMessagesPath(tabsRouter.currentPath)) {
+          return MessageChatAppBar();
+        }
+
+        return MainAppBar(withNotifications: true);
+      },
       builder: (context, child) => child,
       bottomNavigationBuilder: (context, tabsRouter) {
+        if (AppRoutes.isInMessagesPath(tabsRouter.currentPath)) {
+          return const ChatInput();
+        }
+
         return BottomNavBar(tabs: tabsRouter);
       },
     );

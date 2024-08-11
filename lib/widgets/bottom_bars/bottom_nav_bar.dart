@@ -5,7 +5,7 @@ import 'package:edu_track/core/core.dart';
 import 'package:edu_track/models/models.dart';
 import 'package:edu_track/constants/constants.dart';
 
-import './images/images.dart';
+import '../images/images.dart';
 
 const _userAccount = Account(
   id: 15,

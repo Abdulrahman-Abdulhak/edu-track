@@ -5,6 +5,17 @@ import 'package:edu_track/models/models.dart';
 part 'accounts.g.dart';
 
 @riverpod
+Account user(UserRef ref) {
+  return const Account(
+    id: 01010101,
+    name: "Abd Abd",
+    email: "bdg@gmail.com",
+    type: UserType.student,
+    organization: "orga orag",
+  );
+}
+
+@riverpod
 List<Account> chats(ChatsRef ref) {
   return const [
     Account(
@@ -64,4 +75,28 @@ List<Account> chats(ChatsRef ref) {
 Account userChat(UserChatRef ref, int id) {
   final chatUsers = ref.watch(chatsProvider);
   return chatUsers.firstWhere((account) => account.id == id);
+}
+
+@riverpod
+List<Message> chatMessages(ChatMessagesRef ref, int id) {
+  final sender = ref.watch(userChatProvider(id));
+  final user = ref.watch(userProvider);
+
+  return [
+    Message(
+      text: "Hey Sara, can you please review the latest design when you can?",
+      date: DateTime.now(),
+      sender: sender,
+    ),
+    Message(
+      text: "Sure thing, I'll have a look today.",
+      date: DateTime.now(),
+      sender: user,
+    ),
+    Message(
+      text: "Yeah sure.",
+      date: DateTime.now(),
+      sender: user,
+    ),
+  ]..sort((a, b) => a.date.compareTo(b.date));
 }

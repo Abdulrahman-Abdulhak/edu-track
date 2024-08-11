@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../text/text.dart';
+import '../icons/icons.dart';
 import '../button/button.dart';
 import '../layout/layout.dart';
 import '../preferred_size/preferred_size.dart';
@@ -13,6 +14,7 @@ class AppHeaderNav extends AppStatelessWidget
   final AppEdgeInsetsGeometry? padding;
   final AppTextStyle? titleStyle;
 
+  final Color? backIconColor;
   final UnitSize? height;
   final String? titleText;
   final List<Widget>? actions;
@@ -29,6 +31,7 @@ class AppHeaderNav extends AppStatelessWidget
     this.padding,
     this.titleStyle,
     this.height,
+    this.backIconColor,
     this.titleText,
     this.actions,
     this.leading,
@@ -49,12 +52,19 @@ class AppHeaderNav extends AppStatelessWidget
   ) {
     Widget title = this.title ?? AppText(titleText!, style: titleStyle);
 
-    final router = context.router;
+    final router = AutoRouter.of(context);
     Widget? leadingToUse = leading;
-    if (leadingToUse == null && router.canPop()) {
+    if (leadingToUse == null && (router.canNavigateBack || router.canPop())) {
       leadingToUse = AppIconButton(
+        icon: AppIcons.arrowLeft,
+        color: backIconColor,
+        size: 1.5.rem,
         onPressed: () {
-          router.maybePop();
+          if (router.canNavigateBack) {
+            router.back();
+          } else {
+            router.maybePop();
+          }
         },
       );
     }

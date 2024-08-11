@@ -59,6 +59,8 @@ extension AppDateTime on DateTime {
 
   bool isLeap() => isLeapYear(year);
 
+  DateTime get minuteStart => hourStart.copyWith(minute: minute);
+  DateTime get hourStart => dayStart.copyWith(hour: hour);
   DateTime get dayStart => DateTime(year, month, day);
   DateTime get weekStart => subtract(Duration(days: weekday - 1)).dayStart;
   DateTime get monthStart => DateTime(year, month);
@@ -67,6 +69,8 @@ extension AppDateTime on DateTime {
   // DateTime get decadeStart => after(const Duration(days: 3650)).yearStart;
   // DateTime get centuryStart => after(const Duration(days: 36500)).yearStart;
 
+  DateTime get minuteEnd => hourEnd.copyWith(minute: minute);
+  DateTime get hourEnd => dayEnd.copyWith(hour: hour);
   DateTime get dayEnd => DateTime(year, month, day, 23, 59, 59, 999, 999);
   DateTime get weekEnd => subtract(Duration(days: 7 - weekday)).dayEnd;
   DateTime get monthEnd => DateTime(year, month, daysInMonth(month)).dayEnd;
@@ -88,6 +92,8 @@ extension AppDateTime on DateTime {
   DateTime get lastYear => copyWith(year: year - 1);
   DateTime get lastDecade => copyWith(year: year - 10);
   DateTime get lastCentury => copyWith(year: year - 100);
+
+  // TODO: internationalize all of toString methods.
 
   String toStringFrom(DateTime date, BuildContext context) {
     final difference = date.difference(this);
@@ -152,6 +158,14 @@ extension AppDateTime on DateTime {
     return dayStart.isDate(other.dayStart);
   }
 
+  bool isInHour(DateTime other) {
+    return hourStart.isDate(other.hourStart);
+  }
+
+  bool isInMinute(DateTime other) {
+    return minuteStart.isDate(other.minuteStart);
+  }
+
   String dayName(BuildContext context) {
     return switch (weekday) {
       DateTime.sunday => "sunday",
@@ -207,5 +221,27 @@ extension AppDateTime on DateTime {
     }
 
     return ""; //TODO: implement rest.
+  }
+
+  String toStringSince(DateTime other, BuildContext context) {
+    final difference = this.difference(other);
+
+    if (isInMinute(other)) return "${difference.inSeconds} sec ago";
+    if (isInHour(other)) return "${difference.inMinutes} min ago";
+    if (isInDay(other)) return "today, ${other.hourString}";
+    if (isInWeek(other)) {
+      if (difference.inDays == 1) return "yesterday, ${other.hourString}";
+      return "${other.dayName(context)}, ${other.hourString}";
+    }
+
+    return other.toStringFormated(context);
+  }
+
+  String toStringSinceNow(BuildContext context) {
+    return DateTime.now().toStringSince(this, context);
+  }
+
+  String toStringFormated(BuildContext context) {
+    return "$day/$month/$year";
   }
 }

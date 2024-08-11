@@ -14,8 +14,14 @@ class AppRoutes {
   static const signUpPath = '/sign-up';
   static const paymentPath = '/payment';
 
-  static String pathParam(String path) {
-    return path.split(':').last;
+  static bool isPath(String path, RegExp pattern, [bool exact = false]) {
+    if (exact) return path.replaceFirst(pattern, '').isEmpty;
+    return pattern.matchAsPrefix(path) != null;
+  }
+
+  static bool isInMessagesPath(String path, [bool exact = true]) {
+    const regex = r'/chat/[0-9]*';
+    return isPath(path, RegExp(regex, caseSensitive: false), exact);
   }
 }
 

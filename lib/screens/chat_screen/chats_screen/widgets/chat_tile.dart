@@ -7,8 +7,6 @@ import 'package:edu_track/router/router.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
-import 'profile_image.dart';
-
 class ChatTile extends StatelessWidget {
   final Account account;
   const ChatTile({super.key, required this.account});

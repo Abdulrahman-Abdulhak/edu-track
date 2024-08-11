@@ -5,8 +5,6 @@ import 'package:edu_track/core/core.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/providers/providers.dart';
 
-import '../widgets/widgets.dart';
-
 class ActiveUsers extends ConsumerWidget {
   final AppEdgeInsetsGeometry indentation;
 
