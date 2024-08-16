@@ -6,8 +6,6 @@ import 'package:edu_track/models/models.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
-import './scroll_card.dart';
-
 class AccessedCard extends StatelessWidget {
   final Course course;
   final UnitSize cardWidth;

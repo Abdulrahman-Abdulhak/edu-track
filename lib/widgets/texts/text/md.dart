@@ -75,4 +75,6 @@ class TextMd extends AppText {
   }) : super.semiBold(
           style: AppTextStyle.copy(style).merge(Typographies.textMd),
         );
+
+  static semibold(String s) {}
 }

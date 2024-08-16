@@ -11,37 +11,37 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-          page: MainRoute.page,
-          path: AppRoutes.main,
-          initial: true,
-          children: [
-            AutoRoute(
-              initial: true,
-              page: HomeRoute.page,
-              path: AppRoutes.initial,
-            ),
-            AutoRoute(
-              page: ChatNavigatorRoute.page,
-              path: AppRoutes.chatNavigatorPath,
-              children: [
-                AutoRoute(
-                  initial: true,
-                  page: ChatsRoute.page,
-                  path: AppRoutes.initial,
-                ),
-                AutoRoute(
-                  page: MessageChatRoute.page,
-                  path: AppRoutes.messageChatsPath,
-                ),
-              ],
-            ),
-            AutoRoute(
-              page: CalenderRoute.page,
-              path: AppRoutes.calenderPath,
-            ),
-          ],
-        ),
+        // AutoRoute(
+        //   page: MainRoute.page,
+        //   path: AppRoutes.main,
+        //   initial: true,
+        //   children: [
+        //     AutoRoute(
+        //       initial: true,
+        //       page: HomeRoute.page,
+        //       path: AppRoutes.initial,
+        //     ),
+        //     AutoRoute(
+        //       page: ChatNavigatorRoute.page,
+        //       path: AppRoutes.chatNavigatorPath,
+        //       children: [
+        //         AutoRoute(
+        //           initial: true,
+        //           page: ChatsRoute.page,
+        //           path: AppRoutes.initial,
+        //         ),
+        //         AutoRoute(
+        //           page: MessageChatRoute.page,
+        //           path: AppRoutes.messageChatsPath,
+        //         ),
+        //       ],
+        //     ),
+        //     AutoRoute(
+        //       page: CalenderRoute.page,
+        //       path: AppRoutes.calenderPath,
+        //     ),
+        //   ],
+        // ),
         AutoRoute(
           page: SignUpRoute.page,
           path: AppRoutes.signUpPath,
@@ -53,6 +53,19 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: HomeworkAddRoute.page,
           path: TeacherRoutes.homeworkUpload,
+        ),
+        AutoRoute(
+          page: HomeworkRoute.page,
+          path: AppRoutes.homework,
+        ),
+        AutoRoute(
+          page: HomeworkDetailsRoute.page,
+          path: AppRoutes.homeworkDetails,
+        ),
+        AutoRoute(
+          page: ProfileRoute.page,
+          path: AppRoutes.profile,
+          initial: true,
         ),
       ];
 

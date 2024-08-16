@@ -211,13 +211,19 @@ extension AppDateTime on DateTime {
     return hourString;
   }
 
-  String toStringWhen(DateTime other, BuildContext context) {
+  String toStringWhen(
+    DateTime other,
+    BuildContext context, [
+    bool withHour = true,
+  ]) {
     final difference = other.difference(this);
 
     if (isInDay(other)) return "today, ${other.hourString}";
     if (isInWeek(other)) {
-      if (difference.inDays == 1) return "tomorrow, ${other.hourString}";
-      return "${other.dayName(context)}, ${other.hourString}";
+      if (difference.inDays == 1) {
+        return "tomorrow${withHour ? ", ${other.hourString}" : ""}";
+      }
+      return "${other.dayName(context)}${withHour ? ", ${other.hourString}" : ""}";
     }
 
     return ""; //TODO: implement rest.

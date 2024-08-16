@@ -5,8 +5,6 @@ import 'package:edu_track/models/models.dart';
 import 'package:edu_track/widgets/widgets.dart';
 import 'package:edu_track/constants/constants.dart';
 
-import './scroll_card.dart';
-
 class UpcomingCard extends StatelessWidget {
   final Course course;
   final Lecture lecture;

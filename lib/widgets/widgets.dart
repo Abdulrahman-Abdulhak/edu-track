@@ -9,3 +9,4 @@ export './cards_list.dart';
 export './search_field.dart';
 export './profile_image.dart';
 export './organization_badge.dart';
+export './scroll_card.dart';

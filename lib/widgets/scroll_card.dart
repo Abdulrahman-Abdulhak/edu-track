@@ -5,9 +5,14 @@ import 'package:edu_track/constants/constants.dart';
 
 class ScrollCard extends StatelessWidget {
   final List<Widget> children;
-  final UnitSize width;
+  final UnitSize width, gap;
 
-  const ScrollCard({super.key, required this.children, required this.width});
+  const ScrollCard({
+    super.key,
+    this.gap = const Rem(1),
+    required this.children,
+    required this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class ScrollCard extends StatelessWidget {
       ),
       child: AppColumn(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        gap: 1.rem,
+        gap: gap,
         children: children,
       ),
     );

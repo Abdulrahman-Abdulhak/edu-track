@@ -13,6 +13,9 @@ class AppRoutes {
   // new screens
   static const signUpPath = '/sign-up';
   static const paymentPath = '/payment';
+  static const homework = '/homework';
+  static const homeworkDetails = '/homeworkDetails';
+  static const profile = '/profile';
 
   static bool isPath(String path, RegExp pattern, [bool exact = false]) {
     if (exact) return path.replaceFirst(pattern, '').isEmpty;
